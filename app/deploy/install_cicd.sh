@@ -53,15 +53,35 @@ install -d -o cilv -g cilv "$RELEASES_DIR"
 install -d -o root -g root "$BIN_DIR"
 install -d -o root -g root /etc/cilv
 
-# ---------- 3. 拉取代码 ----------
+# ---------- 3. 拉取交付包 ----------
+# 从 GitHub Release 下载（不是 git clone）：
+#   - 交付包本身是构建产物（tar.gz），不是源码树；
+#   - 服务器到 GitHub 的 git clone 在实测中可用，但 Release 下载更直接，
+#     且与 deploy_agent.sh 的部署路径完全一致（同一套分片下载逻辑）。
 if [ -n "$TAG" ]; then
-    log "拉取 $TAG…"
-    git clone --depth 1 --branch "$TAG" "$REPO_URL" "$RELEASES_DIR/$TAG" || die "克隆失败"
+    log "从 Release $TAG 下载交付包…"
+    RELEASE_URL="https://github.com/$GITHUB_REPO/releases/download/$TAG"
+    ASSET_URL="$RELEASE_URL/cilv-tanwei.tar.gz"
 else
-    log "拉取默认分支…"
-    git clone --depth 1 "$REPO_URL" "$RELEASES_DIR/repo" || die "克隆失败"
-    TAG="repo"
+    log "从最新 Release 下载交付包…"
+    RELEASE_URL="https://github.com/$GITHUB_REPO/releases/latest/download"
+    ASSET_URL="$RELEASE_URL/cilv-tanwei.tar.gz"
+    TAG="latest"
 fi
+
+TARBALL="/tmp/cilv-bootstrap.tar.gz"
+log "下载 $ASSET_URL"
+if ! curl -fsSL --connect-timeout 30 --max-time 3600 \
+        --retry 3 --retry-delay 5 -o "$TARBALL" "$ASSET_URL"; then
+    die "交付包下载失败（单次下载超过约 3.9 MB 会被截断，请用 deploy_agent.sh 的分片逻辑）"
+fi
+
+log "解压到 $RELEASES_DIR/$TAG"
+mkdir -p "$RELEASES_DIR/$TAG"
+# 不加 --strip-components：交付包顶层就是 app/、data/、docs/、tools/ 与规范文档
+tar -xzf "$TARBALL" -C "$RELEASES_DIR/$TAG" || die "解压失败"
+[ -d "$RELEASES_DIR/$TAG/app" ] || die "包结构异常：未找到 app/ 目录"
+rm -f "$TARBALL"
 
 # ---------- 4. 部署代理 ----------
 log "安装部署代理…"
@@ -93,6 +113,18 @@ fi
 if [ -f "$RELEASES_DIR/$TAG/app/deploy/cilv-deploy-agent.service" ]; then
     cp "$RELEASES_DIR/$TAG/app/deploy/cilv-deploy-agent.service" /etc/systemd/system/
 fi
+
+# 部署代理以 cilv-deploy 用户运行，重启 cilv 服务需要 sudo 授权。
+# ⚠️ sudo 按**完整路径**匹配命令，systemctl 在本机有两个路径
+#    （/bin/systemctl 与 /usr/bin/systemctl 是同一个文件的两个名字），
+#    少写一个就会得到 "sudo: 需要密码" —— 实测踩过。
+log "配置部署代理的重启权限…"
+cat > /etc/sudoers.d/cilv-deploy <<EOF
+cilv-deploy ALL=(root) NOPASSWD: /usr/bin/systemctl restart cilv, /bin/systemctl restart cilv, /usr/bin/systemctl restart cilv.service, /bin/systemctl restart cilv.service, /usr/bin/systemctl is-active cilv, /bin/systemctl is-active cilv, /usr/bin/systemctl is-active --quiet cilv, /bin/systemctl is-active --quiet cilv
+EOF
+chmod 440 /etc/sudoers.d/cilv-deploy
+visudo -c >/dev/null 2>&1 || die "sudoers 配置有语法错误"
+
 systemctl daemon-reload
 
 # ---------- 7. 首次部署（装依赖 + 起服务）----------
