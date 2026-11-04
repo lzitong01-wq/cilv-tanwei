@@ -145,25 +145,36 @@ python tools/knowledge_audit.py --questions-dir "<题库目录>" \
 
 ## 6. 部署与 CI/CD
 
-本仓库带一套 GitHub Actions → 服务器的自动部署，配置见 [`app/deploy/CICD说明.md`](./app/deploy/CICD说明.md)。
+本仓库带一套 GitHub → 服务器的自动部署，配置见 [`app/deploy/CICD说明.md`](./app/deploy/CICD说明.md)。
 
 ```
-git push  →  Actions（装依赖 / 构建前端 / 跑测试 / 打包 / 发 Release）
-          →  服务器部署代理发现新 Release，分片下载 → 解压 → 切软链 → 重启
-          →  健康检查 /api/health 通过则完成，失败自动回滚上一版
+scripts/release.sh          # 本机执行：构建交付包 → 发到 GitHub Release
+          ↓
+GitHub Release（资产即交付包 tar.gz）
+          ↓ 服务器部署代理轮询发现（默认 300 秒）
+分片下载 → 解压 → 切软链 → 重启 → 健康检查 /api/health
+          ↓ 失败自动回滚上一版
 ```
 
 | 文件 | 作用 |
 |---|---|
-| `.github/workflows/build-release.yml` | 构建与发布工作流 |
-| `app/deploy/deploy_agent.sh` | 服务器端部署代理（轮询 / 下载 / 切换 / 回滚） |
+| `scripts/release.sh` | 发版脚本：构建前端 → 打包 → 建 Release → 上传资产 → 校验可下载 |
+| `app/deploy/deploy_agent.sh` | 服务器端部署代理（轮询 / 分片下载 / 切换 / 健康检查 / 回滚） |
 | `app/deploy/install_cicd.sh` | 首次安装：账号、目录、systemd、防火墙、验收 |
 | `app/deploy/cilv.service` | 应用服务单元 |
 | `app/deploy/cilv-deploy-agent.service` | 部署代理单元 |
 
 **部署方式是「服务器主动从 GitHub 拉」，不是「CI 推包到服务器」**——实测本机到服务器的上行只有约 17 KB/s，而服务器出网约 35 KB/s，且单次 HTTP 下载超过约 3.9 MB 会截断（两端同一出口 NAT）。`deploy_agent.sh` 因此用 2 MB 分片 + Range 请求 + 大小校验。
 
-大文件（`app/data/*.sqlite3`）走 **Git LFS**——`tier2_locator.sqlite3` 约 165 MB，超过 GitHub 单文件 100 MB 硬限制。
+> **为什么用本机脚本发版而不是 GitHub Actions**：本机 GitHub 凭据是 OAuth App token
+> （scopes: `repo`、`delete_repo`、`admin:org` 等），**缺 `workflow` scope**，
+> GitHub 会拒绝任何写入 `.github/workflows/` 的操作（git push 与 REST API 都被拦：
+> `refusing to allow an OAuth App to create or update workflow … without workflow scope`）。
+> 发版因此改由 `scripts/release.sh` 调 Release API 完成，链路效果相同。
+> 仓库里保留了 `.github/workflows/build-release.yml`，将来换成带 `workflow` scope 的
+> Personal Access Token 后即可切回 Actions。
+
+**大文件（`app/data/*.sqlite3`）走 Git LFS**——`tier2_locator.sqlite3` 约 165 MB，超过 GitHub 单文件 100 MB 硬限制。
 
 服务器侧环境要点：Anolis OS 8.6、Python 3.11、系统 SQLite 3.26.0（不支持 FTS5 trigram，由 `core/sqlite_compat.py` 自动切 `pysqlite3`）。
 

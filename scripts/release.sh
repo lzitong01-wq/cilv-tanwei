@@ -97,12 +97,16 @@ log "  Release #$RELEASE_ID 已创建"
 
 # ---------- 6. 上传资产 ----------
 UPLOAD_URL="https://uploads.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID/assets"
-log "上传资产（$SIZE，需要几分钟）…"
+# 资产名用纯 ASCII：中文文件名放在 URL 查询串里会被 GitHub 判 400
+# （实测「词律探微-交付包-….tar.gz」直接 Bad request，ASCII 名同一份文件秒传）。
+# 原始中文名记录在 Release 正文里，不丢信息。
+ASSET_NAME="cilv-tanwei-${VERSION}.tar.gz"
+log "上传资产（$SIZE，资产名 $ASSET_NAME，需要几分钟）…"
 UPLOAD_CODE=$(curl -s --max-time 3600 -o /tmp/cilv_upload.json -w "%{http_code}" \
     -u "x-access-token:$TOKEN" -X POST \
     -H "Content-Type: application/gzip" \
     --data-binary "@$TARBALL" \
-    "$UPLOAD_URL?name=$(python -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$TARBALL")&label=交付包")
+    "$UPLOAD_URL?name=$ASSET_NAME&label=delivery-package")
 
 if [ "$UPLOAD_CODE" != "201" ] && [ "$UPLOAD_CODE" != "200" ]; then
     head -c 400 /tmp/cilv_upload.json 2>/dev/null
