@@ -201,9 +201,18 @@ ensure_venv() {
 
     local wheels="$app/deploy/wheels/linux-x86_64-py311"
     if [ -d "$wheels" ]; then
-        log "离线安装依赖"
+        log "离线安装必装依赖"
         "$venv/bin/pip" install --no-index --find-links "$wheels" \
             -r "$app/backend/requirements.txt" || return 1
+        # 可选依赖：pysqlite3-binary（目标机系统 SQLite < 3.34 时补 FTS5 trigram）。
+        # 装不上不阻断——应用层 sqlite_compat.py 会退回内存子串匹配。
+        if [ -f "$app/backend/requirements-optional.txt" ]; then
+            log "安装可选依赖（pysqlite3-binary）"
+            "$venv/bin/pip" install --no-index --find-links "$wheels" \
+                -r "$app/backend/requirements-optional.txt" \
+                && log "  ✓ pysqlite3 已装" \
+                || log "  ⚠ 可选依赖安装失败，≥3 字检索将退回内存匹配（功能可用、较慢）"
+        fi
     else
         log "未找到离线 wheels，联网安装"
         "$venv/bin/pip" install -r "$app/backend/requirements.txt" || return 1
