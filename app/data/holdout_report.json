@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-11-04T20:01:22+00:00",
+  "seed": 42,
+  "contamination_note": "公开 700 的自建 holdout 为事后复算：规则归纳阶段已使用全部 700 题，不能作为未污染泛化证据。官方保密 300 才是真正的跨作品验证。",
+  "public_all": {
+    "questions": 700,
+    "raw": 453,
+    "normalized": 566,
+    "proxy": 700,
+    "errors": 0
+  },
+  "public_dev": {
+    "questions": 560,
+    "raw": 361,
+    "normalized": 452,
+    "proxy": 560,
+    "errors": 0
+  },
+  "public_holdout": {
+    "questions": 140,
+    "raw": 92,
+    "normalized": 114,
+    "proxy": 140,
+    "errors": 0
+  },
+  "public_dev_by_period": {
+    "元+宋+清": {
+      "questions": 18,
+      "raw": 1,
+      "normalized": 18,
+      "proxy": 18,
+      "errors": 0
+    },
+    "宋+清": {
+      "questions": 542,
+      "raw": 360,
+      "normalized": 434,
+      "proxy": 542,
+      "errors": 0
+    }
+  },
+  "public_holdout_by_period": {
+    "元+宋+清": {
+      "questions": 2,
+      "raw": 1,
+      "normalized": 2,
+      "proxy": 2,
+      "errors": 0
+    },
+    "宋+清": {
+      "questions": 138,
+      "raw": 91,
+      "normalized": 112,
+      "proxy": 138,
+      "errors": 0
+    }
+  },
+  "private_all": {
+    "questions": 300,
+    "raw": 188,
+    "normalized": 242,
+    "proxy": 300,
+    "errors": 0
+  },
+  "private_questions_only": {
+    "questions": 300,
+    "answered": 300,
+    "errors": 0,
+    "error_codes": {},
+    "located_questions": 300,
+    "work_count": 120,
+    "elapsed_ms": 67,
+    "per_question_ms": 0.22,
+    "note": "题面模式：没有标准答案就不评分（`null` 而不是 `false`——「没有答案」和「答错了」是两回事）。这里只报作答成功率与耗时。"
+  },
+  "private_by_period": {
+    "宋+清": {
+      "questions": 300,
+      "raw": 188,
+      "normalized": 242,
+      "proxy": 300,
+      "errors": 0
+    }
+  },
+  "private_by_category": {
+    "同调全篇声律比例差": {
+      "questions": 60,
+      "raw": 60,
+      "normalized": 60,
+      "proxy": 60,
+      "errors": 0
+    },
+    "跨篇分段变幅比较": {
+      "questions": 60,
+      "raw": 60,
+      "normalized": 60,
+      "proxy": 60,
+      "errors": 0
+    },
+    "跨篇后段排序与比例差距": {
+      "questions": 60,
+      "raw": 6,
+      "normalized": 60,
+      "proxy": 60,
+      "errors": 0
+    },
+    "跨篇景情节奏互证": {
+      "questions": 60,
+      "raw": 2,
+      "normalized": 2,
+      "proxy": 60,
+      "errors": 0
+    },
+    "跨篇长句仄声密度比较": {
+      "questions": 60,
+      "raw": 60,
+      "normalized": 60,
+      "proxy": 60,
+      "errors": 0
+    }
+  },
+  "work_overlap_public_private": [],
+  "public_work_count": 303,
+  "private_work_count": 120,
+  "public_group_count": 140,
+  "out_of_corpus": {
+    "questions": 0,
+    "note": "本轮题库没有库外作品样本，无法测兜底命中率；超界题走 INV-OOB-12 拒答路径。"
+  }
+}

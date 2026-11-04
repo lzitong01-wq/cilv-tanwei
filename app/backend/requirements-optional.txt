@@ -1,0 +1,13 @@
+# 可选依赖：只有目标机系统 SQLite < 3.34 时才需要
+#
+# 用途：补上 FTS5 trigram 分词器（≥3 字检索走 works_fts MATCH）。
+#   Anolis OS 8.6 的系统 SQLite 是 3.26.0，不支持 trigram；
+#   1–2 字检索走自建倒排（postings），本来就不依赖它。
+#
+# 装不上也不影响部署：`core/sqlite_compat.py` 检测到没有 trigram 时
+# 自动切到内存子串匹配，功能可用、只是慢一点。
+#
+# 注意：pysqlite3-binary **只发布 Linux wheel**，Windows 装不了，
+# 所以它不在 requirements.txt 里（那会让 Windows 的离线安装直接失败）。
+# Linux 离线 wheel 见 deploy/wheels/linux-x86_64-py311/pysqlite3_binary-*.whl
+pysqlite3-binary==0.5.4.post2

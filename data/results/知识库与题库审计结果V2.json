@@ -1,0 +1,191 @@
+{
+  "scope": "规划阶段只读审计；快照来自当前已发布 API",
+  "knowledge": {
+    "work_count": 423,
+    "poet_count": 243,
+    "tune_count": 100,
+    "period_counts": {
+      "清": 200,
+      "元": 20,
+      "宋": 203
+    },
+    "top_tunes": [
+      [
+        "渔家傲",
+        8
+      ],
+      [
+        "满庭芳",
+        8
+      ],
+      [
+        "临江仙",
+        8
+      ],
+      [
+        "贺新郎",
+        8
+      ],
+      [
+        "谒金门",
+        7
+      ],
+      [
+        "清平乐",
+        7
+      ],
+      [
+        "喜迁莺",
+        7
+      ],
+      [
+        "生查子",
+        7
+      ],
+      [
+        "西江月",
+        7
+      ],
+      [
+        "沁园春",
+        7
+      ],
+      [
+        "浪淘沙",
+        6
+      ],
+      [
+        "唐多令",
+        6
+      ],
+      [
+        "木兰花慢",
+        6
+      ],
+      [
+        "点绛唇",
+        6
+      ],
+      [
+        "长相思",
+        6
+      ],
+      [
+        "满江红",
+        6
+      ],
+      [
+        "风流子",
+        6
+      ],
+      [
+        "蝶恋花",
+        6
+      ],
+      [
+        "疏影",
+        6
+      ],
+      [
+        "诉衷情",
+        6
+      ]
+    ],
+    "missing_prosody": [],
+    "split_mismatch_count": 0,
+    "split_mismatch_samples": [],
+    "line_number_mismatch_count": 0,
+    "line_number_mismatch_samples": [],
+    "count_invariant_failure_count": 0,
+    "count_invariant_failure_samples": [],
+    "text_line_mismatch_count": 1,
+    "text_line_mismatch_samples": [
+      {
+        "id": 26141,
+        "text_lines": 11,
+        "prosody_lines": 12
+      }
+    ]
+  },
+  "questions": {
+    "public_count": 700,
+    "private_question_count": 300,
+    "private_answer_count": 300,
+    "public_categories": {
+      "同调全篇声律比例差": 140,
+      "跨篇分段变幅比较": 140,
+      "跨篇长句仄声密度比较": 140,
+      "跨篇后段排序与比例差距": 140,
+      "跨篇景情节奏互证": 140
+    },
+    "public_boundaries": {
+      "普通题": 560,
+      "临界题": 140
+    },
+    "private_categories": {
+      "同调全篇声律比例差": 60,
+      "跨篇分段变幅比较": 60,
+      "跨篇长句仄声密度比较": 60,
+      "跨篇后段排序与比例差距": 60,
+      "跨篇景情节奏互证": 60
+    },
+    "private_boundaries": {
+      "普通题": 240,
+      "临界题": 60
+    },
+    "anchor_stats": {
+      "questions_with_2_anchors": 977,
+      "unique": 2023,
+      "questions_with_3_anchors": 23
+    },
+    "unresolved_anchor_samples": [],
+    "ambiguous_anchor_samples": [],
+    "answer_template_info": {
+      "同调全篇声律比例差": {
+        "answers": 140,
+        "normalized_template_count": 36,
+        "largest_template_group": 27
+      },
+      "跨篇分段变幅比较": {
+        "answers": 140,
+        "normalized_template_count": 12,
+        "largest_template_group": 25
+      },
+      "跨篇后段排序与比例差距": {
+        "answers": 140,
+        "normalized_template_count": 7,
+        "largest_template_group": 75
+      },
+      "跨篇景情节奏互证": {
+        "answers": 140,
+        "normalized_template_count": 8,
+        "largest_template_group": 42
+      },
+      "跨篇长句仄声密度比较": {
+        "answers": 140,
+        "normalized_template_count": 53,
+        "largest_template_group": 15
+      }
+    },
+    "c4_display_tie_count": 17,
+    "c4_display_tie_qids": [
+      "T-001-V2C4",
+      "T-014-V2C4",
+      "T-019-V2C4",
+      "T-025-V2C4",
+      "T-043-V2C4",
+      "T-046-V2C4",
+      "T-064-V2C4",
+      "T-070-V2C4",
+      "T-078-V2C4",
+      "T-082-V2C4",
+      "T-086-V2C4",
+      "T-107-V2C4",
+      "T-112-V2C4",
+      "T-113-V2C4",
+      "T-121-V2C4",
+      "T-125-V2C4",
+      "T-127-V2C4"
+    ]
+  }
+}

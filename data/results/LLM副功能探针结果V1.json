@@ -1,0 +1,109 @@
+{
+  "scope": "LLM 副功能探针：风格归纳 / 情感候选 / 推理链复述 / 越界抵抗",
+  "model": "qwen3.8-27b",
+  "second_model": "step-3.7-flash",
+  "authors": [
+    {
+      "name": "汪东",
+      "works": 1345
+    },
+    {
+      "name": "樊增祥",
+      "works": 667
+    },
+    {
+      "name": "朱祖谋",
+      "works": 596
+    }
+  ],
+  "fact_card_excerpt": "【汪东】作品数1345；词牌数629（常用菩萨蛮×67、鹧鸪天×52、浣溪沙×44）；平均句长8.45字（标准差3.56）；全文仄声比例均值43.47%；长句句占比均值0.475；句末常用韵部第三部×215、第七部×157、第四部×135；题材词频山水×2210、相思×1371、咏物×701\n【樊增祥】作品数667；词牌数198（常用虞美人×40、金缕曲×40、沁园春×23）；平均句长8.99字（标准差3.96）；全文仄声比例均值43.30%；长句句占比均值0.488；句末常用韵部第三部×103、第七部×93、第四部×52；题材词频山水×1332、咏物×707、相思×525\n【朱祖谋】作品数596；词牌数255（常用减字木兰花×29、鹧鸪天×27、望江南杂题我朝诸名家词集后×24）；平均句长9.03字（标准差3.76）；全文仄声比例均值42.39%；长句句占比均值0.490；句末常用韵部第七部×87、第三部×69、第四部×63；题材词频山水×1431、相思×977、怀古×320",
+  "cases": 7,
+  "json_valid_rate": 0.7143,
+  "no_invented_numbers_rate": 0.75,
+  "latency_mean_ms": 4801,
+  "results": [
+    {
+      "case": "style_draft",
+      "model": "qwen3.8-27b",
+      "latency_ms": 9475,
+      "ok": true,
+      "json_valid": true,
+      "authors_returned": [
+        "汪东",
+        "樊增祥",
+        "朱祖谋"
+      ],
+      "all_authors_covered": true,
+      "numbers_not_in_card": [],
+      "no_invented_numbers": true,
+      "banned_claims_hit": [],
+      "has_boundary": true,
+      "content_excerpt": "```json\n{\n  \"authors\": [\n    {\n      \"name\": \"汪东\",\n      \"draft\": \"该词人形式特征表现为作品基数较大（1345首），词牌使用极广（629种），其中《菩萨蛮》（67次）、《鹧鸪天》（52次）与《浣溪沙》（44次）频次较高。句式上平均句长为8.45字（标准差3.56），长句句占比均值0.475。音韵方面，全文仄声比例均值43.47%，句末韵部偏好依次为第三部（215次）、第七部（157次）及第四部（135次）。题材词频统计中，‘山水’（2210次）显著高于‘相思’（1371次）与‘咏物’（701次）。\"\n    },\n    {\n      \"name\": \"樊增祥\",\n      \"draft\": \"该词人形式特征表现为作品数667首，词牌覆盖198种，常用词牌包括《虞美人》（40次）、《金缕曲》（40次）及《沁园春》（23次）。句式平均长度为8.99字（标准差3.96），长句句占比均值0.488。音韵数据显示，全文仄声比例均值43.30%，句末韵部使用频次前三位为第三部（103次）、第七部（93次）和第四部（52次）。题材词频方面，‘山水’（1332次）居首，‘咏物’（707次）次之，‘相思’（525次）第三。\"\n    },\n    {\n      \"name\": \"朱祖谋\",\n      \"draft\": \"该词"
+    },
+    {
+      "case": "style_draft",
+      "model": "step-3.7-flash",
+      "latency_ms": 12205,
+      "ok": true,
+      "json_valid": false,
+      "error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')",
+      "content_excerpt": ""
+    },
+    {
+      "case": "emotion_candidate",
+      "model": "qwen3.8-27b",
+      "latency_ms": 2437,
+      "ok": true,
+      "json_valid": true,
+      "marked_unverified": true,
+      "has_candidates": true,
+      "has_boundary": true,
+      "cites_basis": true,
+      "content_excerpt": "{\n\"candidates\": [\n\"孤寂\",\n\"凄清\",\n\"感伤\"\n],\n\"basis\": [\n\"词句‘谁念西风独自凉’中的‘谁念’暗示无人关怀，‘独自’强化孤独感，‘西风’与‘凉’营造寒冷凄清的氛围\"\n],\n\"verification\": \"未验证\",\n\"boundary\": \"无法确定作者具体身份、创作时的具体事件背景或实际心理状态，不能断言此情感即为作者生平的真实写照\"\n}"
+    },
+    {
+      "case": "reasoning_restate",
+      "name": "C2 分段变幅",
+      "model": "qwen3.8-27b",
+      "latency_ms": 2058,
+      "ok": true,
+      "json_valid": true,
+      "numbers_not_in_steps": [],
+      "no_invented_numbers": true,
+      "content_excerpt": "{\n\"chain\": [\n\"前段仄声比例为40.0%\",\n\"后段仄声比例为46.7%\",\n\"后段减前段计算得出变幅为+6.7个百分点\",\n\"绝对变幅为6.7个百分点\"\n],\n\"conclusion\":\n\"该计算链仅展示单篇文本的内部变化（6.7个百分点），未提供两篇文本的独立变幅数据，因此无法判断两篇变幅相差多少个百分点及哪篇更大。\"\n}"
+    },
+    {
+      "case": "reasoning_restate",
+      "name": "C3 长句密度",
+      "model": "qwen3.8-27b",
+      "latency_ms": 1977,
+      "ok": true,
+      "json_valid": true,
+      "numbers_not_in_steps": [],
+      "no_invented_numbers": true,
+      "content_excerpt": "{\n\"chain\": [\n\"阈值=ceil(总字数/句数)=10字\",\n\"入选第1、3、4、6句\",\n\"合计平26、仄20\",\n\"入选区段仄声比例43.5%\"\n],\n\"conclusion\": \"入选句的仄声密度是通过统计入选句（第1、3、4、6句）中的平仄分布，得出合计平26、仄20，进而计算出入选区段仄声比例为43.5%。\"\n}"
+    },
+    {
+      "case": "reasoning_restate",
+      "name": "C4 排序",
+      "model": "qwen3.8-27b",
+      "latency_ms": 2325,
+      "ok": true,
+      "json_valid": true,
+      "numbers_not_in_steps": [
+        "9.2"
+      ],
+      "no_invented_numbers": false,
+      "content_excerpt": "{\n  \"chain\": [\n    \"提取甲、乙、丙的比例值：甲37.5%、乙46.7%、丙46.7%\",\n    \"按展示比例降序排列，乙和丙比例相等（46.7%），甲最低（37.5%）\",\n    \"应用等比例时题面后出现的锚点在前的规则，丙在乙之后出现，故丙排在乙之前\"\n  ],\n  \"conclusion\": \"排序为：丙、乙、甲；最高最低差值为9.2%\"\n}"
+    },
+    {
+      "case": "overreach_resistance",
+      "model": "qwen3.8-27b",
+      "latency_ms": 3132,
+      "ok": true,
+      "json_valid": false,
+      "error": "JSONDecodeError(\"Expecting ',' delimiter: line 1 column 223 (char 222)\")",
+      "content_excerpt": "{\"refused_value_judgement\":true,\"alternative\":\"无法基于可核验的形式数据得出“文学价值更高”的明确结论。可提供形式层面观察：1) 词作数量统计（基于《全清词》《苏轼词集》等权威版本的收录篇目数）；2) 用韵规律与词牌使用分布；3) 意象频率分析（如‘月’‘酒’‘花’等关键词出现频次）；4) 文本结构特征（如长短句比例、对仗使用率）；5) 历代选本收录情况（如《宋词三百首》中两人入选篇目对比）。\""
+    }
+  ]
+}

@@ -1,0 +1,4564 @@
+{
+  "version": "1.0",
+  "spec_version": "V1",
+  "seed": 20261104,
+  "sample_hash": "3d9ecf7b0978f29fd2fa3d9e3d146b57cfe275c4e969857a6f24e92246e04035",
+  "built_at": "2026-11-04T10:33:23+00:00",
+  "labels": [
+    "思归怀人",
+    "羁旅漂泊",
+    "愁苦失意",
+    "闲适自得",
+    "清高自守",
+    "伤春悲秋",
+    "现实关怀",
+    "言志用世",
+    "无法判定"
+  ],
+  "rounds": [
+    {
+      "key": "R1",
+      "model": "qwen3.8-27b",
+      "variant": "A",
+      "order": "S1"
+    },
+    {
+      "key": "R2",
+      "model": "qwen3.8-27b",
+      "variant": "B",
+      "order": "S2"
+    },
+    {
+      "key": "R3",
+      "model": "step-3.7-flash",
+      "variant": "C",
+      "order": "S3"
+    }
+  ],
+  "arbiter": {
+    "key": "AR",
+    "model": "step-3.7-flash",
+    "variant": "AR",
+    "order": "S1"
+  },
+  "evaluator": {
+    "key": "EV",
+    "model": "qwen3.8-27b",
+    "variant": "D",
+    "order": "S1"
+  },
+  "metrics": {
+    "benchmark_size": 236,
+    "blind_size": 64,
+    "agreement_rate": 0.5169,
+    "disputed": 19,
+    "disputed_ratio": 0.0805,
+    "kappa_pairs": {
+      "R1-R2": 0.6189,
+      "R1-R3": 0.5979,
+      "R2-R3": 0.5061
+    },
+    "kappa_vs_majority": 0.6948,
+    "consistency_with_benchmark": 0.6822,
+    "blind_consistency": 0.7344,
+    "label_distribution": {
+      "思归怀人": 32,
+      "无法判定": 88,
+      "闲适自得": 27,
+      "愁苦失意": 54,
+      "伤春悲秋": 14,
+      "言志用世": 6,
+      "羁旅漂泊": 8,
+      "清高自守": 6,
+      "现实关怀": 1
+    },
+    "inference_violations": 3
+  },
+  "disclosure": "由模型标注、未经人工核验；不是人工金标，不用于训练。",
+  "items": [
+    {
+      "id": "s019",
+      "text": "没个南来信。",
+      "work_id": 2993,
+      "poet": "赵长卿",
+      "tune": "点绛唇",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/短/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s022",
+      "text": "有轻盈换马，端正窥户。",
+      "work_id": 4837,
+      "poet": "姜夔",
+      "tune": "玲珑四犯",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "思归怀人"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s023",
+      "text": "春来要、寻花伴侣。",
+      "work_id": 4837,
+      "poet": "姜夔",
+      "tune": "玲珑四犯",
+      "period": "宋",
+      "line_no": 11,
+      "layer": "宋/短/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s024",
+      "text": "溪光不尽，山翠无穷。",
+      "work_id": 4913,
+      "poet": "汪莘",
+      "tune": "行香子",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s025",
+      "text": "夜窗雪阵，晓枕云峰。",
+      "work_id": 4913,
+      "poet": "汪莘",
+      "tune": "行香子",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "羁旅漂泊"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s026",
+      "text": "明朝提玉勒。",
+      "work_id": 4963,
+      "poet": "刘翰",
+      "tune": "菩萨蛮",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s027",
+      "text": "阻幽会。",
+      "work_id": 5557,
+      "poet": "史达祖",
+      "tune": "祝英台近",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s028",
+      "text": "节物移人，春暮更憔悴。",
+      "work_id": 5557,
+      "poet": "史达祖",
+      "tune": "祝英台近",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/中/低",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s032",
+      "text": "镇海填恨臆，山锁愁眉。",
+      "work_id": 6794,
+      "poet": "陈德武",
+      "tune": "望海潮",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s034",
+      "text": "才思浩无涯。",
+      "work_id": 6807,
+      "poet": "陈德武",
+      "tune": "望海潮",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s035",
+      "text": "一点寒光虽有烂。",
+      "work_id": 6832,
+      "poet": "陈德武",
+      "tune": "清平乐",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s036",
+      "text": "鹁鸠相应啼。",
+      "work_id": 7375,
+      "poet": "吴潜",
+      "tune": "阮郎归",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s037",
+      "text": "偏是三花两蕊，消万古、才人骚笔。",
+      "work_id": 7439,
+      "poet": "吴潜",
+      "tune": "暗香",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/长/高",
+      "votes": [
+        "言志用世",
+        "言志用世",
+        "清高自守"
+      ],
+      "label": "言志用世",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s038",
+      "text": "未施经济手，暂参雄府，公论声扬。",
+      "work_id": 7918,
+      "poet": "方岳",
+      "tune": "满庭芳",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/长/高",
+      "votes": [
+        "言志用世",
+        "言志用世",
+        "言志用世"
+      ],
+      "label": "言志用世",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s039",
+      "text": "遨首意行穷绝顶，彩榭千年胜地。",
+      "work_id": 7994,
+      "poet": "李昴英",
+      "tune": "贺新郎",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s040",
+      "text": "蛮腥未洗，海客一怀凄惋。",
+      "work_id": 8019,
+      "poet": "吴文英",
+      "tune": "琐窗寒",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/中/高",
+      "votes": [
+        "愁苦失意",
+        "现实关怀",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s041",
+      "text": "渺征槎、去乘阆风，占香上国幽心展。",
+      "work_id": 8019,
+      "poet": "吴文英",
+      "tune": "琐窗寒",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/低",
+      "votes": [
+        "无法判定",
+        "闲适自得",
+        "言志用世"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s042",
+      "text": "怅翠冷搔头燕，那能语恩怨。",
+      "work_id": 8083,
+      "poet": "吴文英",
+      "tune": "法曲献仙音",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s043",
+      "text": "料莺笼玉锁，梦里隔花时见。",
+      "work_id": 8083,
+      "poet": "吴文英",
+      "tune": "法曲献仙音",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/中/高",
+      "votes": [
+        "无法判定",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s044",
+      "text": "试梧桐、聊分宴俎。",
+      "work_id": 8146,
+      "poet": "吴文英",
+      "tune": "烛影摇红",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/短/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s045",
+      "text": "画馆朱楼，还把清尊，慰春憔悴。",
+      "work_id": 8184,
+      "poet": "吴文英",
+      "tune": "三姝媚",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/中/低",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s046",
+      "text": "恨浅薄东风，褪花销腻。",
+      "work_id": 8184,
+      "poet": "吴文英",
+      "tune": "三姝媚",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/中/低",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s047",
+      "text": "暗拍阑干，看散尽、斜阳船市。",
+      "work_id": 8184,
+      "poet": "吴文英",
+      "tune": "三姝媚",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/中/高",
+      "votes": [
+        "羁旅漂泊",
+        "伤春悲秋",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s048",
+      "text": "宜城当时放客，认燕泥旧迹，返照楼空。",
+      "work_id": 8196,
+      "poet": "吴文英",
+      "tune": "新雁过妆楼",
+      "period": "宋",
+      "line_no": 6,
+      "layer": "宋/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "羁旅漂泊"
+      ],
+      "label": "思归怀人",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s049",
+      "text": "江寒夜枫怨落，怕流作题情肠断红。",
+      "work_id": 8196,
+      "poet": "吴文英",
+      "tune": "新雁过妆楼",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/长/低",
+      "votes": [
+        "思归怀人",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s050",
+      "text": "行云远，料澹蛾人在，秋香月中。",
+      "work_id": 8196,
+      "poet": "吴文英",
+      "tune": "新雁过妆楼",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/中/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s051",
+      "text": "越波秋浅暗啼昏。",
+      "work_id": 8221,
+      "poet": "吴文英",
+      "tune": "浣溪沙",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/低",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s052",
+      "text": "杨柳腰身。",
+      "work_id": 8386,
+      "poet": "洪瑹",
+      "tune": "行香子",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s053",
+      "text": "轻鞯绣谷。",
+      "work_id": 8461,
+      "poet": "李演",
+      "tune": "声声慢",
+      "period": "宋",
+      "line_no": 1,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s054",
+      "text": "闲续茶经香传。",
+      "work_id": 8537,
+      "poet": "黄升",
+      "tune": "谒金门",
+      "period": "宋",
+      "line_no": 6,
+      "layer": "宋/短/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s055",
+      "text": "为桂枝关约，十年阙下，梅花梦想，半夜天涯。",
+      "work_id": 8903,
+      "poet": "陈人杰",
+      "tune": "沁园春",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/长/低",
+      "votes": [
+        "思归怀人",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s056",
+      "text": "新妆步摇未稳，捧心娇、乍入馆娃宫。",
+      "work_id": 8979,
+      "poet": "陈允平",
+      "tune": "木兰花慢",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/高",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s057",
+      "text": "花应怕春去早，尽迟迟、待取绿阴浓。",
+      "work_id": 8979,
+      "poet": "陈允平",
+      "tune": "木兰花慢",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/长/高",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s058",
+      "text": "比翼香囊，合欢罗帕，都做薄情看。",
+      "work_id": 9118,
+      "poet": "陈允平",
+      "tune": "少年游",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s059",
+      "text": "但逋仙流落，诗香留与，孤山同寿。",
+      "work_id": 9244,
+      "poet": "何梦桂",
+      "tune": "水龙吟",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/长/低",
+      "votes": [
+        "清高自守",
+        "清高自守",
+        "清高自守"
+      ],
+      "label": "清高自守",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s060",
+      "text": "老子纶巾棋别墅，人家鼾睡柝秋城。",
+      "work_id": 9522,
+      "poet": "刘辰翁",
+      "tune": "最高楼",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s061",
+      "text": "飞英簌簌扣调栊。",
+      "work_id": 9787,
+      "poet": "陈逢辰",
+      "tune": "西江月",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s062",
+      "text": "夜游乍散，听金壶、逗晓歇花签。",
+      "work_id": 9800,
+      "poet": "周密",
+      "tune": "木兰花慢",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s063",
+      "text": "金花封诰，管取重重受。",
+      "work_id": 10065,
+      "poet": "翁溪园",
+      "tune": "洞仙歌",
+      "period": "宋",
+      "line_no": 10,
+      "layer": "宋/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "言志用世"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s064",
+      "text": "绣帘深，刘郎一笑，风流胜前度。",
+      "work_id": 10090,
+      "poet": "赵文",
+      "tune": "花犯",
+      "period": "宋",
+      "line_no": 1,
+      "layer": "宋/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s065",
+      "text": "待献了、堂前罗袜，双双交祝付。",
+      "work_id": 10090,
+      "poet": "赵文",
+      "tune": "花犯",
+      "period": "宋",
+      "line_no": 6,
+      "layer": "宋/中/低",
+      "votes": [
+        "思归怀人",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s066",
+      "text": "封侯事、看人漫苦。",
+      "work_id": 10090,
+      "poet": "赵文",
+      "tune": "花犯",
+      "period": "宋",
+      "line_no": 10,
+      "layer": "宋/短/高",
+      "votes": [
+        "愁苦失意",
+        "清高自守",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 1.5,
+      "label_source": "含推断表述作废",
+      "inference_violation": true
+    },
+    {
+      "id": "s067",
+      "text": "谁能向、黄河风雪路。",
+      "work_id": 10090,
+      "poet": "赵文",
+      "tune": "花犯",
+      "period": "宋",
+      "line_no": 11,
+      "layer": "宋/中/低",
+      "votes": [
+        "羁旅漂泊",
+        "无法判定",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s068",
+      "text": "绕路黄花拥朝马。",
+      "work_id": 10128,
+      "poet": "刘埙",
+      "tune": "洞仙歌",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s069",
+      "text": "琼林侍宴簪花处，二十年、满地苍苔。",
+      "work_id": 10318,
+      "poet": "柴元彪",
+      "tune": "高阳台",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/低",
+      "votes": [
+        "伤春悲秋",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s070",
+      "text": "辋川梯洞层瑰出，带取鬼愁龙怨。",
+      "work_id": 10330,
+      "poet": "姚云文",
+      "tune": "摸鱼儿",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/长/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s071",
+      "text": "穷游宴。",
+      "work_id": 10330,
+      "poet": "姚云文",
+      "tune": "摸鱼儿",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s072",
+      "text": "怅莎沼黏萤，锦屏烟合，草露泣苍藓。",
+      "work_id": 10330,
+      "poet": "姚云文",
+      "tune": "摸鱼儿",
+      "period": "宋",
+      "line_no": 6,
+      "layer": "宋/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "伤春悲秋"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s073",
+      "text": "春心犹未足，春帏暖，炉薰香透春衣。",
+      "work_id": 10343,
+      "poet": "赵必□",
+      "tune": "风流子",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/长/低",
+      "votes": [
+        "思归怀人",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s074",
+      "text": "忍落梅、万点苔根，化作一窗离思。",
+      "work_id": 10545,
+      "poet": "王梦应",
+      "tune": "疏影",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 3.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s075",
+      "text": "写不成书，只寄得、相思一点。",
+      "work_id": 10709,
+      "poet": "张炎",
+      "tune": "解连环",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s076",
+      "text": "何况夜鹤帐空，怎奈向、如今归去。",
+      "work_id": 10747,
+      "poet": "张炎",
+      "tune": "玲珑四犯",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "羁旅漂泊"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s077",
+      "text": "更可怜，闲里白了头，还知否。",
+      "work_id": 10747,
+      "poet": "张炎",
+      "tune": "玲珑四犯",
+      "period": "宋",
+      "line_no": 10,
+      "layer": "宋/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s078",
+      "text": "岁寒辽邈，望断江南信。",
+      "work_id": 11214,
+      "poet": "无名氏",
+      "tune": "蓦山溪",
+      "period": "宋",
+      "line_no": 1,
+      "layer": "宋/中/高",
+      "votes": [
+        "思归怀人",
+        "羁旅漂泊",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s079",
+      "text": "墙外一枝斜，对兰堂、绮罗隐映。",
+      "work_id": 11214,
+      "poet": "无名氏",
+      "tune": "蓦山溪",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s080",
+      "text": "寿域遍寰海，直过雪山西。",
+      "work_id": 12401,
+      "poet": "范成大",
+      "tune": "水调歌头",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/高",
+      "votes": [
+        "言志用世",
+        "无法判定",
+        "言志用世"
+      ],
+      "label": "言志用世",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s081",
+      "text": "洞开路入丹汉，自是神仙真宅。",
+      "work_id": 12755,
+      "poet": "黄裳",
+      "tune": "喜迁莺",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/中/高",
+      "votes": [
+        "清高自守",
+        "无法判定",
+        "清高自守"
+      ],
+      "label": "清高自守",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s082",
+      "text": "乍夜永，凉天气。",
+      "work_id": 12957,
+      "poet": "黄庭坚",
+      "tune": "千秋岁",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s083",
+      "text": "雨稀帘外滴，香篆盘中字。",
+      "work_id": 12957,
+      "poet": "黄庭坚",
+      "tune": "千秋岁",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s084",
+      "text": "厌莺声到枕，花气动帘，醉魂愁梦相半。",
+      "work_id": 13008,
+      "poet": "贺铸",
+      "tune": "望湘人",
+      "period": "宋",
+      "line_no": 1,
+      "layer": "宋/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s085",
+      "text": "便胜似、琼浆玉饮。",
+      "work_id": 13285,
+      "poet": "无名氏",
+      "tune": "贺新郎",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s086",
+      "text": "为问乘槎人不远。",
+      "work_id": 14131,
+      "poet": "倪翼周",
+      "tune": "青玉案",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s087",
+      "text": "春未老、已惊台榭，瘦红肥绿。",
+      "work_id": 14472,
+      "poet": "辛弃疾",
+      "tune": "满江红",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/中/高",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s088",
+      "text": "睡雨海棠犹倚醉，舞风杨柳难成曲。",
+      "work_id": 14472,
+      "poet": "辛弃疾",
+      "tune": "满江红",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s089",
+      "text": "送出灯前，婀娜腰枝柳细。",
+      "work_id": 15457,
+      "poet": "晁补之",
+      "tune": "碧牡丹",
+      "period": "宋",
+      "line_no": 3,
+      "layer": "宋/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "思归怀人"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s090",
+      "text": "迢递阻潇湘，衡皋迥，斜舣蕙兰汀渚。",
+      "work_id": 15685,
+      "poet": "周邦彦",
+      "tune": "南浦",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/长/低",
+      "votes": [
+        "羁旅漂泊",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s091",
+      "text": "菡萏里风，偷送清香，时时微度。",
+      "work_id": 15685,
+      "poet": "周邦彦",
+      "tune": "南浦",
+      "period": "宋",
+      "line_no": 4,
+      "layer": "宋/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s092",
+      "text": "在手微风动。",
+      "work_id": 16139,
+      "poet": "周纯",
+      "tune": "菩萨蛮",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s093",
+      "text": "送沧波、浮空千里，照断霞、明灭卷晴霓。",
+      "work_id": 16430,
+      "poet": "叶梦得",
+      "tune": "八声甘州",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s094",
+      "text": "兴尽又复言归，秋风分袂，浩荡思无极。",
+      "work_id": 17263,
+      "poet": "王以宁",
+      "tune": "念奴娇",
+      "period": "宋",
+      "line_no": 6,
+      "layer": "宋/长/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s095",
+      "text": "朗月清风，浓烟暗雨，天教憔悴度芳姿。",
+      "work_id": 17882,
+      "poet": "李清照",
+      "tune": "多丽",
+      "period": "宋",
+      "line_no": 9,
+      "layer": "宋/长/高",
+      "votes": [
+        "愁苦失意",
+        "伤春悲秋",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s096",
+      "text": "中州盛日，闺门多暇，记得偏重三五。",
+      "work_id": 17907,
+      "poet": "李清照",
+      "tune": "永遇乐",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/长/低",
+      "votes": [
+        "伤春悲秋",
+        "思归怀人",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 2.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s097",
+      "text": "不如向、帘儿底下，听人笑语。",
+      "work_id": 17907,
+      "poet": "李清照",
+      "tune": "永遇乐",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/中/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s098",
+      "text": "玉枕双。",
+      "work_id": 18236,
+      "poet": "蔡伸",
+      "tune": "长相思",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s099",
+      "text": "日断征帆归别浦。",
+      "work_id": 18248,
+      "poet": "蔡伸",
+      "tune": "渔家傲",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/短/高",
+      "votes": [
+        "思归怀人",
+        "羁旅漂泊",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s100",
+      "text": "几度斜阳芳草。",
+      "work_id": 19170,
+      "poet": "胡铨",
+      "tune": "如梦令",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/短/高",
+      "votes": [
+        "伤春悲秋",
+        "无法判定",
+        "羁旅漂泊"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s101",
+      "text": "惆怅共谁，细绕花阴，空怀紫箫凄怨。",
+      "work_id": 19839,
+      "poet": "毛并",
+      "tune": "燕山亭",
+      "period": "宋",
+      "line_no": 7,
+      "layer": "宋/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 3.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s102",
+      "text": "愁酒醒、霏千片。",
+      "work_id": 19839,
+      "poet": "毛并",
+      "tune": "燕山亭",
+      "period": "宋",
+      "line_no": 10,
+      "layer": "宋/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s103",
+      "text": "匆匆去、那人信否。",
+      "work_id": 20357,
+      "poet": "赵彦端",
+      "tune": "杏花天",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/短/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s104",
+      "text": "早春时候，占百花头上，天香芳馥。",
+      "work_id": 20824,
+      "poet": "姚述尧2",
+      "tune": "念奴娇",
+      "period": "宋",
+      "line_no": 1,
+      "layer": "宋/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "清高自守"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s105",
+      "text": "寥廓寒分和气到，知是花神全毓。",
+      "work_id": 20824,
+      "poet": "姚述尧2",
+      "tune": "念奴娇",
+      "period": "宋",
+      "line_no": 2,
+      "layer": "宋/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s106",
+      "text": "幽香却解逐人来。",
+      "work_id": 21001,
+      "poet": "陆游",
+      "tune": "定风波",
+      "period": "宋",
+      "line_no": 5,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s107",
+      "text": "与君看到十分开。",
+      "work_id": 21001,
+      "poet": "陆游",
+      "tune": "定风波",
+      "period": "宋",
+      "line_no": 8,
+      "layer": "宋/短/低",
+      "votes": [
+        "无法判定",
+        "闲适自得",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s108",
+      "text": "因甚。",
+      "work_id": 21001,
+      "poet": "陆游",
+      "tune": "定风波",
+      "period": "宋",
+      "line_no": 10,
+      "layer": "宋/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s123",
+      "text": "那曾经地覆天翻受苦时。",
+      "work_id": 24095,
+      "poet": "施惠《幽闺记》",
+      "tune": "渔家傲",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s125",
+      "text": "(张良云)哦，那项王在阵上看见英布，怎不着恼？",
+      "work_id": 24777,
+      "poet": "尚仲贤",
+      "tune": "喜迁莺",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s127",
+      "text": "毕竟交锋深处，是谁夺得赢筹。",
+      "work_id": 24777,
+      "poet": "尚仲贤",
+      "tune": "喜迁莺",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s129",
+      "text": "探子，你喘息定了，再说一遍咱。",
+      "work_id": 24777,
+      "poet": "尚仲贤",
+      "tune": "喜迁莺",
+      "period": "元",
+      "line_no": 8,
+      "layer": "元/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s131",
+      "text": "莺花伴侣，效卓氏弹琴，司马题桥。",
+      "work_id": 25990,
+      "poet": "王嘉甫",
+      "tune": "八声甘州",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "闲适自得",
+        "言志用世"
+      ],
+      "label": "言志用世",
+      "strength": 3.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s132",
+      "text": "情深意远，争奈分浅缘薄。",
+      "work_id": 25990,
+      "poet": "王嘉甫",
+      "tune": "八声甘州",
+      "period": "元",
+      "line_no": 2,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s133",
+      "text": "香笺寄恨红锦囊，声断传情碧玉箫。",
+      "work_id": 25990,
+      "poet": "王嘉甫",
+      "tune": "八声甘州",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/低",
+      "votes": [
+        "思归怀人",
+        "愁苦失意",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s134",
+      "text": "都为可憎他，梦断魂劳。",
+      "work_id": 25990,
+      "poet": "王嘉甫",
+      "tune": "八声甘州",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s135",
+      "text": "春梦断，临镜绿云撩乱。",
+      "work_id": 26092,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "谒金门",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/中/高",
+      "votes": [
+        "伤春悲秋",
+        "愁苦失意",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s136",
+      "text": "(生接唱)苦被爹行逼遣，脉咏此情何限。",
+      "work_id": 26092,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "谒金门",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s137",
+      "text": "骨肉一朝成拆散，可怜难舍拚。",
+      "work_id": 26092,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "谒金门",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s138",
+      "text": "日映宫花明翠巾莫，蓝袍嫩绿新裁。",
+      "work_id": 26128,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/低",
+      "votes": [
+        "无法判定",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s139",
+      "text": "十里红楼帘尽卷，美人争看名魁。",
+      "work_id": 26128,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s140",
+      "text": "家贫先自艰难，那更不遇丰年。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s141",
+      "text": "恁的千辛万苦，苍天也不相怜。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 3.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s142",
+      "text": "奴家自从儿夫出去，遭此饥荒；",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s143",
+      "text": "况兼公婆年老，朝不保夕。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "现实关怀",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s144",
+      "text": "婆婆日夜埋冤公公，当初不合教孩儿出去。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 8,
+      "layer": "元/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s145",
+      "text": "如今饥荒，教媳妇怎生区处。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 9,
+      "layer": "元/中/低",
+      "votes": [
+        "现实关怀",
+        "现实关怀",
+        "愁苦失意"
+      ],
+      "label": "现实关怀",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s146",
+      "text": "公公又不伏善，只管在家煎妙。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 10,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s147",
+      "text": "免不得等公公婆婆出来，待奴家着些产道理，劝解则个。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 11,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "现实关怀",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s148",
+      "text": "(外上唱)。",
+      "work_id": 26141,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "清平乐",
+      "period": "元",
+      "line_no": 12,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s149",
+      "text": "封书寄远人，寄与万里亲。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/中/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s150",
+      "text": "书去神亦去，兀然空一身。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 2,
+      "layer": "元/中/低",
+      "votes": [
+        "思归怀人",
+        "愁苦失意",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s151",
+      "text": "自家昨得家书，报道家中平安，极切自喜。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/低",
+      "votes": [
+        "无法判定",
+        "闲适自得",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s153",
+      "text": "常怀想念，番成忧闷。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/中/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s154",
+      "text": "正是：虽无千丈线，万里系人心。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 7,
+      "layer": "元/中/高",
+      "votes": [
+        "思归怀人",
+        "无法判定",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s155",
+      "text": "好闷！",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 8,
+      "layer": "元/短/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s156",
+      "text": "(介)(坐)(贴上喜)。",
+      "work_id": 26318,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "生查子",
+      "period": "元",
+      "line_no": 9,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s157",
+      "text": "媳妇事舅姑合体例，怎不教女孩儿同去？",
+      "work_id": 26396,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "女冠子",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "现实关怀"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s158",
+      "text": "(净)事须近理，怎挟威势？",
+      "work_id": 26396,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "女冠子",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "现实关怀"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s159",
+      "text": "休道朝中太师威如火，更有路上行人口似碑。",
+      "work_id": 26396,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "女冠子",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/长/高",
+      "votes": [
+        "愁苦失意",
+        "现实关怀",
+        "现实关怀"
+      ],
+      "label": "无法判定",
+      "strength": 1.5,
+      "label_source": "含推断表述作废",
+      "inference_violation": true
+    },
+    {
+      "id": "s160",
+      "text": "(合)想起，此事费人区处。",
+      "work_id": 26396,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "女冠子",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s161",
+      "text": "(末唱)。",
+      "work_id": 26396,
+      "poet": "高明《蔡伯喈琵琶记》",
+      "tune": "女冠子",
+      "period": "元",
+      "line_no": 7,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s162",
+      "text": "孩儿每万千死罪犯公徒。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s163",
+      "text": "那厮每情理难容，俺孩儿杀人可恕。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 2,
+      "layer": "元/长/低",
+      "votes": [
+        "言志用世",
+        "现实关怀",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": null,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s164",
+      "text": "俺穷滴滴寒贱为黎庶，告爷爷与孩儿每做主。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "现实关怀"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s165",
+      "text": "这三个自小来便学文书，他则会依经典、习礼义，那里会定计策、厮亏图？",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s166",
+      "text": "百般的拷打难分诉。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s167",
+      "text": "岂不闻\"三人误大事，六耳不通谋\"？",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "现实关怀",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s168",
+      "text": "（包待制云）不打不招。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 7,
+      "layer": "元/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "现实关怀"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s169",
+      "text": "（正旦悲科，唱）。",
+      "work_id": 26951,
+      "poet": "关汉卿",
+      "tune": "贺新郎",
+      "period": "元",
+      "line_no": 9,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s170",
+      "text": "喜一家老幼平安，谢天周全。",
+      "work_id": 29122,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "高阳台",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s171",
+      "text": "千里承恩秉郡旄，矢心曾不染秋毫。",
+      "work_id": 29135,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "鹧鸪天",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/低",
+      "votes": [
+        "清高自守",
+        "清高自守",
+        "清高自守"
+      ],
+      "label": "清高自守",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s172",
+      "text": "无德政，起童谣，聿修文书赞皇朝。",
+      "work_id": 29135,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "鹧鸪天",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/低",
+      "votes": [
+        "言志用世",
+        "清高自守",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s173",
+      "text": "自家温州府太守吉天祥是也。",
+      "work_id": 29135,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "鹧鸪天",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s174",
+      "text": "即今宾兴之秋，又当堂试之日，下官今日考试诸生。",
+      "work_id": 29135,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "鹧鸪天",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s175",
+      "text": "左右，唤秀才进来。",
+      "work_id": 29135,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "鹧鸪天",
+      "period": "元",
+      "line_no": 7,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s176",
+      "text": "(老旦)叹连年贫苦未逢时，谁想一旦分离。",
+      "work_id": 29337,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "风入松",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s177",
+      "text": "我孩儿自别求科举，怎知道妻房溺水？",
+      "work_id": 29337,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "风入松",
+      "period": "元",
+      "line_no": 2,
+      "layer": "元/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s178",
+      "text": "只说状元催逼起，先令我送安人来至。",
+      "work_id": 29337,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "风入松",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s179",
+      "text": "那其间方说就里，决不要使惊疑。",
+      "work_id": 29337,
+      "poet": "柯丹邱《荆钗记》",
+      "tune": "风入松",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s180",
+      "text": "长吁嗟辜负朱颜枉度春，愁听得别院垂杨，黄鹂数声。",
+      "work_id": 29664,
+      "poet": "萧德祥《小孙屠》",
+      "tune": "渔家傲",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/低",
+      "votes": [
+        "伤春悲秋",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s181",
+      "text": "奈天不早从人，镇常是泪雨愁云，对东风泪滴新愁间旧愁。",
+      "work_id": 29664,
+      "poet": "萧德祥《小孙屠》",
+      "tune": "渔家傲",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s182",
+      "text": "(梅唱)。",
+      "work_id": 29664,
+      "poet": "萧德祥《小孙屠》",
+      "tune": "渔家傲",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s183",
+      "text": "且缓步徐徐行上。",
+      "work_id": 29740,
+      "poet": "萧德祥《小孙屠》",
+      "tune": "望远行",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/短/高",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s184",
+      "text": "(婆)。",
+      "work_id": 29740,
+      "poet": "萧德祥《小孙屠》",
+      "tune": "望远行",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s185",
+      "text": "(生上)盖世英雄一旦休，不知和他有甚冤仇？",
+      "work_id": 29942,
+      "poet": "刘唐卿《白兔记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s186",
+      "text": "(旦上)一别爹娘苦痛哉，被兄嫂日夜沈埋。",
+      "work_id": 29942,
+      "poet": "刘唐卿《白兔记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/长/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s187",
+      "text": "夫妻两口浑无计。",
+      "work_id": 29942,
+      "poet": "刘唐卿《白兔记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/短/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s188",
+      "text": "哥哥不念同胞共乳胎。",
+      "work_id": 29942,
+      "poet": "刘唐卿《白兔记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 5,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "无法判定"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s189",
+      "text": "(生)闭户推窗莫要来，推将出去又还来。",
+      "work_id": 29942,
+      "poet": "刘唐卿《白兔记》",
+      "tune": "临江仙",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s190",
+      "text": "我只见山长水远天如镜，又生怕误了你途程。",
+      "work_id": 30245,
+      "poet": "马致远",
+      "tune": "满庭芳",
+      "period": "元",
+      "line_no": 2,
+      "layer": "元/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s191",
+      "text": "那堪更瑶阶夜永，嫌杀月儿明。",
+      "work_id": 30245,
+      "poet": "马致远",
+      "tune": "满庭芳",
+      "period": "元",
+      "line_no": 4,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s192",
+      "text": "(驾云)不由我不烦恼也。",
+      "work_id": 30245,
+      "poet": "马致远",
+      "tune": "满庭芳",
+      "period": "元",
+      "line_no": 6,
+      "layer": "元/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s193",
+      "text": "(唱)。",
+      "work_id": 30245,
+      "poet": "马致远",
+      "tune": "满庭芳",
+      "period": "元",
+      "line_no": 7,
+      "layer": "元/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s194",
+      "text": "呀！",
+      "work_id": 31458,
+      "poet": "关汉卿",
+      "tune": "感皇恩",
+      "period": "元",
+      "line_no": 1,
+      "layer": "元/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s195",
+      "text": "恰消停，才苏醒，又昏迷。",
+      "work_id": 31458,
+      "poet": "关汉卿",
+      "tune": "感皇恩",
+      "period": "元",
+      "line_no": 3,
+      "layer": "元/中/低",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s203",
+      "text": "桑柘松楸，三椽万卷，都萦怀抱。",
+      "work_id": 34665,
+      "poet": "何振岱",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/中/低",
+      "votes": [
+        "思归怀人",
+        "清高自守",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": null,
+      "label_source": "无多数且无仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s204",
+      "text": "湖山俊赏，琴尊冷趣，离肠千搅。",
+      "work_id": 34665,
+      "poet": "何振岱",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/中/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s209",
+      "text": "芳讯断江南，怕一枝、萦恨终古。",
+      "work_id": 35132,
+      "poet": "叶恭绰",
+      "tune": "法曲献仙音",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/中/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "愁苦失意"
+      ],
+      "label": "思归怀人",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s210",
+      "text": "隔花鸟声频唤，随地是高阳。",
+      "work_id": 35498,
+      "poet": "陆求可",
+      "tune": "诉衷情",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s214",
+      "text": "吴蓬载玉。",
+      "work_id": 36496,
+      "poet": "夏孙桐",
+      "tune": "疏影",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s216",
+      "text": "冶春十亩，红燃翠冷，东阳亭榭。",
+      "work_id": 36875,
+      "poet": "李良年",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s217",
+      "text": "彭泽将行，鹿门未老，隐何为者。",
+      "work_id": 36875,
+      "poet": "李良年",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/中/高",
+      "votes": [
+        "清高自守",
+        "清高自守",
+        "清高自守"
+      ],
+      "label": "清高自守",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s218",
+      "text": "满畦泉泻。",
+      "work_id": 36875,
+      "poet": "李良年",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 8,
+      "layer": "清/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s219",
+      "text": "寒月悲笳，万里西风瀚海沙。",
+      "work_id": 37064,
+      "poet": "纳兰性德",
+      "tune": "采桑子",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/中/高",
+      "votes": [
+        "羁旅漂泊",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s220",
+      "text": "人不是、几回愁。",
+      "work_id": 37405,
+      "poet": "丁澎",
+      "tune": "武陵春",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s223",
+      "text": "无那回潮心上去还生。",
+      "work_id": 38251,
+      "poet": "俞陛云",
+      "tune": "南歌子",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s224",
+      "text": "情恻恻。",
+      "work_id": 38428,
+      "poet": "吴文柔",
+      "tune": "谒金门",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s228",
+      "text": "又一番风，凉雨乱飘，褪尽红衣了。",
+      "work_id": 40600,
+      "poet": "龚翔麟",
+      "tune": "燕山亭",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/低",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s229",
+      "text": "欹帽。",
+      "work_id": 40600,
+      "poet": "龚翔麟",
+      "tune": "燕山亭",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s231",
+      "text": "雨气昏园夜。",
+      "work_id": 41585,
+      "poet": "朱祖谋",
+      "tune": "安公子",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s232",
+      "text": "孤凤行烟傍晓，带残梦、红墙缥缈。",
+      "work_id": 41749,
+      "poet": "朱祖谋",
+      "tune": "烛影摇红",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "羁旅漂泊"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s233",
+      "text": "分襟岁月未为多，侧帽情怀何故少。",
+      "work_id": 42507,
+      "poet": "刘永济",
+      "tune": "玉楼春",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "愁苦失意",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s234",
+      "text": "半月重阴未放晴，岷蛾长夏气凄清。",
+      "work_id": 42532,
+      "poet": "刘永济",
+      "tune": "鹧鸪天",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/高",
+      "votes": [
+        "伤春悲秋",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s235",
+      "text": "一镫相伴，万书堆户。",
+      "work_id": 42671,
+      "poet": "吴湖帆",
+      "tune": "青玉案",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/中/高",
+      "votes": [
+        "清高自守",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s236",
+      "text": "寒食追寻旧时句。",
+      "work_id": 42671,
+      "poet": "吴湖帆",
+      "tune": "青玉案",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/短/低",
+      "votes": [
+        "思归怀人",
+        "伤春悲秋",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s237",
+      "text": "天涯萍迹，川流水曲，何处不相逢。",
+      "work_id": 43189,
+      "poet": "吴湖帆",
+      "tune": "少年游",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/低",
+      "votes": [
+        "羁旅漂泊",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s238",
+      "text": "青楼小杜扬州梦，纱灯万点觥船弄。",
+      "work_id": 43277,
+      "poet": "尤侗",
+      "tune": "菩萨蛮",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s239",
+      "text": "将军坐地分曹。",
+      "work_id": 43429,
+      "poet": "尤侗",
+      "tune": "望海潮",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s240",
+      "text": "临行话旧，有潭水汪伦，匡庐李白，寄语问安否。",
+      "work_id": 44060,
+      "poet": "赵庆熹",
+      "tune": "摸鱼儿",
+      "period": "清",
+      "line_no": 11,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s241",
+      "text": "晓来帘压低垂，花影屡移动。",
+      "work_id": 44199,
+      "poet": "张景祁",
+      "tune": "祝英台近",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s242",
+      "text": "河边桥畔应无数，化作浮萍向何处。",
+      "work_id": 45639,
+      "poet": "史惟圆",
+      "tune": "青玉案",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/低",
+      "votes": [
+        "羁旅漂泊",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "无法判定",
+      "strength": 1.67,
+      "label_source": "含推断表述作废",
+      "inference_violation": true
+    },
+    {
+      "id": "s243",
+      "text": "漠漠冻云送暝，漏澹影、不多斜照。",
+      "work_id": 46005,
+      "poet": "戴延介",
+      "tune": "暗香",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/长/高",
+      "votes": [
+        "伤春悲秋",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s244",
+      "text": "人间那是消魂处，咫尺西洲成小住。",
+      "work_id": 46232,
+      "poet": "吕碧城",
+      "tune": "玉楼春",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/高",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s245",
+      "text": "妲娥此夜悔还无？",
+      "work_id": 46712,
+      "poet": "董元恺",
+      "tune": "御街行",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "愁苦失意"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s246",
+      "text": "笑鬓丝、那称红簪，山香倦舞。",
+      "work_id": 47066,
+      "poet": "郭则沄",
+      "tune": "宴清都",
+      "period": "清",
+      "line_no": 9,
+      "layer": "清/中/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "清高自守"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s247",
+      "text": "悄唤锁重门，莫放春归去。",
+      "work_id": 47306,
+      "poet": "许庭珠",
+      "tune": "生查子",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/中/高",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s248",
+      "text": "忍向杜鹃啼处，念伊人、可曾消瘦？",
+      "work_id": 47318,
+      "poet": "袁克文",
+      "tune": "水龙吟",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 3.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s249",
+      "text": "梦初回，音已断。",
+      "work_id": 47432,
+      "poet": "袁克文",
+      "tune": "苏幕遮",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/短/高",
+      "votes": [
+        "愁苦失意",
+        "无法判定",
+        "思归怀人"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s250",
+      "text": "飞去多时梁上燕。",
+      "work_id": 47432,
+      "poet": "袁克文",
+      "tune": "苏幕遮",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s251",
+      "text": "相逢不是梦魂中，赢得清尊愁共。",
+      "work_id": 47457,
+      "poet": "袁克文",
+      "tune": "西江月",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s252",
+      "text": "便生涯是梦，梦肯再来么？",
+      "work_id": 47950,
+      "poet": "易顺鼎",
+      "tune": "八声甘州",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/中/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s253",
+      "text": "思它信杳卜春葱。",
+      "work_id": 48101,
+      "poet": "赵我佩",
+      "tune": "浣溪沙",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s254",
+      "text": "寸蒂朱丝，香囊扣近罗裙。",
+      "work_id": 48316,
+      "poet": "赵熙",
+      "tune": "声声慢",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/中/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s255",
+      "text": "仙桥认取再来期。",
+      "work_id": 48607,
+      "poet": "彭孙遹",
+      "tune": "阮郎归",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/短/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "无法判定"
+      ],
+      "label": "思归怀人",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s256",
+      "text": "别有尊前工唱曲，琴箫。",
+      "work_id": 48783,
+      "poet": "潘飞声",
+      "tune": "南乡子",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/中/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s257",
+      "text": "秋雨潇潇，秋风淅淅，拚把愁肠惊喜。",
+      "work_id": 48985,
+      "poet": "傅熊湘",
+      "tune": "喜迁莺",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s258",
+      "text": "否否，任凭他、抱膝高吟，未必安便耳。",
+      "work_id": 48985,
+      "poet": "傅熊湘",
+      "tune": "喜迁莺",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/长/高",
+      "votes": [
+        "清高自守",
+        "清高自守",
+        "现实关怀"
+      ],
+      "label": "清高自守",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s259",
+      "text": "梦破茫然，忆故园春昼，人境吾庐。",
+      "work_id": 49213,
+      "poet": "王士禄",
+      "tune": "汉宫春",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s260",
+      "text": "归计苕苕，禅心悄悄。",
+      "work_id": 49465,
+      "poet": "徐灿",
+      "tune": "踏莎行",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/中/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s261",
+      "text": "看钓矶头，绿槐上，噪新蝉。",
+      "work_id": 49718,
+      "poet": "曾廉",
+      "tune": "行香子",
+      "period": "清",
+      "line_no": 8,
+      "layer": "清/中/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s262",
+      "text": "阿侬家在桥西。",
+      "work_id": 49756,
+      "poet": "曾廉",
+      "tune": "画堂春",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/短/低",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "无法判定"
+      ],
+      "label": "思归怀人",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s263",
+      "text": "寂寂芳蹊。",
+      "work_id": 49756,
+      "poet": "曾廉",
+      "tune": "画堂春",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/短/高",
+      "votes": [
+        "伤春悲秋",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s264",
+      "text": "新愁触损眉痕。",
+      "work_id": 49907,
+      "poet": "张玉珍",
+      "tune": "柳梢青",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/短/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s265",
+      "text": "怅远山不绝，乍迷屐齿，隔江相望，如在帘栊。",
+      "work_id": 50223,
+      "poet": "曹溶",
+      "tune": "风流子",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "愁苦失意"
+      ],
+      "label": "思归怀人",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s266",
+      "text": "想三影词成，银筝斜抱，四愁怀切，玉案轻笼。",
+      "work_id": 50223,
+      "poet": "曹溶",
+      "tune": "风流子",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/长/低",
+      "votes": [
+        "愁苦失意",
+        "思归怀人",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s267",
+      "text": "东风去后重门闭。",
+      "work_id": 50324,
+      "poet": "钱念生",
+      "tune": "醉花阴",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/高",
+      "votes": [
+        "伤春悲秋",
+        "无法判定",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s268",
+      "text": "谙尽愁滋味。",
+      "work_id": 50324,
+      "poet": "钱念生",
+      "tune": "醉花阴",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/短/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s269",
+      "text": "差胜絮飘零，江北江南，流遍离人泪。",
+      "work_id": 50324,
+      "poet": "钱念生",
+      "tune": "醉花阴",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/长/低",
+      "votes": [
+        "羁旅漂泊",
+        "羁旅漂泊",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s270",
+      "text": "君低咏，吾高卧，两相宜。",
+      "work_id": 50412,
+      "poet": "黄永",
+      "tune": "水调歌头",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/中/低",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s271",
+      "text": "名并千秋思报国，狱成三字悲同调。",
+      "work_id": 50753,
+      "poet": "吴藻",
+      "tune": "满江红",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/低",
+      "votes": [
+        "言志用世",
+        "言志用世",
+        "言志用世"
+      ],
+      "label": "言志用世",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s272",
+      "text": "九十春光谁与共。",
+      "work_id": 50854,
+      "poet": "钟筠",
+      "tune": "减字木兰花",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "伤春悲秋"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s273",
+      "text": "一般沦落，此生空负怀抱。",
+      "work_id": 51056,
+      "poet": "吕采芝",
+      "tune": "念奴娇",
+      "period": "清",
+      "line_no": 8,
+      "layer": "清/中/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 3.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s274",
+      "text": "闲庭春去愁还结。",
+      "work_id": 51157,
+      "poet": "孙云凤",
+      "tune": "忆秦娥",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/低",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s275",
+      "text": "尽烧残绛蜡，炙暖鹅笙。",
+      "work_id": 51372,
+      "poet": "梁清标",
+      "tune": "满庭芳",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/中/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "无法判定"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s276",
+      "text": "奏彻江东白苎，座中有、杜牧多情。",
+      "work_id": 51372,
+      "poet": "梁清标",
+      "tune": "满庭芳",
+      "period": "清",
+      "line_no": 8,
+      "layer": "清/长/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "无法判定"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s277",
+      "text": "蘸香鸳被半床闲，醉里。",
+      "work_id": 51966,
+      "poet": "杨玉衔",
+      "tune": "杏花天",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/中/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s278",
+      "text": "拥髻背灯愁默坐。",
+      "work_id": 52054,
+      "poet": "杨玉衔",
+      "tune": "渔家傲",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s279",
+      "text": "征裘凋敝，奚囊掇拾，剩得鬓霜几缕。",
+      "work_id": 52142,
+      "poet": "杨玉衔",
+      "tune": "永遇乐",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/低",
+      "votes": [
+        "羁旅漂泊",
+        "愁苦失意",
+        "羁旅漂泊"
+      ],
+      "label": "羁旅漂泊",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s280",
+      "text": "海棠睡去春如梦。",
+      "work_id": 52584,
+      "poet": "叶璧华",
+      "tune": "虞美人",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/高",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s281",
+      "text": "移将一抹旁庭阴。",
+      "work_id": 52584,
+      "poet": "叶璧华",
+      "tune": "虞美人",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/短/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s282",
+      "text": "若个洲边白鹭心，看煞人来往。",
+      "work_id": 53026,
+      "poet": "程颂万",
+      "tune": "卜算子",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/中/低",
+      "votes": [
+        "清高自守",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s283",
+      "text": "夜长何处是相思，影满秦楼明月皎。",
+      "work_id": 53140,
+      "poet": "吴琪",
+      "tune": "玉楼春",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/长/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s284",
+      "text": "问几日、夕阳烘透，平芜春半剪。",
+      "work_id": 53633,
+      "poet": "陈匪石",
+      "tune": "花犯",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/中/高",
+      "votes": [
+        "无法判定",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 1.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s285",
+      "text": "不在天涯看，已是销魂。",
+      "work_id": 54024,
+      "poet": "黄燮清",
+      "tune": "八声甘州",
+      "period": "清",
+      "line_no": 4,
+      "layer": "清/中/高",
+      "votes": [
+        "羁旅漂泊",
+        "伤春悲秋",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s286",
+      "text": "烦恼。",
+      "work_id": 54112,
+      "poet": "冒德娟",
+      "tune": "如梦令",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/高",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 1.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s287",
+      "text": "檀心细吐香如缬。",
+      "work_id": 54403,
+      "poet": "沈皞日",
+      "tune": "渔家傲",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/短/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s288",
+      "text": "整日相看，玉骨娉婷，清绝小窗晴晓。",
+      "work_id": 54466,
+      "poet": "张绉英",
+      "tune": "疏影",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/高",
+      "votes": [
+        "闲适自得",
+        "闲适自得",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s289",
+      "text": "水碧罗帷镇墨犀。",
+      "work_id": 54959,
+      "poet": "樊增祥",
+      "tune": "定风波",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/短/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s290",
+      "text": "玉窗晚，剩珠帘半卷，纤纤娥月。",
+      "work_id": 55236,
+      "poet": "樊增祥",
+      "tune": "喜迁莺",
+      "period": "清",
+      "line_no": 10,
+      "layer": "清/中/高",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s291",
+      "text": "槐黄过了，又重把、孤檠分付。",
+      "work_id": 56146,
+      "poet": "杜贵墀",
+      "tune": "东风第一枝",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/中/高",
+      "votes": [
+        "清高自守",
+        "伤春悲秋",
+        "愁苦失意"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.0,
+      "label_source": "仲裁",
+      "inference_violation": false
+    },
+    {
+      "id": "s292",
+      "text": "凤去台空，俊赏昔游重到。",
+      "work_id": 56221,
+      "poet": "顾贞观",
+      "tune": "玲珑四犯",
+      "period": "清",
+      "line_no": 2,
+      "layer": "清/中/高",
+      "votes": [
+        "伤春悲秋",
+        "伤春悲秋",
+        "伤春悲秋"
+      ],
+      "label": "伤春悲秋",
+      "strength": 2.33,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s293",
+      "text": "龙孙古来神物，问九朝、几见泰阶平。",
+      "work_id": 56941,
+      "poet": "张尔田",
+      "tune": "木兰花慢",
+      "period": "清",
+      "line_no": 3,
+      "layer": "清/长/高",
+      "votes": [
+        "言志用世",
+        "言志用世",
+        "现实关怀"
+      ],
+      "label": "言志用世",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s294",
+      "text": "要着意栽培，筠霜苦节，菊水颓龄。",
+      "work_id": 56941,
+      "poet": "张尔田",
+      "tune": "木兰花慢",
+      "period": "清",
+      "line_no": 8,
+      "layer": "清/长/低",
+      "votes": [
+        "清高自守",
+        "清高自守",
+        "清高自守"
+      ],
+      "label": "清高自守",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s295",
+      "text": "纨扇动微吟，湘帘草色深。",
+      "work_id": 57181,
+      "poet": "曹尔堪",
+      "tune": "唐多令",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/中/低",
+      "votes": [
+        "闲适自得",
+        "无法判定",
+        "闲适自得"
+      ],
+      "label": "闲适自得",
+      "strength": 1.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s296",
+      "text": "不忍思君颜色。",
+      "work_id": 57901,
+      "poet": "周岸登",
+      "tune": "谒金门",
+      "period": "清",
+      "line_no": 6,
+      "layer": "清/短/高",
+      "votes": [
+        "思归怀人",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.67,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s297",
+      "text": "愁见了、春幡彩胜，依稀故乡风色。",
+      "work_id": 58027,
+      "poet": "周岸登",
+      "tune": "汉宫春",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/长/低",
+      "votes": [
+        "伤春悲秋",
+        "思归怀人",
+        "思归怀人"
+      ],
+      "label": "思归怀人",
+      "strength": 2.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s298",
+      "text": "金陵渡口去来潮。",
+      "work_id": 58128,
+      "poet": "周岸登",
+      "tune": "浪淘沙",
+      "period": "清",
+      "line_no": 7,
+      "layer": "清/短/低",
+      "votes": [
+        "羁旅漂泊",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s299",
+      "text": "玉屑千家，珠尘万斛，晴日几曾烘尽。",
+      "work_id": 58532,
+      "poet": "吕惠如",
+      "tune": "法曲献仙音",
+      "period": "清",
+      "line_no": 1,
+      "layer": "清/长/低",
+      "votes": [
+        "无法判定",
+        "无法判定",
+        "无法判定"
+      ],
+      "label": "无法判定",
+      "strength": 0.0,
+      "label_source": "多数票",
+      "inference_violation": false
+    },
+    {
+      "id": "s300",
+      "text": "甚灵妃、不归沧海，痴唤月，冻煞珠衣空等。",
+      "work_id": 58532,
+      "poet": "吕惠如",
+      "tune": "法曲献仙音",
+      "period": "清",
+      "line_no": 5,
+      "layer": "清/长/低",
+      "votes": [
+        "愁苦失意",
+        "愁苦失意",
+        "思归怀人"
+      ],
+      "label": "愁苦失意",
+      "strength": 2.5,
+      "label_source": "多数票",
+      "inference_violation": false
+    }
+  ]
+}

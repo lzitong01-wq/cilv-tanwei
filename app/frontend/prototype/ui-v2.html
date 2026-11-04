@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>词律探微 · UI 原型 v2</title>
+<style>
+/* ============================================================
+   原型 v2：借鉴「中华经典古籍库」的观感
+   朱色题签 · 分类树 · 竖版书影网格 · 大留白 · 宋体
+   三态主题：浅黄 / 白 / 夜
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+  --paper: #f2efe6;          /* 宣纸底 */
+  --paper-2: #ebe7da;
+  --surface: #ffffff;
+  --surface-2: #faf8f2;
+  --ink: #1e1c18;
+  --ink-2: #4d4941;
+  --ink-3: #837d70;
+  --rule: #d3cdbd;
+  --rule-soft: #e2ddcf;
+  --cinnabar: #b8452f;       /* 强调色：朱砂 */
+  --cinnabar-2: #97382a;
+  --indigo: #35586b;
+  --ok: #4f7358;
+  --gold: #b08a3e;
+  --shadow: 0 1px 2px rgba(60,50,30,.06), 0 8px 24px rgba(60,50,30,.07);
+  --font-song: "CiLv Serif", "Songti SC", "STSong", "SimSun", "Noto Serif SC", serif;
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+}
+
+:root[data-theme="plain"] {          /* 白 */
+  --paper: #ffffff; --paper-2: #f6f6f6; --surface-2: #fafafa; --rule: #d8d8d8; --rule-soft: #e8e8e8;
+}
+:root[data-theme="dark"] {           /* 夜 */
+  color-scheme: dark;
+  --paper: #16150f; --paper-2: #1d1c15; --surface: #201f18; --surface-2: #26251d;
+  --ink: #ece6d6; --ink-2: #c7c0ae; --ink-3: #968f7d;
+  --rule: #3b382d; --rule-soft: #2e2c23;
+  --cinnabar: #d9694f; --cinnabar-2: #e07a5f; --indigo: #8fb3c6; --ok: #86b492; --gold: #cfa963;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+/* 纸面纤维 */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='0.55'/></svg>");
+  mix-blend-mode: multiply;
+}
+:root[data-theme="dark"] body::before { mix-blend-mode: screen; opacity: .04; }
+
+/* ============ 顶栏 ============ */
+.top {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: stretch; gap: 0;
+  background: var(--surface); border-bottom: 1px solid var(--rule);
+  box-shadow: 0 1px 0 rgba(60,50,30,.03);
+}
+.brandbox {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px; background: var(--cinnabar); color: #fff;
+}
+:root[data-theme="dark"] .brandbox { color: #1a1712; }
+.mark {
+  width: 30px; height: 30px; display: grid; place-items: center;
+  border: 1.5px solid currentColor; border-radius: 2px;
+  font-family: var(--font-song); font-size: 16px; font-weight: 600; letter-spacing: 0;
+}
+.brandname { font-family: var(--font-song); font-size: 16px; letter-spacing: .06em; white-space: nowrap; }
+.brandsub { font-size: 11px; opacity: .82; margin-left: 2px; }
+.nav { display: flex; align-items: stretch; }
+.nav a {
+  display: flex; align-items: center; padding: 0 16px;
+  color: var(--ink-2); text-decoration: none; font-size: 13px;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+}
+.nav a:hover { color: var(--ink); background: var(--surface-2); }
+.nav a.on { color: var(--cinnabar); border-bottom-color: var(--cinnabar); }
+.tools { margin-left: auto; display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+.tools .t { color: var(--ink-3); font-size: 12px; cursor: pointer; }
+.tools .t:hover { color: var(--ink); }
+.askbtn {
+  padding: 5px 14px; border-radius: 2px; cursor: pointer; font-size: 12px;
+  background: var(--cinnabar); color: #fff; border: 1px solid var(--cinnabar);
+}
+:root[data-theme="dark"] .askbtn { color: #1a1712; }
+.askbtn:hover { background: var(--cinnabar-2); }
+.themebtn {
+  display: flex; gap: 2px; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden;
+}
+.themebtn button {
+  border: 0; background: var(--surface); color: var(--ink-3);
+  padding: 4px 8px; font-size: 11px; cursor: pointer;
+}
+.themebtn button.on { background: var(--ink); color: var(--surface); }
+
+/* ============ 主体 ============ */
+.wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 208px 1fr; min-height: calc(100vh - 46px); }
+.side {
+  border-right: 1px solid var(--rule); padding: 16px 14px 20px;
+  background: var(--surface-2); position: relative; overflow: hidden;
+}
+.side h5 {
+  margin: 14px 0 6px; font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  color: var(--ink-3); text-transform: none;
+}
+.side h5:first-child { margin-top: 0; }
+.tree a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 8px; border-radius: 2px; color: var(--ink-2);
+  text-decoration: none; font-size: 13px; cursor: pointer;
+}
+.tree a:hover { background: var(--paper-2); color: var(--ink); }
+.tree a.on { background: var(--paper-2); color: var(--cinnabar); font-weight: 500; }
+.tree .cnt { margin-left: auto; font-size: 11px; color: var(--ink-3); font-family: var(--font-mono); }
+.tree .caret { color: var(--ink-3); font-size: 10px; width: 10px; }
+.side .stat {
+  margin-top: 14px; padding: 10px 12px; border: 1px solid var(--rule-soft);
+  background: var(--surface); border-radius: 2px;
+}
+.side .stat div { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0; }
+.side .stat b { font-family: var(--font-mono); font-weight: 600; }
+
+.main { padding: 20px 26px 40px; max-width: 1320px; }
+.crumb { color: var(--ink-3); font-size: 12px; margin-bottom: 6px; }
+h1.ptitle {
+  font-family: var(--font-song); font-size: 21px; font-weight: 600; margin: 0 0 4px;
+  display: flex; align-items: center; gap: 10px;
+}
+h1.ptitle::before { content: ""; width: 4px; height: 20px; background: var(--cinnabar); border-radius: 1px; }
+.psub { color: var(--ink-3); font-size: 12px; margin: 0 0 16px; }
+
+/* 工具条 */
+.bar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-bottom: 18px;
+}
+.searchbox { position: relative; flex: 0 1 320px; }
+.searchbox input {
+  width: 100%; padding: 7px 30px 7px 30px; font-size: 13px; font-family: inherit;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 2px;
+}
+.searchbox .ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--ink-3); font-size: 12px; }
+.searchbox .clr { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: var(--ink-3); cursor: pointer; font-size: 12px; }
+.seg { display: flex; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+.seg button { border: 0; background: var(--surface); color: var(--ink-2); padding: 6px 12px; font-size: 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button.on { background: var(--cinnabar); color: #fff; }
+:root[data-theme="dark"] .seg button.on { color: #1a1712; }
+.sortsel { padding: 6px 8px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); font-size: 12px; border-radius: 2px; }
+.spacer { flex: 1; }
+.count { color: var(--ink-3); font-size: 12px; }
+
+/* ============ 书影网格 ============ */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 22px 20px; }
+.book { cursor: pointer; }
+.cover {
+  position: relative; aspect-ratio: 327 / 480; border-radius: 1px; overflow: hidden;
+  box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 26px 14px 20px;
+}
+/* 封面纸纹与磨损 */
+.cover::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .16;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.7'/></svg>");
+  mix-blend-mode: overlay;
+}
+.cover > * { position: relative; z-index: 1; }
+.book:hover .cover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(60,50,30,.12), 0 16px 36px rgba(60,50,30,.16); }
+/* 封面配色：古籍常见的青灰 / 米黄 / 墨黑 / 朱褐 */
+.c1 { background: linear-gradient(155deg, #c6cfcc 0%, #9daba7 100%); color: #222c2a; }
+.c2 { background: linear-gradient(155deg, #efe3c4 0%, #dcc79a 100%); color: #4a3c22; }
+.c3 { background: linear-gradient(155deg, #4a4a48 0%, #2c2c2b 100%); color: #e8e2d2; }
+.c4 { background: linear-gradient(155deg, #a2644e 0%, #7d4434 100%); color: #f2e6d8; }
+.c5 { background: linear-gradient(155deg, #dcd3bf 0%, #c2b49a 100%); color: #40382a; }
+:root[data-theme="dark"] .c1 { background: linear-gradient(155deg, #3c4543 0%, #262d2c 100%); color: #d6dedb; }
+:root[data-theme="dark"] .c2 { background: linear-gradient(155deg, #5a5138 0%, #3e382a 100%); color: #eee3c8; }
+:root[data-theme="dark"] .c3 { background: linear-gradient(155deg, #2a2a29 0%, #141414 100%); color: #ded8c8; }
+:root[data-theme="dark"] .c4 { background: linear-gradient(155deg, #5e382d 0%, #40241d 100%); color: #ecd8cc; }
+:root[data-theme="dark"] .c5 { background: linear-gradient(155deg, #4a443a 0%, #332f28 100%); color: #e2dac6; }
+/* 封面上的竖排词牌名 */
+.vtitle {
+  writing-mode: vertical-rl; font-family: var(--font-song);
+  font-size: 19px; letter-spacing: .18em; line-height: 1.25; margin: 0 auto;
+}
+.vtitle.long { font-size: 15px; letter-spacing: .1em; }
+.vsub {
+  writing-mode: vertical-rl; font-size: 11px; opacity: .7; letter-spacing: .1em;
+  margin: 0 auto; max-height: 118px; overflow: hidden; text-align: start;
+}
+.rule { height: 1px; background: currentColor; opacity: .22; margin: 10px 0; }
+.seal {
+  position: absolute; right: 10px; bottom: 10px; width: 24px; height: 24px;
+  border: 1.4px solid var(--cinnabar); color: var(--cinnabar);
+  display: grid; place-items: center; font-size: 11px; font-family: var(--font-song);
+  border-radius: 1px; opacity: .9; background: rgba(255,255,255,.14);
+}
+:root[data-theme="dark"] .seal { color: #d9694f; }
+.book .meta { padding: 8px 2px 0; }
+.book .meta .t { font-family: var(--font-song); font-size: 13px; color: var(--ink); line-height: 1.4;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.book .meta .m { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+/* ============ 详情面板 ============ */
+.detail { margin-top: 26px; border-top: 1px solid var(--rule); padding-top: 18px; }
+.detail h3 { font-family: var(--font-song); font-size: 15px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.detail h3::before { content: ""; width: 3px; height: 14px; background: var(--cinnabar); }
+.verses { display: flex; flex-direction: column; gap: 4px; }
+.verse { display: flex; gap: 1px; flex-wrap: wrap; }
+.ch {
+  width: 30px; height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px solid var(--rule-soft); font-family: var(--font-song); font-size: 17px; background: var(--surface);
+  position: relative; cursor: default;
+}
+.ch small { font-family: var(--font-mono); font-size: 9px; color: var(--ink-3); }
+.ch.p { background: var(--surface-2); }
+.ch.p::after, .ch.z::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+}
+.ch.p::after { background: var(--indigo); }
+.ch.z::after { background: var(--cinnabar); }
+.ch.z { color: var(--ink); }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.tag { font-size: 11px; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 2px; color: var(--ink-2); background: var(--surface); }
+.tag.o { border-color: var(--cinnabar); color: var(--cinnabar); }
+.tag.ok { border-color: var(--ok); color: var(--ok); }
+.note { color: var(--ink-3); font-size: 11px; margin-top: 10px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brandbox">
+    <span class="mark">詞</span>
+    <span>
+      <span class="brandname">词律探微</span>
+      <span class="brandsub">清代词律声情研究助手</span>
+    </span>
+  </div>
+  <nav class="nav">
+    <a href="#">概览</a>
+    <a href="#" class="on">读词</a>
+    <a href="#">求证</a>
+    <a href="#">校订</a>
+    <a href="#">图谱</a>
+    <a href="#">评测</a>
+    <a href="#">语料与授权</a>
+  </nav>
+  <div class="tools">
+    <span class="t">官方 423 首 · 同源 43,191 首</span>
+    <div class="themebtn" id="themebtn">
+      <button data-t="light">浅黄</button>
+      <button data-t="plain">白</button>
+      <button data-t="dark">夜</button>
+    </div>
+    <button class="askbtn" onclick="ask()">问一句</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="side">
+    <div class="tree">
+      <h5>智能体</h5>
+      <a class="on" onclick="sel(this)"><span class="caret">›</span>问词（提问）</a>
+      <h5>读词</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>单篇解析</a>
+      <a onclick="sel(this)"><span class="caret">›</span>按新文本解析</a>
+      <a onclick="sel(this)"><span class="caret">›</span>风格对比</a>
+      <a onclick="sel(this)"><span class="caret">›</span>逐句对照</a>
+      <h5>求证</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>论证辅助</a>
+      <a onclick="sel(this)"><span class="caret">›</span>情感候选</a>
+      <a onclick="sel(this)"><span class="caret">›</span>基准解题</a>
+      <a onclick="sel(this)"><span class="caret">›</span>检索</a>
+      <h5>校订</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>校订队列</a>
+      <a onclick="sel(this)"><span class="caret">›</span>导出记录</a>
+      <h5>导航</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>图谱</a>
+      <h5>评测</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>评测中心</a>
+      <a onclick="sel(this)"><span class="caret">›</span>答辩准备</a>
+      <a onclick="sel(this)"><span class="caret">›</span>不变量与用例</a>
+      <h5>语料分层</h5>
+      <a onclick="sel(this)"><span class="caret">›</span>官方标注<span class="cnt">423</span></a>
+      <a onclick="sel(this)"><span class="caret">›</span>同源清词<span class="cnt">26,742</span></a>
+      <a onclick="sel(this)"><span class="caret">›</span>同源宋词<span class="cnt">16,449</span></a>
+    </div>
+    <div class="stat">
+      <div><span>语料总量</span><b>43,614</b></div>
+      <div><span>词人</span><b>2,536</b></div>
+      <div><span>词牌</span><b>5,882</b></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="crumb">首页 / 语料 / 全部词牌</div>
+    <h1 class="ptitle">清代词选</h1>
+    <p class="psub">
+      按词牌浏览全部同源语料（清词 26,742 + 宋词 16,449）；点封面进单篇解析。官方标注 423 首是唯一基准口径，同源层仅供检索与阅读。
+    </p>
+
+    <div class="bar">
+      <div class="searchbox">
+        <span class="ico">⌕</span>
+        <input placeholder="搜索书名、词人、词牌或正文" />
+        <span class="clr">✕</span>
+      </div>
+      <div class="seg" id="seg">
+        <button class="on">书影</button>
+        <button>列表</button>
+      </div>
+      <select class="sortsel">
+        <option>按词人排序</option>
+        <option>按词牌排序</option>
+        <option>按年代排序</option>
+      </select>
+      <div class="spacer"></div>
+      <span class="count">共 43,191 首 · 第 1 / 720 页</span>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="detail">
+      <h3>《念奴娇·过洞庭》 · 某词人</h3>
+      <div class="tags">
+        <span class="tag o">同源带调拼音 · 非官方口径</span>
+        <span class="tag">6 句 · 112 字</span>
+        <span class="tag">仄声比例 43.3%</span>
+        <span class="tag ok">韵：圃、暮、雾、路</span>
+      </div>
+      <div class="verses" id="verses"></div>
+      <p class="note">
+        上格为逐字四声，下方蓝线记平、朱线记仄；逐句平仄计数来自官方标注，逐字读音为本地字典计算，两者口径不同、分别标注。
+      </p>
+    </div>
+  </main>
+</div>
+
+<script>
+const BOOKS = [
+  {t:"贺新郎", title:"贺新郎·生日答记者问", poet:"于右任", first:"白头游子白头妇", c:"c3"},
+  {t:"浣溪沙", title:"浣溪沙·寿张大千先生六十", poet:"于右任", first:"上将于今数老张", c:"c1"},
+  {t:"忆秦娥", title:"忆秦娥·写恨", poet:"高旭", first:"东风又。珠帘倒卷", c:"c5"},
+  {t:"满江红", title:"满江红·东京寓楼偶读岳武穆作", poet:"高旭", first:"板荡中原，三百载", c:"c4"},
+  {t:"菩萨蛮", title:"菩萨蛮·寄攘叔", poet:"高旭", first:"憔悴容姿窥古镜", c:"c2"},
+  {t:"如梦令", title:"如梦令", poet:"高旭", first:"省却胭脂闲费", c:"c1"},
+  {t:"金缕曲", title:"金缕曲", poet:"高旭", first:"梦化烟飞去", c:"c4"},
+  {t:"壶中天", title:"壶中天题公曼仇史", poet:"高旭", first:"滔天风浪", c:"c3"},
+  {t:"临江仙", title:"临江仙·寄怀阿嫂", poet:"费墨娟", first:"虫韵风声添寥寂", c:"c2"},
+  {t:"蝶恋花", title:"蝶恋花·春景", poet:"欧阳修", first:"花褪残红青杏小", c:"c5"}
+];
+
+const grid = document.getElementById("grid");
+BOOKS.forEach((b, i) => {
+  const long = b.t.length > 4;
+  grid.insertAdjacentHTML("beforeend", `
+    <div class="book">
+      <div class="cover ${b.c}">
+        <div class="vtitle ${long ? "long" : ""}">${b.t}</div>
+        <div>
+          <div class="rule"></div>
+          <div class="vsub">${b.first}</div>
+        </div>
+        <div class="seal">詞</div>
+      </div>
+      <div class="meta">
+        <div class="t">${b.title}</div>
+        <div class="m">${b.poet} · 同源清词</div>
+      </div>
+    </div>`);
+});
+
+/* 逐字格阵（示意） */
+const LINE = "白头游子白头妇记当年书灯夜雨";
+const TONE = "z p z p z p p z p z p p z z";
+const verses = document.getElementById("verses");
+for (let start = 0; start < LINE.length; start += 14) {
+  const seg = LINE.slice(start, start + 14);
+  const tone = TONE.slice(start, start + 14);
+  verses.insertAdjacentHTML("beforeend",
+    '<div class="verse">' + [...seg].map((c, i) =>
+      `<div class="ch ${tone[i] === "p" ? "p" : "z"}">${c}<small>${tone[i] === "p" ? "平" : "仄"}</small></div>`
+    ).join("") + "</div>");
+}
+
+function sel(el) {
+  document.querySelectorAll(".tree a").forEach(a => a.classList.remove("on"));
+  el.classList.add("on");
+}
+function ask() { alert("（原型）跳到聊天页：问一句"); }
+document.getElementById("themebtn").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  document.documentElement.setAttribute("data-theme", btn.dataset.t);
+  document.querySelectorAll("#themebtn button").forEach(b => b.classList.toggle("on", b === btn));
+  localStorage.setItem("proto-theme", btn.dataset.t);
+});
+const saved = localStorage.getItem("proto-theme") || "light";
+document.querySelector(`#themebtn button[data-t="${saved}"]`)?.click();
+</script>
+</body>
+</html>

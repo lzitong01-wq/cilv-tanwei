@@ -1,0 +1,205 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-11-04T12:09:00+00:00",
+  "metrics": {
+    "works": 423,
+    "candidate_hit": 366,
+    "candidate_hit_rate": 0.8652,
+    "unique_rate": 0.0662,
+    "alignment_attempts": 64,
+    "aligned_ok": 40,
+    "ambiguous_not_aligned": 302,
+    "alignment_compliance": 1.0,
+    "diff_lines": 299,
+    "prosody_explained": 17,
+    "prosody_explain_rate": 0.0569
+  },
+  "gates": {
+    "候选命中率 ≥85%": 0.8652,
+    "唯一消解率（只报告）": 0.0662,
+    "逐字对照仅在唯一/高分时给出": "100%",
+    "人工确认抽样一致率 ≥90%": "未做（无人工核验资源，如实留空）"
+  },
+  "examples": [
+    {
+      "work_id": 58267,
+      "title": "相见欢",
+      "tune": "相见欢",
+      "form_id": "相见欢#1",
+      "confidence": "高",
+      "sentences": [
+        6,
+        3,
+        9,
+        3,
+        3,
+        3,
+        9
+      ]
+    },
+    {
+      "work_id": 57901,
+      "title": "谒金门·效大鹤三叠",
+      "tune": "谒金门",
+      "form_id": "谒金门#1",
+      "confidence": "高",
+      "sentences": [
+        3,
+        6,
+        7,
+        5,
+        6,
+        6,
+        7,
+        5
+      ]
+    },
+    {
+      "work_id": 55691,
+      "title": "长相思·又",
+      "tune": "长相思",
+      "form_id": "长相思#1",
+      "confidence": "高",
+      "sentences": [
+        3,
+        3,
+        7,
+        5,
+        3,
+        3,
+        7,
+        5
+      ]
+    },
+    {
+      "work_id": 54959,
+      "title": "定风波",
+      "tune": "定风波",
+      "form_id": "定风波#6",
+      "confidence": "高",
+      "sentences": [
+        7,
+        7,
+        7,
+        2,
+        7,
+        7,
+        2,
+        7,
+        7,
+        2,
+        7
+      ]
+    },
+    {
+      "work_id": 54403,
+      "title": "渔家傲·咏水仙花",
+      "tune": "渔家傲",
+      "form_id": "渔家傲#1",
+      "confidence": "高",
+      "sentences": [
+        7,
+        7,
+        7,
+        3,
+        7,
+        7,
+        7,
+        7,
+        3,
+        7
+      ]
+    }
+  ],
+  "explained_examples": [
+    {
+      "work_id": 54403,
+      "line_no": 6,
+      "text": "隔浦美人愁一别。",
+      "form_id": "渔家傲#1",
+      "prosody_series": "中仄中平平仄仄",
+      "official": [
+        4,
+        3
+      ]
+    },
+    {
+      "work_id": 54403,
+      "line_no": 7,
+      "text": "屏山曲几成幽绝。",
+      "form_id": "渔家傲#1",
+      "prosody_series": "中平中中平平仄",
+      "official": [
+        5,
+        2
+      ]
+    },
+    {
+      "work_id": 52054,
+      "line_no": 7,
+      "text": "金钱枉卜重逢课。",
+      "form_id": "渔家傲#1",
+      "prosody_series": "中平中中平平仄",
+      "official": [
+        4,
+        3
+      ]
+    },
+    {
+      "work_id": 38428,
+      "line_no": 7,
+      "text": "啼断子规无气力。",
+      "form_id": "谒金门#1",
+      "prosody_series": "中仄中平平仄仄",
+      "official": [
+        4,
+        3
+      ]
+    },
+    {
+      "work_id": 36723,
+      "line_no": 4,
+      "text": "和着乱蛩声尽是商音。",
+      "form_id": "虞美人#1",
+      "prosody_series": "中仄中平中仄仄平平",
+      "official": [
+        6,
+        3
+      ]
+    },
+    {
+      "work_id": 33528,
+      "line_no": 2,
+      "text": "走尽长街稀一见。",
+      "form_id": "减字木兰花#1",
+      "prosody_series": "中仄中平平仄仄",
+      "official": [
+        4,
+        3
+      ]
+    },
+    {
+      "work_id": 33528,
+      "line_no": 5,
+      "text": "故交轻绝。",
+      "form_id": "减字木兰花#1",
+      "prosody_series": "中平中仄",
+      "official": [
+        2,
+        2
+      ]
+    },
+    {
+      "work_id": 20862,
+      "line_no": 1,
+      "text": "霜天奇绝。",
+      "form_id": "减字木兰花#1",
+      "prosody_series": "中平中仄",
+      "official": [
+        3,
+        1
+      ]
+    }
+  ],
+  "boundary": "词谱给的是「词牌某体式的格律」，与具体作品无一一对应；多候选时不进入逐字对照，也不用于改读音。"
+}

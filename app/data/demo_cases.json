@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-11-04T08:48:46+00:00",
+  "source_sha256": "5effe6986b2210ce",
+  "note": "预计算回放由 app/scripts/build_demo_cases.py 用真实引擎生成；现场计算模式调 /api/parse。",
+  "cases": [
+    {
+      "id": "form-ambiguity",
+      "title": "同调同字数，不能唯一定体",
+      "caption": "郑文焯《瑞鹤仙》(58633) 与赵彦端《瑞鹤仙》(20294) 同为 12 句，句式却不同；给候选并要求人工确认。",
+      "target": "/parse",
+      "mode": "parse",
+      "text": "桂丛香到枕。渐透帘蛩语，凉烟催暝。林容早霜近。悄江天过雁，庭阶红冷。重门夜迥，锁秋声、诗愁万顷。更冥冥、满地歌尘，拍遍画阑谁应。\n还听。颓檐飞雨，乱叶昏灯，替人幽哽。羁魂未醒。奈犹是，去年病。叹人闲有限，凄凉风物，偏与多情管领。莫吟残、镜里花枝，梦来照影。",
+      "tune": "瑞鹤仙",
+      "cached": {
+        "line_count": 12,
+        "pattern": [
+          5,
+          9,
+          5,
+          9,
+          11,
+          13,
+          2,
+          12,
+          4,
+          6,
+          15,
+          11
+        ],
+        "ping_total": 56,
+        "ze_total": 46,
+        "unknown_count": 0,
+        "located": {
+          "work_id": 58633,
+          "title": "瑞鹤仙",
+          "tune": "瑞鹤仙",
+          "poet": "郑文焯",
+          "hint": "该文本与官方 423 篇中的作品逐字一致，官方平仄计数请走单篇解析。"
+        },
+        "ambiguous": true,
+        "hint_form_count": 2,
+        "top_candidate": {
+          "form_id": "瑞鹤仙#2",
+          "tune": "瑞鹤仙",
+          "pattern": [
+            5,
+            9,
+            5,
+            9,
+            11,
+            13,
+            2,
+            12,
+            4,
+            6,
+            15,
+            11
+          ],
+          "score": 1.0,
+          "confidence": "需人工确认",
+          "reasons": [
+            "句式字数序列与库内作品完全一致"
+          ],
+          "sample_work_ids": [
+            58633
+          ],
+          "sample_count": 1,
+          "tier_label": "Tier 1 官方快照 · 句式统计"
+        },
+        "tier_label": "非官方口径 · 本地计算",
+        "boundary": "逐字四声与逐句计数为本地字典计算，非官方标注；体式候选只比对官方 423 篇里出现过的句式字数序列，不是词谱校勘；分阕位置为本地推测。数值可能偏差，不能作为官方口径使用。"
+      }
+    },
+    {
+      "id": "single-line",
+      "title": "一句词的逐字声律",
+      "caption": "「谁念西风独自凉」：逐字平仄、四声与未知字，全部标本地计算口径；不硬凑词牌。",
+      "target": "/parse",
+      "mode": "parse",
+      "text": "谁念西风独自凉。",
+      "tune": "",
+      "cached": {
+        "line_count": 1,
+        "pattern": [
+          7
+        ],
+        "ping_total": 5,
+        "ze_total": 2,
+        "unknown_count": 0,
+        "located": null,
+        "ambiguous": false,
+        "hint_form_count": null,
+        "top_candidate": null,
+        "tier_label": "非官方口径 · 本地计算",
+        "boundary": "逐字四声与逐句计数为本地字典计算，非官方标注；体式候选只比对官方 423 篇里出现过的句式字数序列，不是词谱校勘；分阕位置为本地推测。数值可能偏差，不能作为官方口径使用。"
+      }
+    },
+    {
+      "id": "revision-closure",
+      "title": "一条真实差异走完校订闭环",
+      "caption": "多音字差异 → 建议 → 人工复核 → 幂等导出；写回由官方流程完成（API 只读）。",
+      "target": "/revisions",
+      "mode": "revision",
+      "cached": {
+        "stats": {
+          "total": 299,
+          "by_status": {
+            "pending": 299,
+            "accepted": 0,
+            "rejected": 0
+          },
+          "by_kind": {
+            "polyphone": 289,
+            "unresolved": 10
+          },
+          "exported": 0,
+          "closure_level": "L3 幂等导出（写回由官方流程完成）"
+        },
+        "first": {
+          "id": "f51929b2ccc24894",
+          "title": "行香子",
+          "line_no": 8,
+          "kind": "unresolved"
+        },
+        "closure_level": "L3 幂等导出（写回由官方流程完成）",
+        "boundary": "差异只表示与官方计数不一致，不断言谁对谁错。"
+      }
+    }
+  ]
+}

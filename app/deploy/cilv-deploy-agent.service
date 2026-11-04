@@ -1,0 +1,18 @@
+[Unit]
+Description=Cilv deploy agent (轮询 GitHub Releases 自动部署)
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cilv-deploy
+Group=cilv-deploy
+EnvironmentFile=/etc/cilv/deploy.env
+ExecStart=/opt/cilv/bin/deploy-agent.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

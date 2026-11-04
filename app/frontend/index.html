@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>词律探微</title>
+    <meta name="description" content="清代词律声情研究助手：可复算的声律事实、可定位的文本证据、受约束的模型阐释。" />
+    <link rel="preload" href="/fonts/NotoSerifSC-Regular.subset.woff2" as="font" type="font/woff2" crossorigin />
+    <script>
+      // 首屏前定色：避免夜间用户先看到一帧白底
+      // 四档：auto（跟随系统）/ light（浅黄宣纸）/ plain（白）/ dark（夜）
+      (function () {
+        try {
+          var forced = /[?&]theme=(dark|light|plain|auto)/.exec(location.href);
+          var saved = forced ? forced[1] : localStorage.getItem("cilv-theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (saved === "plain") {
+            document.documentElement.dataset.theme = "plain";
+          } else if (saved === "dark") {
+            document.documentElement.dataset.theme = "dark";
+          } else if (saved === "light") {
+            document.documentElement.dataset.theme = "light";
+          } else {
+            document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+          }
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

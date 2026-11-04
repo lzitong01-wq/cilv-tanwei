@@ -1,0 +1,25 @@
+[Unit]
+Description=Cilv Tanwei research assistant (词律探微)
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cilv
+Group=cilv
+WorkingDirectory=/opt/cilv/current/app
+Environment=APP_HOST=0.0.0.0
+Environment=APP_PORT=8080
+Environment=APP_THREADS=16
+Environment=APP_SNAPSHOT=/opt/cilv/current/data/知识库审计快照V1.jsonl
+Environment=APP_DIST=/opt/cilv/current/app/frontend/dist
+Environment=PYTHONUNBUFFERED=1
+Environment=LANG=C.UTF-8
+ExecStart=/opt/cilv/current/app/.venv/bin/python /opt/cilv/current/app/backend/server.py
+Restart=on-failure
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

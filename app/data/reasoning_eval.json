@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-11-04T12:44:25+00:00",
+  "spec": "分册 B §B6：多跳、反事实、同题自洽、干扰项、缺数据五类；缺数据类必须期望拒答",
+  "questions": 10,
+  "metrics": {
+    "total_checks": 50,
+    "passed": 50,
+    "failed": 0,
+    "by_class": {
+      "反事实": {
+        "total": 10,
+        "failed": 0
+      },
+      "同题自洽": {
+        "total": 10,
+        "failed": 0
+      },
+      "多跳": {
+        "total": 10,
+        "failed": 0
+      },
+      "干扰项": {
+        "total": 10,
+        "failed": 0
+      },
+      "缺数据": {
+        "total": 10,
+        "failed": 0
+      }
+    }
+  },
+  "items": [
+    {
+      "category": "同调全篇声律比例差",
+      "qid": "T-001-V2C1",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 14 项原子事实（含比较项）：甲_n、甲_max_lines、甲_max_count、甲_ping、甲_ze、甲_ratio"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇分段变幅比较",
+      "qid": "T-001-V2C2",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 10 项原子事实（含比较项）：diff、higher、甲_pre、甲_post、甲_change、甲_absolute"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇长句仄声密度比较",
+      "qid": "T-001-V2C3",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 12 项原子事实（含比较项）：diff、higher、甲_threshold、甲_selected、甲_ping、甲_ze"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇后段排序与比例差距",
+      "qid": "T-001-V2C4",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 8 项原子事实（含比较项）：order、diff、甲_ratio、甲_quote、乙_ratio、乙_quote"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇景情节奏互证",
+      "qid": "T-001-V2C5",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 8 项原子事实（含比较项）：甲_change、甲_direction、甲_pre_quote、甲_post_quote、乙_change、乙_direction"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "同调全篇声律比例差",
+      "qid": "T-002-V2C1",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 14 项原子事实（含比较项）：甲_n、甲_max_lines、甲_max_count、甲_ping、甲_ze、甲_ratio"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇分段变幅比较",
+      "qid": "T-002-V2C2",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 10 项原子事实（含比较项）：diff、higher、甲_pre、甲_post、甲_change、甲_absolute"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇长句仄声密度比较",
+      "qid": "T-002-V2C3",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 12 项原子事实（含比较项）：diff、higher、甲_threshold、甲_selected、甲_ping、甲_ze"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇后段排序与比例差距",
+      "qid": "T-002-V2C4",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 8 项原子事实（含比较项）：order、diff、甲_ratio、甲_quote、乙_ratio、乙_quote"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    },
+    {
+      "category": "跨篇景情节奏互证",
+      "qid": "T-002-V2C5",
+      "checks": {
+        "同题自洽": {
+          "pass": true,
+          "detail": "三次求解答案逐字一致"
+        },
+        "干扰项": {
+          "pass": true,
+          "detail": "加干扰句后答案不变"
+        },
+        "多跳": {
+          "pass": true,
+          "detail": "给出 8 项原子事实（含比较项）：甲_change、甲_direction、甲_pre_quote、甲_post_quote、乙_change、乙_direction"
+        },
+        "反事实": {
+          "pass": true,
+          "detail": "换作品后结论随之改变"
+        },
+        "缺数据": {
+          "pass": true,
+          "detail": "INSUFFICIENT_DATA：锚点无法唯一定位到作品"
+        }
+      },
+      "all_pass": true
+    }
+  ],
+  "boundary": "评测的是**引擎与推理链的确定性**：同题自洽、干扰项免疫、反事实随前提变化、多跳覆盖多事实、缺数据必拒答。它不评价文学判断，也不替代人工复核。"
+}

@@ -1,0 +1,291 @@
+{
+  "scope": "独立复核；与 tier2_prosody_probe.py 同口径（跳过分句不同的作品）",
+  "lines_total": 3215,
+  "default_match": 2919,
+  "default_match_rate": 0.9079,
+  "lines_with_unknown_tone": 121,
+  "feasible_with_context_override": 3188,
+  "feasible_rate": 0.9916,
+  "infeasible_lines": 27,
+  "minimal_overrides_distribution": {
+    "0": 2921,
+    "1": 257,
+    "2": 5,
+    "3": 2,
+    "4": 2,
+    "5": 1
+  },
+  "lines_requiring_at_least_one_override": 267,
+  "top_override_chars": [
+    [
+      "长",
+      90
+    ],
+    [
+      "别",
+      64
+    ],
+    [
+      "是",
+      31
+    ],
+    [
+      "不",
+      25
+    ],
+    [
+      "一",
+      22
+    ],
+    [
+      "年",
+      18
+    ],
+    [
+      "愁",
+      17
+    ],
+    [
+      "何",
+      16
+    ],
+    [
+      "春",
+      14
+    ],
+    [
+      "燕",
+      12
+    ],
+    [
+      "重",
+      12
+    ],
+    [
+      "相",
+      12
+    ],
+    [
+      "的",
+      12
+    ],
+    [
+      "看",
+      11
+    ],
+    [
+      "更",
+      11
+    ],
+    [
+      "几",
+      10
+    ],
+    [
+      "过",
+      9
+    ],
+    [
+      "清",
+      9
+    ],
+    [
+      "声",
+      8
+    ],
+    [
+      "前",
+      8
+    ],
+    [
+      "难",
+      8
+    ],
+    [
+      "去",
+      7
+    ],
+    [
+      "分",
+      7
+    ],
+    [
+      "落",
+      7
+    ],
+    [
+      "也",
+      7
+    ]
+  ],
+  "unknown_only_lines": {
+    "all_unknown_as_ping_matches": 5,
+    "all_unknown_as_ze_matches": 0,
+    "note": "两项之和超过含轻声句数时，说明官方轻声归类逐语境变化，无统一口径"
+  },
+  "infeasible_samples": [
+    {
+      "work": 56676,
+      "line": "翁子穷经久。",
+      "api": [
+        4,
+        1
+      ],
+      "local_default": [
+        3,
+        1
+      ],
+      "api_ping_range": [
+        1,
+        3
+      ]
+    },
+    {
+      "work": 55539,
+      "line": "乍流苏蟢子，双吹檀晕。",
+      "api": [
+        7,
+        2
+      ],
+      "local_default": [
+        6,
+        2
+      ],
+      "api_ping_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "work": 55236,
+      "line": "佳绝。",
+      "api": [
+        1,
+        1
+      ],
+      "local_default": [
+        2,
+        0
+      ],
+      "api_ping_range": [
+        2,
+        2
+      ]
+    },
+    {
+      "work": 54024,
+      "line": "清明近、又归期误了，事事因循。",
+      "api": [
+        7,
+        5
+      ],
+      "local_default": [
+        6,
+        5
+      ],
+      "api_ping_range": [
+        4,
+        6
+      ]
+    },
+    {
+      "work": 53140,
+      "line": "摇荡轻魂愁未了。",
+      "api": [
+        5,
+        2
+      ],
+      "local_default": [
+        4,
+        2
+      ],
+      "api_ping_range": [
+        3,
+        4
+      ]
+    },
+    {
+      "work": 50513,
+      "line": "荏苒流光，误了素娥纤影。",
+      "api": [
+        5,
+        5
+      ],
+      "local_default": [
+        4,
+        5
+      ],
+      "api_ping_range": [
+        2,
+        4
+      ]
+    },
+    {
+      "work": 49213,
+      "line": "还怅绝，南窗睨日，静窥寂寂琴书。",
+      "api": [
+        6,
+        7
+      ],
+      "local_default": [
+        7,
+        6
+      ],
+      "api_ping_range": [
+        7,
+        7
+      ]
+    },
+    {
+      "work": 45323,
+      "line": "子羽湖头，伯通桥畔，好友相思尝往还。",
+      "api": [
+        10,
+        5
+      ],
+      "local_default": [
+        9,
+        5
+      ],
+      "api_ping_range": [
+        6,
+        9
+      ]
+    },
+    {
+      "work": 44237,
+      "line": "孤愤精神兼数子。",
+      "api": [
+        5,
+        2
+      ],
+      "local_default": [
+        4,
+        2
+      ],
+      "api_ping_range": [
+        3,
+        4
+      ]
+    },
+    {
+      "work": 43378,
+      "line": "何幸得、南楼老子，下官无恙。",
+      "api": [
+        7,
+        4
+      ],
+      "local_default": [
+        6,
+        4
+      ],
+      "api_ping_range": [
+        4,
+        6
+      ]
+    }
+  ],
+  "skipped_works": [
+    26141
+  ]
+}

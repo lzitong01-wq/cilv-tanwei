@@ -1,0 +1,20 @@
+.venv/
+# 构建与运行副产物：可重新生成，不纳入版本管理
+node_modules/
+frontend/dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+# 运行时写库（校订队列工作库，服务启动后自建），不入库
+data/revisions.sqlite3
+
+# 字体源文件（12 MB/字重）只用于构建期子集化，产物在 public/fonts/
+frontend/.fontsrc/
+
+# 情感标注的原始响应缓存（可由 label_sentiment.py 重新生成；冻结后的基准集在 data/ 里）
+data/sentiment_labels.json
+
+# 原始词谱与语料：构建期输入，不随交付物分发（分册 C §C4）
+# 派生事实（app/data/prosody_index.json、guxin_tune.json）保留在交付物里
+.workbuddy/reference/prosody/

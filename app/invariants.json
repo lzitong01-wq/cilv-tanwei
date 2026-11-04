@@ -1,0 +1,19 @@
+{
+  "contract": "v1",
+  "note": "status=claimed 表示已绑定可执行用例，case 格式为 path::Class::test_name；pending 表示尚未落地，CI 只统计不阻断。check_invariants.py 用 ast 校验用例名真实存在，禁止只改状态不写用例。",
+  "invariants": [
+    {"id": "INV-ENGINE-01", "desc": "模型不得参与声律事实计算", "case": "tests/test_api.py::ApiTest::test_solve_is_deterministic", "status": "claimed"},
+    {"id": "INV-FACT-02", "desc": "模型输出中的数字必须可归因于事实卡", "case": "tests/test_sidecar.py::SidecarGateTest::test_invented_number_is_blocked", "status": "claimed"},
+    {"id": "INV-GATE-03", "desc": "情感与风格候选必须标未验证并给出边界", "case": "tests/test_sidecar.py::SidecarGateTest::test_missing_unverified_label_is_blocked", "status": "claimed"},
+    {"id": "INV-BOUND-04", "desc": "价值判断类断言必须被拦截", "case": "tests/test_sidecar.py::SidecarGateTest::test_value_judgement_is_blocked", "status": "claimed"},
+    {"id": "INV-UNK-05", "desc": "未知必须显式呈现，不得默认取值", "case": "tests/test_api.py::ApiTest::test_unknown_tone_is_explicit", "status": "claimed"},
+    {"id": "INV-TIER-06", "desc": "Tier 2 不得混入基准口径", "case": "tests/test_api.py::ApiTest::test_tier_label_present", "status": "claimed"},
+    {"id": "INV-EVID-07", "desc": "每条结论必须可回跳到证据 ID", "case": "tests/test_api.py::ApiTest::test_solve_has_evidence", "status": "claimed"},
+    {"id": "INV-PROMPT-08", "desc": "提示词不得出现产品名、模型身份与能力免责说明", "case": "tests/test_prompts.py::PromptTest::test_system_prompts_have_no_product_identity", "status": "claimed"},
+    {"id": "INV-TONE-09", "desc": "四声与平仄分层存储、分别展示", "case": "tests/test_api.py::ApiTest::test_chars_have_tone_and_pingze", "status": "claimed"},
+    {"id": "INV-SELFNOTE-10", "desc": "自注读音来源必须可与本地推算区分", "case": "", "status": "pending", "note": "Tier 1 快照 423 条记录顶层键已核对，无自注字段；chars.source 目前只有 local_dict 一值，无从区分，等数据源补齐再认领"},
+    {"id": "INV-WB-11", "desc": "校订写回幂等、留旧值、导出为止", "case": "tests/test_revisions.py::RevisionTest::test_export_is_idempotent", "status": "claimed"},
+    {"id": "INV-OOB-12", "desc": "超界题必须声明无法判定并列出所缺信息", "case": "tests/test_api.py::ApiTest::test_unknown_work_reports_missing", "status": "claimed"},
+    {"id": "INV-HIST-13", "desc": "史证层无数据时必须显式为空，不得虚构关系", "case": "tests/test_graph.py::GraphTest::test_history_layer_is_declared_empty_not_fabricated", "status": "claimed"}
+  ]
+}

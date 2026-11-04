@@ -1,0 +1,4276 @@
+{
+  "version": "1.0",
+  "built_at": "2026-11-04T12:16:41+00:00",
+  "spec": "分册 A §A5：规则按「字 + 上下文」表达，禁止逐字硬编码",
+  "rules": [
+    {
+      "char": "一",
+      "prev": "^",
+      "next": "别",
+      "reading": "yi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "一",
+      "prev": "上",
+      "next": "别",
+      "reading": "yi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "一",
+      "prev": "景",
+      "next": "般",
+      "reading": "yi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "^",
+      "next": "多",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "^",
+      "next": "如",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "了",
+      "next": "由",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "他",
+      "next": "志",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "免",
+      "next": "得",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "君",
+      "next": "见",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "天",
+      "next": "念",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "子",
+      "next": "成",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "怎",
+      "next": "教",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "恨",
+      "next": "禁",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "柳",
+      "next": "萦",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "不",
+      "prev": "莫",
+      "next": "是",
+      "reading": "fou1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "为",
+      "prev": "的",
+      "next": "谁",
+      "reading": "wei2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "乍",
+      "prev": "^",
+      "next": "流",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "也",
+      "prev": "今",
+      "next": "厌",
+      "reading": "yi2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "也",
+      "prev": "子",
+      "next": "曾",
+      "reading": "yi2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "令",
+      "prev": "陶",
+      "next": "素",
+      "reading": "ling2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "任",
+      "prev": "^",
+      "next": "素",
+      "reading": "ren2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "休",
+      "prev": "^",
+      "next": "唱",
+      "reading": "xu4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "何",
+      "prev": "^",
+      "next": "事",
+      "reading": "he4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "何",
+      "prev": "几",
+      "next": "时",
+      "reading": "he4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "作",
+      "prev": "堪",
+      "next": "长",
+      "reading": "zuo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "你",
+      "prev": "呀",
+      "next": "说",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "你",
+      "prev": "子",
+      "next": "喘",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "便",
+      "prev": "^",
+      "next": "生",
+      "reading": "pian2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "信",
+      "prev": "乡",
+      "next": "息",
+      "reading": "shen1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "信",
+      "prev": "它",
+      "next": "杳",
+      "reading": "shen1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "俺",
+      "prev": "^",
+      "next": "的",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "倍",
+      "prev": "笔",
+      "next": "增",
+      "reading": "pei2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "倚",
+      "prev": "^",
+      "next": "屏",
+      "reading": "ji1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "做",
+      "prev": "再",
+      "next": "咳",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "共",
+      "prev": "客",
+      "next": "献",
+      "reading": "gong1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "兴",
+      "prev": "酒",
+      "next": "将",
+      "reading": "xing4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "净",
+      "prev": "洗",
+      "next": "铅",
+      "reading": "cheng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "几",
+      "prev": "了",
+      "next": "黄",
+      "reading": "ji1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "几",
+      "prev": "问",
+      "next": "时",
+      "reading": "ji1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "后",
+      "reading": "bie4",
+      "evidence_count": 3,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "有",
+      "reading": "bie4",
+      "evidence_count": 3,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "来",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "梦",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "浦",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "离",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "绪",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "酒",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "^",
+      "next": "馆",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "凭",
+      "next": "畦",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "厌",
+      "next": "酒",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "君",
+      "next": "情",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "壶",
+      "next": "有",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "娘",
+      "next": "后",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "少",
+      "next": "离",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "尽",
+      "next": "有",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "怅",
+      "next": "来",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "恨",
+      "next": "不",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "悔",
+      "next": "情",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "惜",
+      "next": "啼",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "惜",
+      "next": "行",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "有",
+      "next": "情",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "有",
+      "next": "离",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "此",
+      "next": "何",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "洗",
+      "next": "愁",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "离",
+      "next": "$",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "离",
+      "next": "几",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "离",
+      "next": "花",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "自",
+      "next": "后",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "自",
+      "next": "求",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "菱",
+      "next": "调",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "轻",
+      "next": "$",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "轻",
+      "next": "情",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "别",
+      "prev": "还",
+      "next": "有",
+      "reading": "bie4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "前",
+      "prev": "岩",
+      "next": "新",
+      "reading": "jian3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "华",
+      "prev": "掷",
+      "next": "年",
+      "reading": "hua4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "卜",
+      "prev": "^",
+      "next": "儿",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "卷",
+      "prev": "泪",
+      "next": "西",
+      "reading": "quan2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "去",
+      "prev": "催",
+      "next": "凤",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "去",
+      "prev": "易",
+      "next": "人",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "又",
+      "prev": "^",
+      "next": "一",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "取",
+      "prev": "赢",
+      "next": "身",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "只",
+      "prev": "我",
+      "next": "见",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "可",
+      "prev": "^",
+      "next": "堪",
+      "reading": "ge1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "可",
+      "prev": "^",
+      "next": "惜",
+      "reading": "ge1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "可",
+      "prev": "来",
+      "next": "是",
+      "reading": "ge1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "台",
+      "prev": "天",
+      "next": "婵",
+      "reading": "si4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "叶",
+      "prev": "^",
+      "next": "底",
+      "reading": "xie2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "叶",
+      "prev": "萍",
+      "next": "将",
+      "reading": "xie2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "呀",
+      "prev": "^",
+      "next": "$",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "呀",
+      "prev": "^",
+      "next": "呀",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "呀",
+      "prev": "云",
+      "next": "那",
+      "reading": "古平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "古音平仄",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "呀",
+      "prev": "呀",
+      "next": "掠",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "唱",
+      "prev": "旦",
+      "next": "罢",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "喜",
+      "prev": "^",
+      "next": "子",
+      "reading": "xi1",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "喜",
+      "prev": "犹",
+      "next": "清",
+      "reading": "xi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "喷",
+      "prev": "瓜",
+      "next": "鼻",
+      "reading": "pen4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "嗽",
+      "prev": "咳",
+      "next": "科",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "堕",
+      "prev": "珠",
+      "next": "马",
+      "reading": "hui1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "处",
+      "prev": "声",
+      "next": "佳",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "奇",
+      "prev": "天",
+      "next": "绝",
+      "reading": "ai3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "妻",
+      "prev": "夫",
+      "next": "两",
+      "reading": "qi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "子",
+      "prev": "^",
+      "next": "羽",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "字",
+      "prev": "名",
+      "next": "有",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "害",
+      "prev": "^",
+      "next": "的",
+      "reading": "he2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "将",
+      "prev": "试",
+      "next": "杯",
+      "reading": "jiang4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "尘",
+      "prev": "绝",
+      "next": "标",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "屏",
+      "prev": "^",
+      "next": "山",
+      "reading": "bing3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "屏",
+      "prev": "星",
+      "next": "别",
+      "reading": "bing3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "帆",
+      "prev": "征",
+      "next": "归",
+      "reading": "fan4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "年",
+      "prev": "雨",
+      "next": "时",
+      "reading": "ning4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "待",
+      "prev": "^",
+      "next": "将",
+      "reading": "dai1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "待",
+      "prev": "^",
+      "next": "献",
+      "reading": "dai1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "待",
+      "prev": "^",
+      "next": "约",
+      "reading": "dai1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "待",
+      "prev": "了",
+      "next": "归",
+      "reading": "dai1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "得",
+      "prev": "到",
+      "next": "却",
+      "reading": "dei3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "怜",
+      "prev": "绝",
+      "next": "事",
+      "reading": "ling3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "恁",
+      "prev": "^",
+      "next": "的",
+      "reading": "nin2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "恐",
+      "prev": "裳",
+      "next": "非",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "悴",
+      "prev": "憔",
+      "next": "了",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "愁",
+      "prev": "^",
+      "next": "万",
+      "reading": "qiao3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "愁",
+      "prev": "^",
+      "next": "亦",
+      "reading": "qiao3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "愁",
+      "prev": "日",
+      "next": "思",
+      "reading": "qiao3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "愁",
+      "prev": "洒",
+      "next": "几",
+      "reading": "qiao3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "愁",
+      "prev": "漠",
+      "next": "阴",
+      "reading": "qiao3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "意",
+      "prev": "着",
+      "next": "问",
+      "reading": "yi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "扇",
+      "prev": "^",
+      "next": "子",
+      "reading": "shan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "扑",
+      "prev": "^",
+      "next": "起",
+      "reading": "pi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "打",
+      "prev": "暮",
+      "next": "何",
+      "reading": "da2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "探",
+      "prev": "^",
+      "next": "子",
+      "reading": "xian2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "掷",
+      "prev": "笑",
+      "next": "怪",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "放",
+      "prev": "寰",
+      "next": "钥",
+      "reading": "fang1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "教",
+      "prev": "^",
+      "next": "花",
+      "reading": "jiao1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "教",
+      "prev": "又",
+      "next": "人",
+      "reading": "jiao1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "教",
+      "prev": "天",
+      "next": "还",
+      "reading": "jiao1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "教",
+      "prev": "莫",
+      "next": "花",
+      "reading": "jiao1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "料",
+      "prev": "^",
+      "next": "因",
+      "reading": "liao2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "料",
+      "prev": "^",
+      "next": "故",
+      "reading": "liao2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "斯",
+      "prev": "^",
+      "next": "人",
+      "reading": "shi3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "无",
+      "prev": "绝",
+      "next": "风",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "旦",
+      "prev": "正",
+      "next": "唱",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "昏",
+      "prev": "黄",
+      "next": "忽",
+      "reading": "hun4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "昔",
+      "prev": "感",
+      "next": "知",
+      "reading": "cuo4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "是",
+      "prev": "初",
+      "next": "相",
+      "reading": "ti2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "是",
+      "prev": "又",
+      "next": "一",
+      "reading": "ti2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "是",
+      "prev": "尽",
+      "next": "商",
+      "reading": "ti2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "是",
+      "prev": "浑",
+      "next": "梦",
+      "reading": "ti2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "是",
+      "prev": "自",
+      "next": "振",
+      "reading": "ti2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "^",
+      "next": "乌",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "^",
+      "next": "可",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "^",
+      "next": "看",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "怅",
+      "next": "长",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "恨",
+      "next": "长",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "痕",
+      "next": "欲",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "更",
+      "prev": "苍",
+      "next": "黄",
+      "reading": "geng1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "未",
+      "prev": "青",
+      "next": "了",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "枉",
+      "prev": "钱",
+      "next": "卜",
+      "reading": "kuang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "枕",
+      "prev": "欹",
+      "next": "长",
+      "reading": "chen2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "枕",
+      "prev": "生",
+      "next": "簟",
+      "reading": "chen2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "枫",
+      "prev": "花",
+      "next": "叶",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "楚",
+      "prev": "^",
+      "next": "楚",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "横",
+      "prev": "江",
+      "next": "此",
+      "reading": "heng4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "檀",
+      "prev": "把",
+      "next": "郎",
+      "reading": "shan4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "正",
+      "prev": "^",
+      "next": "旦",
+      "reading": "zheng1",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "母",
+      "prev": "老",
+      "next": "迟",
+      "reading": "mu2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "母",
+      "prev": "阿",
+      "next": "齐",
+      "reading": "mu2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "氏",
+      "prev": "蒋",
+      "next": "世",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "泛",
+      "prev": "^",
+      "next": "沙",
+      "reading": "fa2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "泪",
+      "prev": "^",
+      "next": "痕",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "浅",
+      "prev": "篆",
+      "next": "燕",
+      "reading": "jian1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "济",
+      "prev": "笑",
+      "next": "时",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "浪",
+      "prev": "个",
+      "next": "包",
+      "reading": "lang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "浪",
+      "prev": "流",
+      "next": "他",
+      "reading": "lang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "涉",
+      "prev": "跋",
+      "next": "崎",
+      "reading": "die2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "清",
+      "prev": "^",
+      "next": "绝",
+      "reading": "qing4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "清",
+      "prev": "情",
+      "next": "绝",
+      "reading": "qing4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "溅",
+      "prev": "泪",
+      "next": "红",
+      "reading": "jian1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "漏",
+      "prev": "玉",
+      "next": "初",
+      "reading": "lou2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "火",
+      "prev": "肩",
+      "next": "色",
+      "reading": "huo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "燕",
+      "prev": "^",
+      "next": "子",
+      "reading": "yan1",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "燕",
+      "prev": "前",
+      "next": "子",
+      "reading": "yan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "燕",
+      "prev": "双",
+      "next": "子",
+      "reading": "yan1",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "燕",
+      "prev": "双",
+      "next": "彻",
+      "reading": "yan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "片",
+      "prev": "一",
+      "next": "好",
+      "reading": "pian1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "片",
+      "prev": "一",
+      "next": "孤",
+      "reading": "pian1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "片",
+      "prev": "一",
+      "next": "湖",
+      "reading": "pian1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "甚",
+      "prev": "说",
+      "next": "么",
+      "reading": "shen2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "留",
+      "prev": "下",
+      "next": "丹",
+      "reading": "liu4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "留",
+      "prev": "人",
+      "next": "人",
+      "reading": "liu4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "百",
+      "prev": "^",
+      "next": "般",
+      "reading": "bo2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "百",
+      "prev": "日",
+      "next": "花",
+      "reading": "bo2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "百",
+      "prev": "还",
+      "next": "姓",
+      "reading": "bo2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "相",
+      "prev": "日",
+      "next": "看",
+      "reading": "xiang4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "^",
+      "next": "昆",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "^",
+      "next": "湘",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "^",
+      "next": "长",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "偷",
+      "next": "檀",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "漫",
+      "next": "斜",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "看",
+      "prev": "试",
+      "next": "几",
+      "reading": "kan1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "绝",
+      "prev": "佳",
+      "next": "$",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "绝",
+      "prev": "怅",
+      "next": "南",
+      "reading": "古仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "古音平仄",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "绝",
+      "prev": "胜",
+      "next": "$",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "绝",
+      "prev": "轻",
+      "next": "$",
+      "reading": "古仄",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "古音平仄",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "罢",
+      "prev": "唱",
+      "next": "波",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "罢",
+      "prev": "饮",
+      "next": "了",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "胜",
+      "prev": "彩",
+      "next": "依",
+      "reading": "xing1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "若",
+      "prev": "^",
+      "next": "拿",
+      "reading": "re2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "荏",
+      "prev": "^",
+      "next": "苒",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "荔",
+      "prev": "^",
+      "next": "子",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "荫",
+      "prev": "翠",
+      "next": "蒙",
+      "reading": "yin4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "落",
+      "prev": "院",
+      "next": "潺",
+      "reading": "luo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "落",
+      "prev": "风",
+      "next": "叶",
+      "reading": "luo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "行",
+      "prev": "^",
+      "next": "云",
+      "reading": "xing4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "行",
+      "prev": "意",
+      "next": "穷",
+      "reading": "xing4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "被",
+      "prev": "绣",
+      "next": "半",
+      "reading": "pi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "被",
+      "prev": "见",
+      "next": "你",
+      "reading": "pi1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "要",
+      "prev": "^",
+      "next": "着",
+      "reading": "yao1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "试",
+      "prev": "初",
+      "next": "柑",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "趣",
+      "prev": "野",
+      "next": "已",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "踏",
+      "prev": "北",
+      "next": "幽",
+      "reading": "ta1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "^",
+      "next": "了",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "乍",
+      "next": "了",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "明",
+      "next": "了",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "闲",
+      "next": "了",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "雨",
+      "next": "泪",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "过",
+      "prev": "黄",
+      "next": "了",
+      "reading": "guo1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "近",
+      "prev": "明",
+      "next": "又",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "词谱体式",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "迷",
+      "prev": "乍",
+      "next": "屐",
+      "reading": "mi4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "透",
+      "prev": "微",
+      "next": "薄",
+      "reading": "shu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "那",
+      "prev": "听",
+      "next": "泼",
+      "reading": "na1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "那",
+      "prev": "呀",
+      "next": "叫",
+      "reading": "na1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "那",
+      "prev": "哦",
+      "next": "项",
+      "reading": "na1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "郎",
+      "prev": "才",
+      "next": "游",
+      "reading": "lang4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "重",
+      "prev": "月",
+      "next": "阴",
+      "reading": "chong2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "重",
+      "prev": "鞭",
+      "next": "整",
+      "reading": "chong2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "金",
+      "prev": "千",
+      "next": "屧",
+      "reading": "jin4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "亭",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "入",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "年",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "忆",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "恨",
+      "reading": "chang2",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "是",
+      "reading": "chang2",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "条",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "江",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "空",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "笛",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "^",
+      "next": "门",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "丝",
+      "next": "桃",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "丝",
+      "next": "花",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "付",
+      "next": "沟",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "仙",
+      "next": "据",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "住",
+      "next": "江",
+      "reading": "chang2",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "使",
+      "next": "条",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "初",
+      "next": "$",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "听",
+      "next": "年",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "处",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "夜",
+      "next": "$",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "夜",
+      "next": "何",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "夜",
+      "next": "帘",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "封",
+      "next": "得",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "尽",
+      "next": "街",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "山",
+      "next": "寄",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "山",
+      "next": "水",
+      "reading": "chang2",
+      "evidence_count": 2,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "忆",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "怯",
+      "next": "鸣",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "惯",
+      "next": "负",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "日",
+      "next": "针",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "春",
+      "next": "整",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "春",
+      "next": "费",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "昼",
+      "next": "梦",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "暮",
+      "next": "似",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "歌",
+      "next": "$",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "殿",
+      "next": "青",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "水",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "泪",
+      "next": "垂",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "渚",
+      "next": "春",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "满",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "潇",
+      "next": "被",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "画",
+      "next": "眉",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "短",
+      "next": "亭",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "竟",
+      "next": "天",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "谩",
+      "next": "门",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "赖",
+      "next": "安",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "路",
+      "next": "山",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "遍",
+      "next": "亭",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "间",
+      "next": "红",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "长",
+      "prev": "飒",
+      "next": "风",
+      "reading": "chang2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "间",
+      "prev": "遭",
+      "next": "阻",
+      "reading": "jian4",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "隔",
+      "prev": "^",
+      "next": "浦",
+      "reading": "rong3",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "雅",
+      "prev": "韵",
+      "next": "游",
+      "reading": "ya1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "骨",
+      "prev": "龙",
+      "next": "甘",
+      "reading": "gu1",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    },
+    {
+      "char": "髻",
+      "prev": "^",
+      "next": "子",
+      "reading": "jie2",
+      "evidence_count": 1,
+      "status": "active",
+      "source": "多音字改判",
+      "basis": "由校订队列中本地计数与官方计数的差异归纳"
+    }
+  ],
+  "char_rules": [
+    {
+      "char": "一",
+      "prev": "*",
+      "next": "*",
+      "reading": "yi4",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "不",
+      "prev": "*",
+      "next": "*",
+      "reading": "fou1",
+      "evidence_count": 12,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "为",
+      "prev": "*",
+      "next": "*",
+      "reading": "wei2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "乍",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "也",
+      "prev": "*",
+      "next": "*",
+      "reading": "yi2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "令",
+      "prev": "*",
+      "next": "*",
+      "reading": "ling2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "任",
+      "prev": "*",
+      "next": "*",
+      "reading": "ren2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "休",
+      "prev": "*",
+      "next": "*",
+      "reading": "xu4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "何",
+      "prev": "*",
+      "next": "*",
+      "reading": "he4",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "作",
+      "prev": "*",
+      "next": "*",
+      "reading": "zuo1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "你",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "便",
+      "prev": "*",
+      "next": "*",
+      "reading": "pian2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "信",
+      "prev": "*",
+      "next": "*",
+      "reading": "shen1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "俺",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "倍",
+      "prev": "*",
+      "next": "*",
+      "reading": "pei2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "倚",
+      "prev": "*",
+      "next": "*",
+      "reading": "ji1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "做",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "共",
+      "prev": "*",
+      "next": "*",
+      "reading": "gong1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "兴",
+      "prev": "*",
+      "next": "*",
+      "reading": "xing4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "净",
+      "prev": "*",
+      "next": "*",
+      "reading": "cheng1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "几",
+      "prev": "*",
+      "next": "*",
+      "reading": "ji1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "别",
+      "prev": "*",
+      "next": "*",
+      "reading": "bie4",
+      "evidence_count": 38,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "前",
+      "prev": "*",
+      "next": "*",
+      "reading": "jian3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "华",
+      "prev": "*",
+      "next": "*",
+      "reading": "hua4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "卜",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "卷",
+      "prev": "*",
+      "next": "*",
+      "reading": "quan2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "去",
+      "prev": "*",
+      "next": "*",
+      "reading": "qu1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "又",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "取",
+      "prev": "*",
+      "next": "*",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "只",
+      "prev": "*",
+      "next": "*",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "可",
+      "prev": "*",
+      "next": "*",
+      "reading": "ge1",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "台",
+      "prev": "*",
+      "next": "*",
+      "reading": "si4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "叶",
+      "prev": "*",
+      "next": "*",
+      "reading": "xie2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "唱",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "喜",
+      "prev": "*",
+      "next": "*",
+      "reading": "xi1",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "喷",
+      "prev": "*",
+      "next": "*",
+      "reading": "pen4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "嗽",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "堕",
+      "prev": "*",
+      "next": "*",
+      "reading": "hui1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "处",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "奇",
+      "prev": "*",
+      "next": "*",
+      "reading": "ai3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "妻",
+      "prev": "*",
+      "next": "*",
+      "reading": "qi4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "子",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "字",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "害",
+      "prev": "*",
+      "next": "*",
+      "reading": "he2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "将",
+      "prev": "*",
+      "next": "*",
+      "reading": "jiang4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "尘",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "屏",
+      "prev": "*",
+      "next": "*",
+      "reading": "bing3",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "帆",
+      "prev": "*",
+      "next": "*",
+      "reading": "fan4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "年",
+      "prev": "*",
+      "next": "*",
+      "reading": "ning4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "待",
+      "prev": "*",
+      "next": "*",
+      "reading": "dai1",
+      "evidence_count": 4,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "得",
+      "prev": "*",
+      "next": "*",
+      "reading": "dei3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "怜",
+      "prev": "*",
+      "next": "*",
+      "reading": "ling3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "恁",
+      "prev": "*",
+      "next": "*",
+      "reading": "nin2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "恐",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "悴",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "愁",
+      "prev": "*",
+      "next": "*",
+      "reading": "qiao3",
+      "evidence_count": 5,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "意",
+      "prev": "*",
+      "next": "*",
+      "reading": "yi1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "扇",
+      "prev": "*",
+      "next": "*",
+      "reading": "shan1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "扑",
+      "prev": "*",
+      "next": "*",
+      "reading": "pi4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "打",
+      "prev": "*",
+      "next": "*",
+      "reading": "da2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "探",
+      "prev": "*",
+      "next": "*",
+      "reading": "xian2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "掷",
+      "prev": "*",
+      "next": "*",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "放",
+      "prev": "*",
+      "next": "*",
+      "reading": "fang1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "教",
+      "prev": "*",
+      "next": "*",
+      "reading": "jiao1",
+      "evidence_count": 4,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "料",
+      "prev": "*",
+      "next": "*",
+      "reading": "liao2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "斯",
+      "prev": "*",
+      "next": "*",
+      "reading": "shi3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "无",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "旦",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "昏",
+      "prev": "*",
+      "next": "*",
+      "reading": "hun4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "昔",
+      "prev": "*",
+      "next": "*",
+      "reading": "cuo4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "是",
+      "prev": "*",
+      "next": "*",
+      "reading": "ti2",
+      "evidence_count": 5,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "更",
+      "prev": "*",
+      "next": "*",
+      "reading": "geng1",
+      "evidence_count": 7,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "未",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "枉",
+      "prev": "*",
+      "next": "*",
+      "reading": "kuang2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "枕",
+      "prev": "*",
+      "next": "*",
+      "reading": "chen2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "枫",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱仄",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "楚",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "横",
+      "prev": "*",
+      "next": "*",
+      "reading": "heng4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "檀",
+      "prev": "*",
+      "next": "*",
+      "reading": "shan4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "正",
+      "prev": "*",
+      "next": "*",
+      "reading": "zheng1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "母",
+      "prev": "*",
+      "next": "*",
+      "reading": "mu2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "氏",
+      "prev": "*",
+      "next": "*",
+      "reading": "zhi1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "泛",
+      "prev": "*",
+      "next": "*",
+      "reading": "fa2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "泪",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "浅",
+      "prev": "*",
+      "next": "*",
+      "reading": "jian1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "济",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "浪",
+      "prev": "*",
+      "next": "*",
+      "reading": "lang2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "涉",
+      "prev": "*",
+      "next": "*",
+      "reading": "die2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "清",
+      "prev": "*",
+      "next": "*",
+      "reading": "qing4",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "溅",
+      "prev": "*",
+      "next": "*",
+      "reading": "jian1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "漏",
+      "prev": "*",
+      "next": "*",
+      "reading": "lou2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "火",
+      "prev": "*",
+      "next": "*",
+      "reading": "huo1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "燕",
+      "prev": "*",
+      "next": "*",
+      "reading": "yan1",
+      "evidence_count": 6,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "片",
+      "prev": "*",
+      "next": "*",
+      "reading": "pian1",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "甚",
+      "prev": "*",
+      "next": "*",
+      "reading": "shen2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "留",
+      "prev": "*",
+      "next": "*",
+      "reading": "liu4",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "百",
+      "prev": "*",
+      "next": "*",
+      "reading": "bo2",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "相",
+      "prev": "*",
+      "next": "*",
+      "reading": "xiang4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "看",
+      "prev": "*",
+      "next": "*",
+      "reading": "kan1",
+      "evidence_count": 6,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "罢",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "胜",
+      "prev": "*",
+      "next": "*",
+      "reading": "xing1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "若",
+      "prev": "*",
+      "next": "*",
+      "reading": "re2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "荏",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "荔",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "荫",
+      "prev": "*",
+      "next": "*",
+      "reading": "yin4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "落",
+      "prev": "*",
+      "next": "*",
+      "reading": "luo1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "行",
+      "prev": "*",
+      "next": "*",
+      "reading": "xing4",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "被",
+      "prev": "*",
+      "next": "*",
+      "reading": "pi1",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "要",
+      "prev": "*",
+      "next": "*",
+      "reading": "yao1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "试",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "趣",
+      "prev": "*",
+      "next": "*",
+      "reading": "qu1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "踏",
+      "prev": "*",
+      "next": "*",
+      "reading": "ta1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "过",
+      "prev": "*",
+      "next": "*",
+      "reading": "guo1",
+      "evidence_count": 6,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "近",
+      "prev": "*",
+      "next": "*",
+      "reading": "谱平",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "迷",
+      "prev": "*",
+      "next": "*",
+      "reading": "mi4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "透",
+      "prev": "*",
+      "next": "*",
+      "reading": "shu1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "那",
+      "prev": "*",
+      "next": "*",
+      "reading": "na1",
+      "evidence_count": 3,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "郎",
+      "prev": "*",
+      "next": "*",
+      "reading": "lang4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "重",
+      "prev": "*",
+      "next": "*",
+      "reading": "chong2",
+      "evidence_count": 2,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "金",
+      "prev": "*",
+      "next": "*",
+      "reading": "jin4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "长",
+      "prev": "*",
+      "next": "*",
+      "reading": "chang2",
+      "evidence_count": 56,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "间",
+      "prev": "*",
+      "next": "*",
+      "reading": "jian4",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "隔",
+      "prev": "*",
+      "next": "*",
+      "reading": "rong3",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "雅",
+      "prev": "*",
+      "next": "*",
+      "reading": "ya1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "骨",
+      "prev": "*",
+      "next": "*",
+      "reading": "gu1",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    },
+    {
+      "char": "髻",
+      "prev": "*",
+      "next": "*",
+      "reading": "jie2",
+      "evidence_count": 1,
+      "status": "fallback",
+      "source": "多音字改判",
+      "basis": "该字在已解实例中读音完全一致，作为跨语料兜底；精确上下文规则优先"
+    }
+  ],
+  "conflicts": [
+    {
+      "char": "净",
+      "prev": "^",
+      "next": "再",
+      "options": {
+        "cheng1": 1,
+        "谱平": 1
+      },
+      "note": "同一上下文出现多个目标读音，按无法判定处理，不给规则"
+    },
+    {
+      "char": "呀",
+      "prev": "^",
+      "next": "你",
+      "options": {
+        "谱平": 1,
+        "古平": 1
+      },
+      "note": "同一上下文出现多个目标读音，按无法判定处理，不给规则"
+    },
+    {
+      "char": "把",
+      "prev": "的",
+      "next": "曲",
+      "options": {
+        "pa2": 1,
+        "谱平": 1
+      },
+      "note": "同一上下文出现多个目标读音，按无法判定处理，不给规则"
+    }
+  ],
+  "metrics": {
+    "diff_lines": 299,
+    "solved_lines": 291,
+    "coverage": 0.9732,
+    "unsolved": [
+      {
+        "work_id": 56676,
+        "line_no": 7
+      },
+      {
+        "work_id": 53140,
+        "line_no": 2
+      },
+      {
+        "work_id": 44237,
+        "line_no": 2
+      },
+      {
+        "work_id": 43378,
+        "line_no": 2
+      },
+      {
+        "work_id": 38428,
+        "line_no": 7
+      },
+      {
+        "work_id": 29538,
+        "line_no": 2
+      },
+      {
+        "work_id": 10204,
+        "line_no": 5
+      },
+      {
+        "work_id": 9522,
+        "line_no": 3
+      }
+    ],
+    "rule_count": 292,
+    "prosody_aligned_works": 40,
+    "conflict_count": 3,
+    "char_rule_count": 126,
+    "guxin_chars": 7882,
+    "rules_from_guxin": 3,
+    "official_fixed_lines": 288,
+    "official_total_lines": 299,
+    "official_fix_rate": 0.9632,
+    "coverage_pass": true,
+    "tier2_lines": 47024,
+    "tier2_skipped": 6996,
+    "tier2_baseline_rate": 0.9768,
+    "tier2_fixed_rate": 0.9653,
+    "tier2_pass": true
+  },
+  "boundary": "修正表只改变**本地读音口径**下的平仄判定，不改官方标注；规则由真实差异归纳，同上下文多解时记为冲突并按无法判定处理。二级门禁只在同源带调拼音上验证，不等于官方口径一致率。"
+}

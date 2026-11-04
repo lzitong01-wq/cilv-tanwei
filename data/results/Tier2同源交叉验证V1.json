@@ -1,0 +1,213 @@
+{
+  "scope": "官方清快照 vs poetry-source 清词库（自带带调拼音）",
+  "official_works": 200,
+  "library_works": 26742,
+  "stats": {
+    "located": 200,
+    "text_identical": 200,
+    "same_line_count": 200,
+    "lines_aligned": 581,
+    "lib_pinyin_match": 547,
+    "pypinyin_match": 532,
+    "either_match": 552,
+    "sentence_counts_match": 547,
+    "lines_pinyin_length_mismatch": 928,
+    "lines_with_neutral_tone": 17,
+    "neither_match": 29,
+    "sentence_counts_differ": 34
+  },
+  "sentence_total": 1509,
+  "aligned_sentences": 581,
+  "aligned_match": 547,
+  "aligned_match_rate": 0.9415,
+  "pinyin_gap_total_chars": 1244,
+  "pinyin_gap_distribution": {
+    "1": 636,
+    "2": 270,
+    "3": 20,
+    "4": 2
+  },
+  "unmatched_samples": [],
+  "mismatch_samples": [
+    {
+      "work": 56676,
+      "title": "千秋岁·四月初一日金其旋表兄五十初度寄祝",
+      "line_no": 7,
+      "api_line": "翁子穷经久。",
+      "api": [
+        4,
+        1
+      ],
+      "lib": [
+        3,
+        1
+      ],
+      "unknown": 1
+    },
+    {
+      "work": 55236,
+      "title": "喜迁莺·端午，用吴子和韵",
+      "line_no": 6,
+      "api_line": "佳绝。",
+      "api": [
+        1,
+        1
+      ],
+      "lib": [
+        2,
+        0
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 55034,
+      "title": "蝶恋花·和师愚韵",
+      "line_no": 4,
+      "api_line": "天心了不由人算。",
+      "api": [
+        5,
+        2
+      ],
+      "lib": [
+        4,
+        2
+      ],
+      "unknown": 1
+    },
+    {
+      "work": 55034,
+      "title": "蝶恋花·和师愚韵",
+      "line_no": 5,
+      "api_line": "绣阁日长针线懒。",
+      "api": [
+        3,
+        4
+      ],
+      "lib": [
+        2,
+        5
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 54959,
+      "title": "定风波",
+      "line_no": 3,
+      "api_line": "髻子半偏钗半卸。",
+      "api": [
+        3,
+        4
+      ],
+      "lib": [
+        2,
+        4
+      ],
+      "unknown": 1
+    },
+    {
+      "work": 54403,
+      "title": "渔家傲·咏水仙花",
+      "line_no": 6,
+      "api_line": "隔浦美人愁一别。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        5,
+        2
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 54403,
+      "title": "渔家傲·咏水仙花",
+      "line_no": 7,
+      "api_line": "屏山曲几成幽绝。",
+      "api": [
+        5,
+        2
+      ],
+      "lib": [
+        6,
+        1
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 53140,
+      "title": "玉楼春·病夜",
+      "line_no": 2,
+      "api_line": "摇荡轻魂愁未了。",
+      "api": [
+        5,
+        2
+      ],
+      "lib": [
+        4,
+        2
+      ],
+      "unknown": 1
+    },
+    {
+      "work": 52054,
+      "title": "渔家傲",
+      "line_no": 7,
+      "api_line": "金钱枉卜重逢课。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        3,
+        3
+      ],
+      "unknown": 1
+    },
+    {
+      "work": 51978,
+      "title": "风入松·在梓舍决计入山，赋此",
+      "line_no": 1,
+      "api_line": "归辽老鹤怯长鸣。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        3,
+        4
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 50324,
+      "title": "醉花阴·寄外",
+      "line_no": 1,
+      "api_line": "别梦初圆风击碎。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        5,
+        2
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 49781,
+      "title": "调笑令·喜子",
+      "line_no": 1,
+      "api_line": "喜子。",
+      "api": [
+        1,
+        1
+      ],
+      "lib": [
+        0,
+        1
+      ],
+      "unknown": 1
+    }
+  ]
+}

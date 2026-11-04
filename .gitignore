@@ -1,0 +1,53 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---- Node ----
+node_modules/
+app/frontend/dist/
+app/frontend/.vite/
+npm-debug.log*
+
+# ---- 字体源文件（构建期用，不入库；子集化产物入库）----
+app/frontend/.fontsrc/
+
+# ---- 构建产物与中间件 ----
+*.tar.gz
+词律探微-交付包-*
+app/deploy/包内容清单.txt
+
+# ---- 浏览器调试与本地验证产物 ----
+.playwright-cli/
+部署验证-*/
+
+# ---- 本地与编辑器 ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+
+# ---- 机密 ----
+.env
+.env.local
+*.pem
+*.key
+/etc/cilv/deploy.env
+
+# ---- 构建期第三方语料源（不入库，可重新下载）----
+.workbuddy/reference/
+
+# ---- AI 工作记忆（会话日志，内部记录，不对外）----
+.workbuddy/memory/
+
+# ---- Git LFS ----
+# 超过 100 MB 的索引库走 LFS（GitHub 单文件硬限制）。
+# 规则文件见 .gitattributes。
+.git/lfs/

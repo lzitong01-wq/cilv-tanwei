@@ -1,0 +1,209 @@
+{
+  "version": "1.0.0",
+  "contract": "v1",
+  "source": "官方 API 文档明文 + 1000 题金标双向确认（V6.1 §2）",
+  "note": "规则外置：评测集与训练集同构但换作品，判类措辞漂移时改本文件即可热修，不需要改引擎代码。禁止题号特判与逐题打补丁。",
+  "categories": [
+    {
+      "id": "C1",
+      "name": "同调全篇声律比例差",
+      "match": {
+        "all": [
+          "最长句",
+          "句序"
+        ]
+      },
+      "note": "必须同时出现「最长句」与「句序」；C3 题面也含「句序」但不含「最长句」，据此区分"
+    },
+    {
+      "id": "C2",
+      "name": "跨篇分段变幅比较",
+      "match": {
+        "any": [
+          "变化值",
+          "绝对变化",
+          "后段减前段"
+        ]
+      }
+    },
+    {
+      "id": "C3",
+      "name": "跨篇长句仄声密度比较",
+      "match": {
+        "any": [
+          "平均句长向上取整为阈值",
+          "阈值",
+          "密度"
+        ]
+      }
+    },
+    {
+      "id": "C4",
+      "name": "跨篇后段排序与比例差距",
+      "match": {
+        "any": [
+          "各引一条后段原文",
+          "引一条后段原文",
+          "后段原文"
+        ]
+      }
+    },
+    {
+      "id": "C5",
+      "name": "跨篇景情节奏互证",
+      "match": {
+        "any": [
+          "景物线索",
+          "主观感受线索",
+          "景情节奏"
+        ]
+      }
+    }
+  ],
+  "formulas": {
+    "ratio": "ze/(ping+ze)×100，保留一位小数（half-even）",
+    "split": "max(1, floor(句数/2))",
+    "threshold": "ceil(平均句长)",
+    "change": "后段比例 − 前段比例（用展示值相减，不是未舍入值相减）",
+    "tone_mapping": "普通话单字读音，第一、二声记平，第三、四声记仄；不计标点、空白与题名",
+    "quote_policy": "各段取最长句（并列取句序靠前者）；C4 允许引文归一化，C5 只要求可定位",
+    "unknown": "字典无该字声调记录时标「未知」，不默认归仄"
+  },
+  "c5": {
+    "boundary": "解释边界：景物、感受和声律变化只能构成有限的文本互证，不能直接证明作者经历、时代因果或作品优劣。",
+    "status": "语义验证状态：未验证；景物/感受归类及互证解释仅作候选，不作为语义金标准。"
+  },
+  "boundary_claims": [
+    "优于",
+    "更胜一筹",
+    "水平更高",
+    "艺术价值更高",
+    "最擅长",
+    "胜过",
+    "高明",
+    "更好",
+    "价值更高",
+    "不如",
+    "远胜",
+    "堪称第一"
+  ],
+  "verification": "未验证",
+  "prompt_fields": [
+    "draft",
+    "basis",
+    "verification",
+    "boundary"
+  ],
+  "model_profiles": {
+    "qwen3.8-27b": {
+      "max_tokens": 1200,
+      "timeout": 40,
+      "disable_thinking": true
+    },
+    "step-3.7-flash": {
+      "max_tokens": 2600,
+      "timeout": 75,
+      "disable_thinking": false
+    }
+  },
+  "labeling_profiles": {
+    "qwen3.8-27b": {
+      "max_tokens": 2400,
+      "timeout": 150,
+      "disable_thinking": true
+    },
+    "step-3.7-flash": {
+      "max_tokens": 6000,
+      "timeout": 300,
+      "disable_thinking": true
+    }
+  },
+  "default_model": "qwen3.8-27b",
+  "second_model": "step-3.7-flash",
+  "field_labels": {
+    "diff": {
+      "label": "差值",
+      "desc": "两篇在本题所问指标上相差多少个百分点"
+    },
+    "higher": {
+      "label": "较高者",
+      "desc": "该项指标更高的一篇（甲／乙／丙）"
+    },
+    "order": {
+      "label": "后段排序",
+      "desc": "后段原文按字数从长到短排列的结果"
+    },
+    "boundary_present": {
+      "label": "含边界声明",
+      "desc": "是否给出「不能据此证明作者经历或作品优劣」的边界说明"
+    },
+    "status_present": {
+      "label": "含验证状态",
+      "desc": "是否给出「未验证」的语义验证状态声明"
+    },
+    "{a}_n": {
+      "label": "句数",
+      "desc": "全文共几句"
+    },
+    "{a}_ping": {
+      "label": "平声字数",
+      "desc": "第一、二声字的个数（官方逐句计数合计）"
+    },
+    "{a}_ze": {
+      "label": "仄声字数",
+      "desc": "第三、四声字的个数"
+    },
+    "{a}_ratio": {
+      "label": "仄声比例",
+      "desc": "仄声字数 ÷ 全文字数，单位为百分数"
+    },
+    "{a}_max_count": {
+      "label": "最长句字数",
+      "desc": "全文最长一句有多少字"
+    },
+    "{a}_max_lines": {
+      "label": "最长句句序",
+      "desc": "最长句是第几句；若并列则全部列出"
+    },
+    "{a}_pre": {
+      "label": "上片仄声比例",
+      "desc": "上片（前半部分）的仄声比例"
+    },
+    "{a}_post": {
+      "label": "下片仄声比例",
+      "desc": "下片（后半部分）的仄声比例"
+    },
+    "{a}_change": {
+      "label": "前后段变化",
+      "desc": "下片仄声比例减上片仄声比例，可为负"
+    },
+    "{a}_absolute": {
+      "label": "变幅绝对值",
+      "desc": "前后段变化取绝对值后的百分点"
+    },
+    "{a}_threshold": {
+      "label": "长句阈值",
+      "desc": "平均句长向上取整的字数，超过此字数才算长句"
+    },
+    "{a}_selected": {
+      "label": "计入的长句",
+      "desc": "被判为长句而计入密度的句子编号"
+    },
+    "{a}_quote": {
+      "label": "后段引文",
+      "desc": "作为判分依据引用的后段原文"
+    },
+    "{a}_direction": {
+      "label": "变化方向",
+      "desc": "仄声比例相对上片是升高还是降低"
+    },
+    "{a}_pre_quote": {
+      "label": "上片引文",
+      "desc": "上片的代表原文"
+    },
+    "{a}_post_quote": {
+      "label": "下片引文",
+      "desc": "下片的代表原文"
+    }
+  }
+}

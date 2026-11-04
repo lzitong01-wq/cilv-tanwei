@@ -1,0 +1,330 @@
+{
+  "scope": "官方宋快照 vs poetry-source 宋词库（自带带调拼音）",
+  "official_works": 203,
+  "library_works": 16449,
+  "stats": {
+    "not_uniquely_located": 40,
+    "located": 163,
+    "text_identical": 104,
+    "line_count_differs": 27,
+    "lines_pinyin_length_mismatch": 765,
+    "same_line_count": 136,
+    "lines_aligned": 452,
+    "lib_pinyin_match": 415,
+    "pypinyin_match": 421,
+    "either_match": 434,
+    "sentence_counts_match": 415,
+    "sentence_counts_differ": 37,
+    "neither_match": 18,
+    "text_differs": 59,
+    "lines_with_neutral_tone": 6
+  },
+  "sentence_total": 1281,
+  "aligned_sentences": 452,
+  "aligned_match": 415,
+  "aligned_match_rate": 0.9181,
+  "pinyin_gap_total_chars": 569,
+  "pinyin_gap_distribution": {
+    "-13": 1,
+    "-12": 2,
+    "-8": 5,
+    "-7": 7,
+    "-6": 18,
+    "-5": 8,
+    "-4": 19,
+    "-3": 12,
+    "-2": 6,
+    "-1": 7,
+    "1": 442,
+    "2": 204,
+    "3": 25,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "8": 1
+  },
+  "unmatched_samples": [
+    {
+      "work": 31156,
+      "title": "海门张仲村乐堂",
+      "candidates": 0
+    },
+    {
+      "work": 30965,
+      "title": "锦云堂暗定连环计",
+      "candidates": 0
+    },
+    {
+      "work": 29538,
+      "title": "玉清庵错送鸳鸯被",
+      "candidates": 0
+    },
+    {
+      "work": 20357,
+      "title": "杏花天",
+      "candidates": 0
+    },
+    {
+      "work": 20079,
+      "title": "月华清",
+      "candidates": 0
+    },
+    {
+      "work": 19839,
+      "title": "燕山亭",
+      "candidates": 0
+    },
+    {
+      "work": 19738,
+      "title": "好事近",
+      "candidates": 0
+    },
+    {
+      "work": 19511,
+      "title": "风流子",
+      "candidates": 0
+    },
+    {
+      "work": 18892,
+      "title": "传言玉女",
+      "candidates": 0
+    },
+    {
+      "work": 15773,
+      "title": "水龙吟",
+      "candidates": 0
+    },
+    {
+      "work": 13664,
+      "title": "忆秦娥",
+      "candidates": 0
+    },
+    {
+      "work": 13487,
+      "title": "醉蓬莱",
+      "candidates": 0
+    },
+    {
+      "work": 13285,
+      "title": "贺新郎",
+      "candidates": 0
+    },
+    {
+      "work": 13184,
+      "title": "调笑令",
+      "candidates": 0
+    },
+    {
+      "work": 12755,
+      "title": "喜迁莺",
+      "candidates": 0
+    },
+    {
+      "work": 11795,
+      "title": "西江月",
+      "candidates": 0
+    },
+    {
+      "work": 11517,
+      "title": "诉衷情",
+      "candidates": 0
+    },
+    {
+      "work": 11492,
+      "title": "南乡子",
+      "candidates": 0
+    },
+    {
+      "work": 11353,
+      "title": "采桑子",
+      "candidates": 0
+    },
+    {
+      "work": 11214,
+      "title": "蓦山溪",
+      "candidates": 0
+    }
+  ],
+  "mismatch_samples": [
+    {
+      "work": 21001,
+      "title": "定风波",
+      "line_no": 10,
+      "api_line": "因甚。",
+      "api": [
+        1,
+        1
+      ],
+      "lib": [
+        2,
+        0
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 20862,
+      "title": "减字木兰花",
+      "line_no": 1,
+      "api_line": "霜天奇绝。",
+      "api": [
+        3,
+        1
+      ],
+      "lib": [
+        4,
+        0
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 20862,
+      "title": "减字木兰花",
+      "line_no": 8,
+      "api_line": "冷浸冰壶别有香。",
+      "api": [
+        3,
+        4
+      ],
+      "lib": [
+        4,
+        3
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 20294,
+      "title": "瑞鹤仙",
+      "line_no": 8,
+      "api_line": "清绝。",
+      "api": [
+        1,
+        1
+      ],
+      "lib": [
+        2,
+        0
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 18501,
+      "title": "醉花阴",
+      "line_no": 4,
+      "api_line": "伤春比似年时恶。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        5,
+        2
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 18248,
+      "title": "渔家傲",
+      "line_no": 8,
+      "api_line": "日断征帆归别浦。",
+      "api": [
+        3,
+        4
+      ],
+      "lib": [
+        4,
+        3
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 18236,
+      "title": "长相思",
+      "line_no": 8,
+      "api_line": "今宵好夜长。",
+      "api": [
+        3,
+        2
+      ],
+      "lib": [
+        2,
+        3
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 17465,
+      "title": "踏莎行",
+      "line_no": 2,
+      "api_line": "长年与客分携处。",
+      "api": [
+        4,
+        3
+      ],
+      "lib": [
+        3,
+        4
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 17023,
+      "title": "相见欢",
+      "line_no": 3,
+      "api_line": "旧日吴王宫殿、长青苔。",
+      "api": [
+        6,
+        3
+      ],
+      "lib": [
+        5,
+        4
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 17023,
+      "title": "相见欢",
+      "line_no": 7,
+      "api_line": "长恨夕阳西去、晚潮回。",
+      "api": [
+        6,
+        3
+      ],
+      "lib": [
+        5,
+        4
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 16897,
+      "title": "踏莎行",
+      "line_no": 5,
+      "api_line": "痴狂赢取身长健。",
+      "api": [
+        5,
+        2
+      ],
+      "lib": [
+        4,
+        3
+      ],
+      "unknown": 0
+    },
+    {
+      "work": 15457,
+      "title": "碧牡丹",
+      "line_no": 8,
+      "api_line": "霓裳恐非人世。",
+      "api": [
+        4,
+        2
+      ],
+      "lib": [
+        3,
+        2
+      ],
+      "unknown": 1
+    }
+  ]
+}
