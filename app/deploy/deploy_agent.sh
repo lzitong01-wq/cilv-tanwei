@@ -160,8 +160,8 @@ download_asset() {
     local got
     got=$(stat -c%s "$dest" 2>/dev/null || echo 0)
     if [ "$got" -ne "$total" ]; then
-        log "下载大小不符: 期望 $total，实际 $got"
-        rm -rf "$workdir"
+        # 不删分片：下一轮轮询会跳过已下好的片（断点续传），避免重下几十 MB。
+        log "下载大小不符: 期望 $total，实际 $got；保留分片供下一轮续传"
         return 1
     fi
     rm -rf "$workdir"
@@ -176,8 +176,11 @@ extract_release() {
 
     rm -rf "$dir"
     mkdir -p "$dir"
-    tar -xzf "$tarball" -C "$dir" --strip-components=1 || return 1
-    [ -d "$dir/app" ] || { log "包结构异常：未找到 app/ 目录"; return 1; }
+    # 不加 --strip-components：交付包的顶层就是 app/、data/、docs/、tools/ 与规范文档，
+    # 剥掉一层会把 app/ 变成 backend/，导致下面的结构检查失败（实测踩过）。
+    tar -xzf "$tarball" -C "$dir" || return 1
+    [ -d "$dir/app" ] || { log "包结构异常：未找到 $dir/app 目录"; return 1; }
+    [ -d "$dir/data" ] || { log "包结构异常：未找到 $dir/data 目录"; return 1; }
     return 0
 }
 
@@ -221,10 +224,13 @@ ensure_venv() {
 }
 
 restart_service() {
+    # 部署代理以 cilv-deploy 用户运行，没有直接 systemctl 的权限
+    # （polkit 会要求交互式认证）。用 sudo 走 visudo 的白名单：
+    #   /etc/sudoers.d/cilv-deploy 只允许 restart/is-active 这两条 cilv 命令。
     log "重启服务 $SERVICE_NAME"
-    systemctl restart "$SERVICE_NAME" || return 1
+    sudo -n systemctl restart "$SERVICE_NAME" || return 1
     sleep 4
-    systemctl is-active --quiet "$SERVICE_NAME"
+    sudo -n systemctl is-active --quiet "$SERVICE_NAME"
 }
 
 # ---------- 健康检查 ----------
