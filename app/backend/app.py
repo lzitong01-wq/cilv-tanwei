@@ -22,6 +22,7 @@ from core import chars as char_core, rhyme
 from core import agent, corpus, sidecar, tier2
 from core import engine, evaluator, graph, metrics, parser, prosody, qa, revisions, rules, sentiment, style, tunes
 from core.config import APP_VERSION, CONTRACT_VERSION, Settings, load_settings
+from core import edge as edge_core
 from core.errors import ApiError, new_trace_id, ok_body
 from core import sqlite_compat
 from core.store import Store
@@ -288,6 +289,9 @@ def create_app(settings: Settings | None = None) -> Flask:
                     "cwd": str(settings.app_root) if hasattr(settings, "app_root") else os.getcwd(),
                     "data_root": str(settings.snapshot_path.parent),
                     "started_at": _process_started_at(),
+                    # 校园网边缘入口状态：443 上有没有 HTTPS 入口、
+                    # 为什么没有（如绑定权限不足）。评审与运维都需要看到它。
+                    "edge": edge_core.state(),
                 },
             }
         )
