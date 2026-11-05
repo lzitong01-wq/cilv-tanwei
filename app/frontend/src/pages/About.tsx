@@ -39,15 +39,15 @@ const TIERS = [
   {
     tier: "同源清词",
     name: "同源带拼音公开整理本（清）",
-    scope: "poetry-source 清词 26,742 首",
+    scope: "poetry-source 清词（带调拼音）",
     use: "作品浏览、逐句平仄（同源带调拼音）、风格画像；构建期统计，运行时只读索引",
     official: "官方题库「参考资料」字段所列来源，仓库 MIT"
   },
   {
     tier: "同源宋词",
     name: "同源带拼音公开整理本（宋）",
-    scope: "poetry-source 宋词 16,449 首",
-    use: "同上；与同源清词合计 43,191 首，供检索与阅读",
+    scope: "poetry-source 宋词（带调拼音）",
+    use: "同上；同源公开整理本按朝代分层，供检索与阅读",
     official: "同同源清词；按朝代分层，官方标注不含宋词"
   },
   {
@@ -102,7 +102,7 @@ export default function About() {
 
       <div className="note">
         语料总量 <b>{meta?.corpus_total?.toLocaleString() ?? "—"}</b> 篇
-        （官方标注 {meta?.works ?? "—"} 首 + 同源清词与宋词{" "}
+        （官方标注 {meta?.works ?? "—"} 首 + 同源公开整理本{" "}
         {meta?.tier2?.works?.toLocaleString() ?? "—"} 首）。
         带官方标注的只有 423 首，是<b>唯一基准口径</b>；同源语料是「读词」与「风格」的底子，
         两者口径不同、绝不混算，但都可浏览与检索。

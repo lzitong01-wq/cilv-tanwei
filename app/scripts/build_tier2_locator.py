@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""构建 Tier 2 作品库索引：清词 + 宋词，带紧凑倒排与 FTS5。
+"""构建 Tier 2 作品库索引：两库公开整理本全文，带紧凑倒排与 FTS5。
 
 比原 `build_tier2_locator.py` 多的三件事：
 
-1. **宋词也进来**。poetry-source 里本来就有 16,449 首宋词（此前只索引了清词 26,742 首），
-   现在清 + 宋合计 **43,191 首**，这才是「读词」的语料底子。
-   倒排（`postings`）与 FTS5 trigram 随之覆盖全部 43,191 首——检索不再全表 LIKE。
+1. **全朝代接入**。poetry-source 的 `source/词/` 下共 9 个朝代：清 26,742、
+   宋 16,449，以及明 3,608 / 元 5,004 / 唐 590 / 五代十国 547 / 金 919 /
+   隋 1 / 南北朝 9，合计 **53,869 首**（加官方 423 首为 54,292 首）。
+   早期只接了清与宋（43,191 首），规划里「两库去重后 5–6 万首」的规模没兑现——
+   补上这 7 个朝代后落回区间内。所有分片**都自带 `*.pinyin.json`**，
+   所以不引入「今音计算」这第四种口径，三层口径仍然隔离。
 2. **紧凑倒排**。原来检索靠 SQLite LIKE 全表扫（26,742 首 40–90 ms，越大越慢）。
    现在建 `postings(gram, n, ids)`——每个 gram 一行、postings 打包成一个字符串，
    1–2 字查询直接命中倒排；≥3 字走 FTS5 trigram。
-3. **id 分层前缀**。`t2a_` 清词 / `t2b_` 宋词，一眼能看出层级（旧的 `t2_` 仍兼容读作清词）。
+3. **id 分层前缀**。`t2a_` 清词 / `t2b_` 宋词 / `t2c_` 其余朝代（历代词），
+   一眼能看出层级（旧的 `t2_` 仍兼容读作清词）。具体朝代在 `works.dynasty`。
 
 **口径**：这一层全部是「非官方口径」，逐句平仄由同源带调拼音统计，
 不能当官方标注用（V6.1 §1.7 / ADR-0002）。原始语料只在构建期使用、不随交付物分发。
@@ -37,14 +41,28 @@ BACKEND = APP / "backend"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
+from core import chars as char_core  # noqa: E402
 from core import tune_norm  # noqa: E402
 
 # 层级目录 → (层级标签, id 前缀)
-# 清词与宋词同源（poetry-source），带调拼音；合起来 43,191 首。
+# 全部来自 poetry-source `source/词/`，**都带带调拼音**，口径一致。
+# 早期只列了 qing / song；补上剩余 7 个朝代后合计 53,869 首。
 SOURCES = {
     "qing": ("Tier 2a", "t2a_"),
     "song": ("Tier 2b", "t2b_"),
+    "ming": ("Tier 2c", "t2c_"),
+    "yuan": ("Tier 2c", "t2c_"),
+    "tang": ("Tier 2c", "t2c_"),
+    "wudai": ("Tier 2c", "t2c_"),
+    "jin": ("Tier 2c", "t2c_"),
+    "sui": ("Tier 2c", "t2c_"),
+    "nanbeichao": ("Tier 2c", "t2c_"),
 }
+
+# chinese-poetry《全宋词》**无拼音**的文本分片（元曲不接，避免曲牌混入词牌口径）。
+# 与上面 9 个目录按「作者 + 规范化正文」去重后单独成层 Tier 2d，
+# 逐句平仄由本地字典（今音）计算，明确标注口径，绝不与带调拼音层混算。
+TEXT_SOURCES = {"chinese_poetry": ("Tier 2d", "t2d_")}
 
 TONE_MARKS = {
     "āēīōūǖ": 1, "áéíóúǘ": 2, "ǎěǐǒǔǚ": 3, "àèìòùǜ": 4,
@@ -122,9 +140,98 @@ def read_source(folder: Path, tier_label: str, prefix: str):
                     "pattern": ",".join(str(cjk_count(line)) for line in content),
                     "rhyme_char": cjk_only(first_line)[-1:] if cjk_only(first_line) else "",
                     "tier": tier_label,
+                    "line_tones": per_line,
+                    "sound_source": "tier2_pinyin",
                 }
             )
     return rows, skipped
+
+
+def content_key(author: str, lines: list) -> str:
+    """跨库去重键：作者 + 去掉标点空白后的正文。"""
+    body = cjk_only("".join(lines or []))
+    return (cjk_only(author or "") + "|" + body)
+
+
+def read_text_source(folder: Path, tier_label: str, prefix: str, seen: set) -> tuple:
+    """读 chinese-poetry 的无拼音分片，逐句平仄用**本地字典（今音）**计算。
+
+    这批数据没有带调拼音，所以：
+    - `pinyin_lines` 留空（明确「无」），
+    - `line_tones` 存逐句 `[平, 仄]` 计数，运行时优先读它，
+    - `sound_source = "local_dict"`，界面必须标「今音计算·非官方口径」。
+    """
+    import hashlib
+
+    rows = []
+    skipped = 0
+    duplicated = 0
+    for path in sorted(folder.glob("*.json")):
+        if "yuanqu" in path.name:
+            continue  # 元曲是「曲」不是「词」，不并入词牌口径
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(raw, dict):
+            raw = raw.get("items") or next(iter(raw.values())) or []
+        if not isinstance(raw, list):
+            continue
+        for record in raw:
+            if not isinstance(record, dict):
+                continue
+            content = [line for line in (record.get("paragraphs") or []) if line]
+            if not content:
+                skipped += 1
+                continue
+            author = record.get("author") or ""
+            key = content_key(author, content)
+            if key in seen:
+                duplicated += 1
+                continue
+            seen.add(key)
+
+            ping = ze = 0
+            per_line = []
+            for text in content:
+                items = char_core.annotate(text)
+                line_ping = sum(1 for item in items if item["ping_ze"] == "平")
+                line_ze = sum(1 for item in items if item["ping_ze"] == "仄")
+                ping += line_ping
+                ze += line_ze
+                per_line.append([line_ping, line_ze])
+            total = ping + ze
+            if total == 0:
+                skipped += 1
+                continue
+
+            title = record.get("title") or record.get("rhythmic") or ""
+            tune = record.get("rhythmic") or (title.split("·", 1)[0] if "·" in title else title)
+            dynasty = record.get("dynasty") or ("元" if "yuanqu" in path.name else "宋")
+            if dynasty in ("yuan", "Yuan"):
+                dynasty = "元"
+            elif dynasty in ("song", "Song"):
+                dynasty = "宋"
+            first_line = content[0]
+            stable = hashlib.sha1(key.encode("utf-8")).hexdigest()[:28]
+            rows.append({
+                "id": prefix + stable,
+                "title": title or tune,
+                "poet": author,
+                "dynasty": dynasty,
+                "tune": tune,
+                "first_line": first_line,
+                "first_key": cjk_only(first_line)[:8],
+                "lines": list(content),
+                "pinyin_lines": [],
+                "ping": ping,
+                "ze": ze,
+                "ze_ratio": round(ze * 100.0 / total, 1),
+                "line_count": len(per_line),
+                "pattern": ",".join(str(cjk_count(line)) for line in content),
+                "rhyme_char": cjk_only(first_line)[-1:] if cjk_only(first_line) else "",
+                "tier": tier_label,
+                "line_tones": per_line,
+                "sound_source": "local_dict",
+            })
+    return rows, skipped, duplicated
 
 
 def build_index(connection: sqlite3.Connection, works: list[dict]) -> dict:
@@ -194,13 +301,28 @@ def main() -> int:
         return 2
 
     all_rows: list[dict] = []
+    seen: set = set()
     for folder_name, (tier_label, prefix) in SOURCES.items():
         folder = REFERENCE / folder_name
         if not folder.is_dir():
             print("  跳过 %s（目录不存在）" % folder_name)
             continue
         rows, skipped = read_source(folder, tier_label, prefix)
+        for work in rows:
+            seen.add(content_key(work["poet"], work["lines"]))
         print("  %s：%d 首（跳过 %d 首：音节不足或无拼音）" % (tier_label, len(rows), skipped))
+        all_rows.extend(rows)
+
+    # 第二个公开库：chinese-poetry 宋词 / 元曲（无拼音，今音计算，单独成层）
+    for folder_name, (tier_label, prefix) in TEXT_SOURCES.items():
+        folder = REFERENCE / folder_name
+        if not folder.is_dir():
+            print("  跳过 %s（目录不存在，可跑 fetch_chinese_poetry.py 获取）" % folder_name)
+            continue
+        print("  处理 %s（本地今音计算，约需 1 分钟）……" % folder_name, flush=True)
+        rows, skipped, duplicated = read_text_source(folder, tier_label, prefix, seen)
+        print("  %s：%d 首（跳过 %d 首；与 poetry-source 去重 %d 首）"
+              % (tier_label, len(rows), skipped, duplicated))
         all_rows.extend(rows)
 
     if not all_rows:
@@ -246,13 +368,16 @@ def main() -> int:
                 line_count INTEGER,
                 rhyme_char TEXT,
                 tier TEXT,
-                pattern TEXT
+                pattern TEXT,
+                line_tones TEXT,
+                sound_source TEXT
             )
             """
         )
         connection.executemany(
             "INSERT INTO works(id,title,poet,dynasty,tune,first_line,first_key,lines,pinyin_lines,"
-            "ping,ze,ze_ratio,line_count,rhyme_char,tier,pattern) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "ping,ze,ze_ratio,line_count,rhyme_char,tier,pattern,line_tones,sound_source) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             [
                 (
                     work["id"], work["title"], work["poet"], work["dynasty"], work["tune"],
@@ -261,6 +386,7 @@ def main() -> int:
                     json.dumps(work["pinyin_lines"], ensure_ascii=False),
                     work["ping"], work["ze"], work["ze_ratio"],
                     work["line_count"], work["rhyme_char"], work["tier"], work["pattern"],
+                    json.dumps(work["line_tones"], ensure_ascii=False), work["sound_source"],
                 )
                 for work in all_rows
             ],

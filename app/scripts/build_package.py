@@ -39,6 +39,8 @@ EXCLUDE_DIRS = {
     ".vscode",
     # 字体源文件（构建期输入，12 MB/字重）；子集产物在 public/fonts 与 dist/fonts
     ".fontsrc",
+    # playwright-cli 跑逐页/交互检查时留下的页面快照与控制台日志
+    ".playwright-cli",
 }
 EXCLUDE_FILES = ["*.pyc", "*.pyo", "*.log", ".DS_Store"]
 EXCLUDE_PATHS = [

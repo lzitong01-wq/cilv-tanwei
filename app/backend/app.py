@@ -17,7 +17,8 @@ from pathlib import Path
 
 from flask import Flask, Response, g, jsonify, request, send_file
 
-from core import chars as char_core
+from core import argument as argument_core
+from core import chars as char_core, rhyme
 from core import agent, corpus, sidecar, tier2
 from core import engine, evaluator, graph, metrics, parser, prosody, qa, revisions, rules, sentiment, style, tunes
 from core.config import APP_VERSION, CONTRACT_VERSION, Settings, load_settings
@@ -109,6 +110,7 @@ def _char_readings_tier2(work: dict) -> dict:
                 "ze_count": line["ze_count"],
                 "unknown_count": line["unknown_count"],
                 "chars": items,
+                "line_end": rhyme.line_end_info(line["text"]),
             }
         )
     return {
@@ -118,6 +120,7 @@ def _char_readings_tier2(work: dict) -> dict:
         "split_after_line": None,
         "source_note": "逐字四声来自同源带调拼音（Tier 2a），非官方标注；官方仅提供 Tier 1 的逐句计数",
         "tier_label": corpus.TIER2_LABEL,
+        "rhyme_boundary": rhyme.boundary(),
         "lines": payload_lines,
     }
 
@@ -160,7 +163,7 @@ def _browse_works(store, settings, tier: str, period: str, tune: str, poet: str,
             )
     rows.extend(official_rows)
     corpus_total = 0
-    if tier in ("2a", "2b", "all") and corpus.tier2_available(settings):
+    if tier in ("2a", "2b", "2c", "2d", "all") and corpus.tier2_available(settings):
         tier_key = tier if tier != "all" else ""
         # 先取总数（limit=1 探针），再取前 limit 条——总数不能被 limit 截断
         corpus_total = corpus.list_tier2(settings, period, tune, poet, "", 1, 1, tier_key)["total"]
@@ -190,6 +193,7 @@ def _char_readings(work: dict) -> dict:
                 "ping_count": line["ping_count"],
                 "ze_count": line["ze_count"],
                 "chars": items,
+                "line_end": rhyme.line_end_info(line["text"]),
             }
         )
     return {
@@ -198,6 +202,7 @@ def _char_readings(work: dict) -> dict:
         "tune": work.get("tune_pattern"),
         "split_after_line": prosody["split_after_line"],
         "source_note": "逐字四声为本地字典计算，官方仅提供逐句平仄计数",
+        "rhyme_boundary": rhyme.boundary(),
         "lines": payload_lines,
     }
 
@@ -515,8 +520,8 @@ def create_app(settings: Settings | None = None) -> Flask:
         query = (request.args.get("q") or "").strip()
         # tier：1 = 官方快照（默认）、2a = 同源清词、2b = 同源宋词、all = 都列
         tier = (request.args.get("tier") or "1").strip().lower()
-        if tier not in ("1", "2a", "2b", "all"):
-            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / all", {"tier": tier})
+        if tier not in ("1", "2a", "2b", "2c", "2d", "all"):
+            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / 2c / 2d / all", {"tier": tier})
 
         rows = []
         if tier in ("1", "all"):
@@ -542,7 +547,7 @@ def create_app(settings: Settings | None = None) -> Flask:
                         "source": "Tier 1",
                     }
                 )
-        if tier in ("2a", "2b") and corpus.tier2_available(settings):
+        if tier in ("2a", "2b", "2c", "2d") and corpus.tier2_available(settings):
             # 只要 Tier 2 某层时走 SQL 分页，别把几万条全拉进内存
             block = corpus.list_tier2(
                 settings, period or "", tune or "", poet or "", query, page_no, size, tier
@@ -624,6 +629,9 @@ def create_app(settings: Settings | None = None) -> Flask:
                     "ze_ratio": work["ze_ratio"],
                     "line_count": work["line_count"],
                     "rhyme_char": work["rhyme_char"],
+                    # 无拼音层（Tier 2d）的声律由本地今音算出，界面要能标清口径
+                    "sound_source": work.get("sound_source"),
+                    "line_tones": work.get("line_tones") or [],
                 }
             )
         if not work_id.isdigit():
@@ -653,7 +661,8 @@ def create_app(settings: Settings | None = None) -> Flask:
                     "split_after_line": None,
                     "tier_label": corpus.TIER2_LABEL,
                     "source_note": "逐句平仄由同源带调拼音统计，非官方标注",
-                    "lines": corpus.tier2_line_stats(work),
+                    "rhyme_boundary": rhyme.boundary(),
+                    "lines": rhyme.annotate_lines(corpus.tier2_line_stats(work)),
                 }
             )
         if not work_id.isdigit():
@@ -671,9 +680,11 @@ def create_app(settings: Settings | None = None) -> Flask:
                         "character_count": line["character_count"],
                         "ping_count": line["ping_count"],
                         "ze_count": line["ze_count"],
+                        "line_end": rhyme.line_end_info(line["text"]),
                     }
                     for line in lines
                 ],
+                "rhyme_boundary": rhyme.boundary(),
             }
         )
 
@@ -721,8 +732,8 @@ def create_app(settings: Settings | None = None) -> Flask:
         # tier：1 = 官方快照、2a = 同源清词、2b = 同源宋词、all = 都搜
         # 默认 all：语料有 4.3 万首，默认只搜 423 篇会让「检索不到」被误解成「不存在」
         tier = (request.args.get("tier") or "all").strip().lower()
-        if tier not in ("1", "2a", "2b", "all"):
-            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / all", {"tier": tier})
+        if tier not in ("1", "2a", "2b", "2c", "2d", "all"):
+            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / 2c / 2d / all", {"tier": tier})
         period = request.args.get("period")
         tune = request.args.get("tune")
         poet = request.args.get("poet")
@@ -731,7 +742,7 @@ def create_app(settings: Settings | None = None) -> Flask:
             if not (poet or tune or period):
                 raise ApiError("INVALID_INPUT", "q 不能为空；或给出 poet / tune / period 之一")
             return _payload(_browse_works(store, settings, tier, period, tune, poet, int(limit)))
-        if tier in ("2a", "2b"):
+        if tier in ("2a", "2b", "2c", "2d"):
             if not corpus.tier2_available(settings):
                 raise ApiError("KNOWLEDGE_UNAVAILABLE", "Tier 2 索引未就位")
             return _payload(
@@ -1039,6 +1050,27 @@ def create_app(settings: Settings | None = None) -> Flask:
         """纯引擎事实卡：论证辅助的证据来源，不调用模型、不受模型断连影响。"""
         return _payload(sidecar.build_fact_card(store, work_id, settings))
 
+    @app.post("/api/argument/draft")
+    def argument_draft():
+        """论证辅助**生成**：只把勾选的证据交给模型，走 sidecar 统一四道闸门。
+
+        模型不可用时 `guarded` 返回 degraded，前端回落到模板拼装并如实显示，
+        不把降级结果伪装成模型草稿。
+        """
+        body = request.get_json(silent=True) or {}
+        work_id = body.get("work_id")
+        if not isinstance(work_id, (int, str)) or not str(work_id).strip():
+            raise ApiError("INVALID_INPUT", "work_id 必须为整数或同源层 id")
+        claim = (body.get("claim") or "").strip()
+        refs = body.get("refs") or []
+        if not isinstance(refs, list) or not all(isinstance(ref, str) for ref in refs):
+            raise ApiError("INVALID_INPUT", "refs 必须是字符串数组")
+        model = body.get("model") or sidecar.DEFAULT_MODEL
+        result = argument_core.draft(
+            store, work_id, claim, refs, model, settings=settings
+        )
+        return _payload(result)
+
     @app.get("/api/demo/cases")
     def demo_cases():
         """V6.1 §13.1 三个定死案例 + 构建期预计算回放数据。"""
@@ -1099,8 +1131,8 @@ def create_app(settings: Settings | None = None) -> Flask:
         """
         tune = (request.args.get("tune") or "").strip()
         tier = (request.args.get("tier") or "all").strip().lower()
-        if tier not in ("1", "2a", "2b", "all"):
-            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / all", {"tier": tier})
+        if tier not in ("1", "2a", "2b", "2c", "2d", "all"):
+            raise ApiError("INVALID_INPUT", "tier 取 1 / 2a / 2b / 2c / 2d / all", {"tier": tier})
         if tier == "1":
             return _payload(store.tune_stats(tune))
         return _payload(corpus.tune_stats(settings, tune, tier))

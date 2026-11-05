@@ -110,7 +110,7 @@ export default function Home() {
           <span>语料总量</span>
           <strong>{meta?.corpus_total ? meta.corpus_total.toLocaleString() : "—"}</strong>
           <div className="muted" style={{ fontSize: 11, marginTop: 3 }}>
-            官方标注 {meta?.works ?? "—"} 篇 + 同源清词与宋词 {meta?.tier2?.works?.toLocaleString() ?? "—"} 首
+            官方标注 {meta?.works ?? "—"} 篇 + 同源公开整理本 {meta?.tier2?.works?.toLocaleString() ?? "—"} 首
           </div>
         </div>
         <div className="stat">

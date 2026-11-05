@@ -86,7 +86,7 @@ export type Meta = {
   snapshot: string;
   version: string;
   contract: string;
-  /** 语料真实规模：Tier 1 官方基准 + Tier 2a 同源清词 + Tier 2b 同源宋词 */
+  /** 语料真实规模：Tier 1 官方基准 + Tier 2a/2b/2c 同源公开整理本 */
   corpus_total?: number;
   tier2?: {
     works: number;
@@ -152,6 +152,14 @@ export type CharItem = {
   unknown_reason: string | null;
 };
 
+export type LineEndInfo = {
+  line_end_char: string | null;
+  rhyme: string | null;
+  rhyme_found: boolean;
+  source: string;
+  note: string;
+};
+
 export type CharLine = {
   line_no: number;
   text: string;
@@ -159,6 +167,7 @@ export type CharLine = {
   ping_count: number;
   ze_count: number;
   chars: CharItem[];
+  line_end?: LineEndInfo;
 };
 
 export type CharDoc = {
@@ -167,6 +176,7 @@ export type CharDoc = {
   tune: string;
   split_after_line: number;
   source_note: string;
+  rhyme_boundary?: string;
   lines: CharLine[];
 };
 
@@ -176,11 +186,13 @@ export type WorkLine = {
   character_count: number;
   ping_count: number;
   ze_count: number;
+  line_end?: LineEndInfo;
 };
 
 export type WorkLineDoc = {
   work_id: number;
   split_after_line: number;
+  rhyme_boundary?: string;
   lines: WorkLine[];
 };
 
@@ -358,6 +370,7 @@ export type ParseResult = {
   tier_label: string;
   source_note: string;
   boundary: string;
+  rhyme_boundary?: string;
   tune_hint: string;
   tunes: TuneResult;
 };
@@ -543,7 +556,7 @@ export const api = {
     page_size?: number;
     q?: string;
     period?: string;
-    tier?: "all" | "1" | "2a" | "2b";
+    tier?: "all" | "1" | "2a" | "2b" | "2c" | "2d";
   }) => {
     const search = new URLSearchParams();
     if (params.page) search.set("page", String(params.page));
@@ -586,7 +599,7 @@ export const api = {
       body: JSON.stringify(payload)
     }),
   solveTrace: (solveId: string) => call<SolveTrace>(`/api/solve/${solveId}/trace`),
-  searchStats: (tune: string, tier: "1" | "2a" | "2b" = "1") =>
+  searchStats: (tune: string, tier: "1" | "2a" | "2b" | "2c" | "2d" = "1") =>
     call<TuneStats>(`/api/search/stats?tune=${encodeURIComponent(tune)}&tier=${tier}`),
   exportHistory: (limit = 50) => call<ExportHistory>(`/api/revision/exports?limit=${limit}`)
 };

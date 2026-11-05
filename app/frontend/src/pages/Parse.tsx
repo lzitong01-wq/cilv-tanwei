@@ -198,6 +198,11 @@ export default function Parse() {
           )}
 
           <h2>逐字声律（本地计算）</h2>
+          {result.rhyme_boundary && (
+            <div className="note" style={{ marginBottom: 8 }}>
+              韵脚：{result.rhyme_boundary}
+            </div>
+          )}
           <div className="row">
             <span className="mono muted">句式 {JSON.stringify(result.pattern)}</span>
             <span className="muted">分阕候选：第 {result.split_after} 句后（本地推测）</span>
@@ -221,6 +226,15 @@ export default function Parse() {
                 <div className="mono muted" style={{ marginLeft: 4 }}>
                   第 {line.line_no} 句 · {line.character_count} 字 · 平 {line.ping_count} · 仄 {line.ze_count}
                   （本地计数）
+                  {line.line_end?.line_end_char && (
+                    <>
+                      {" · 句末字 "}
+                      <b>{line.line_end.line_end_char}</b>
+                      {line.line_end.rhyme_found
+                        ? ` · ${line.line_end.rhyme}`
+                        : " · 韵部未收录"}
+                    </>
+                  )}
                 </div>
                 {line.line_no === result.split_after && <div className="split" aria-hidden="true"><i /><span className="mono">下阕（推测）</span><i /></div>}
               </div>

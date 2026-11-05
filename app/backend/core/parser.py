@@ -15,6 +15,7 @@ from collections import defaultdict
 
 from . import chars as char_core
 from . import engine
+from . import rhyme
 from . import tier2
 from .errors import ApiError
 
@@ -187,6 +188,8 @@ def parse(store, text: str, tune_hint: str = "") -> dict:
                 "ping_count": ping,
                 "ze_count": ze,
                 "chars": items,
+                # 句末字与《词林正韵》韵部提示（不是与词谱韵位的校勘）
+                "line_end": rhyme.line_end_info(segment),
             }
         )
         for item in items:
@@ -213,6 +216,7 @@ def parse(store, text: str, tune_hint: str = "") -> dict:
             if not tier2_work
             else BOUNDARY + " 本次结果来自 Tier 2a 同源带调拼音，属非官方口径。"
         ),
+        "rhyme_boundary": rhyme.boundary(),
         "source_note": (
             "逐字四声与逐句平仄均由本地字典计算；官方只给库内作品的逐句计数；"
             "分阕位置为本地推测。"

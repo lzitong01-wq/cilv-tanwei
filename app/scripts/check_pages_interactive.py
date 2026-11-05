@@ -112,6 +112,11 @@ def main() -> int:
             cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout
         )
 
+    # 连续跑多个浏览器脚本会抢同一默认会话；先静默关掉残留 daemon
+    try:
+        run([cli, "close"], 30)
+    except Exception:
+        pass
     try:
         proc = run([cli, "open", "--browser=%s" % args.browser, base + "/"], 180)
     except Exception as exc:  # noqa: BLE001

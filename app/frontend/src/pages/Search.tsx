@@ -63,7 +63,7 @@ export default function Search() {
   // 默认展示词：首屏直接给出一批结果，比一张空表更有说服力
   const DEFAULT_QUERY = preset || "西风";
   const [query, setQuery] = useState(DEFAULT_QUERY);
-  const [tier, setTier] = useState<"1" | "2a" | "2b" | "all">("all");
+  const [tier, setTier] = useState<"1" | "2a" | "2b" | "2c" | "2d" | "all">("all");
   const [statsTier, setStatsTier] = useState<"1" | "2a" | "2b">("1");
   const [period, setPeriod] = useState("");
   const [result, setResult] = useState<SearchResult | null>(null);
@@ -73,6 +73,8 @@ export default function Search() {
   const [stats, setStats] = useState<TuneStats | null>(null);
   const [statsError, setStatsError] = useState<string | null>(null);
   const [tuneNames, setTuneNames] = useState<string[]>([]);
+  // 各层作品数从 /api/meta 取，不写死（语料扩容过 43,614 → 54,292）
+  const [tierCounts, setTierCounts] = useState<Record<string, number>>({});
   const [poet, setPoet] = useState("");
   const [poetQuery, setPoetQuery] = useState("");
   const [poetCandidates, setPoetCandidates] = useState<{ name: string; official_works: number; corpus_works: number }[]>([]);
@@ -148,7 +150,18 @@ export default function Search() {
       .catch(() => setTuneNames([]));
   }, []);
 
-  // 作者候选：输入即查（防抖 250 ms），2,293 位词人装不下拉框
+  useEffect(() => {
+    api.meta().then((meta) => {
+      const counts: Record<string, number> = {};
+      for (const item of meta.tiers ?? []) {
+        counts[item.tier === "Tier 1" ? "1" : item.tier.replace("Tier ", "")] = item.works;
+      }
+      counts.all = meta.corpus_total ?? 0;
+      setTierCounts(counts);
+    }).catch(() => undefined);
+  }, []);
+
+  // 作者候选：输入即查（防抖 250 ms），数千位词人装不下拉框
   useEffect(() => {
     if (!showPoets) return;
     let alive = true;
@@ -326,13 +339,13 @@ export default function Search() {
           className={tier === "1" ? "chip active-chip" : "chip"}
           onClick={() => setTier("1")}
         >
-          官方标注 423 篇
+          官方标注 {tierCounts["1"]?.toLocaleString() ?? 423} 篇
         </button>
         <button
           className={tier === "2a" ? "chip active-chip" : "chip"}
           onClick={() => setTier("2a")}
         >
-          同源清词 26,742 首
+          同源清词 {tierCounts["2a"]?.toLocaleString() ?? "—"} 首
         </button>
         <button
           className={statsTier === "2a" ? "chip active-chip" : "chip"}
@@ -358,7 +371,21 @@ export default function Search() {
           className={tier === "2b" ? "chip active-chip" : "chip"}
           onClick={() => setTier("2b")}
         >
-          同源宋词 16,449 首
+          同源宋词 {tierCounts["2b"]?.toLocaleString() ?? "—"} 首
+        </button>
+        <button
+          className={tier === "2c" ? "chip active-chip" : "chip"}
+          onClick={() => setTier("2c")}
+          title="明 / 元 / 唐 / 五代十国 / 金 / 隋 / 南北朝，均为非官方口径"
+        >
+          同源历代词 {tierCounts["2c"]?.toLocaleString() ?? "—"} 首
+        </button>
+        <button
+          className={tier === "2d" ? "chip active-chip" : "chip"}
+          onClick={() => setTier("2d")}
+          title="chinese-poetry《全宋词》去重新增部分，无拼音，声律为本地今音计算"
+        >
+          整理本·今音 {tierCounts["2d"]?.toLocaleString() ?? "—"} 首
         </button>
       </div>
 

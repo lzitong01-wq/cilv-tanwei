@@ -67,6 +67,11 @@ export default function Argument() {
   const [claim, setClaim] = useState(CLAIM_TEMPLATE);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  // 模型生成的论证草稿（null = 还在用模板拼装）
+  const [modelDraft, setModelDraft] = useState<string | null>(null);
+  const [draftPending, setDraftPending] = useState(false);
+  const [draftChecks, setDraftChecks] = useState<Record<string, boolean> | null>(null);
+  const [draftVerification, setDraftVerification] = useState("");
 
   useEffect(() => {
     api
@@ -111,10 +116,54 @@ export default function Argument() {
       BOUNDARY,
       "",
       `作品：${card?.work.title ?? "—"}（#${card?.work.id ?? "—"}，${card?.work.poet ?? "—"}）`,
-      `事实卡来源：${card?.source ?? "—"}；草稿由模板拼装，未经模型生成。`
+      `事实卡来源：${card?.source ?? "—"}；${modelDraft ? "草稿由模型依据勾选证据生成，标未验证。" : "草稿由模板拼装，未经模型生成。"}`
     ];
     return lines.join("\n");
   }, [claim, chosen, card]);
+
+  // 有模型草稿就用它，否则回落到模板拼装（断网/模型不可用时的诚实降级）
+  const activeDraft = modelDraft ?? draft;
+
+  async function generateDraft() {
+    if (!card || chosen.length === 0) {
+      setError("先勾选至少一条证据再生成");
+      return;
+    }
+    setDraftPending(true);
+    setError(null);
+    try {
+      const response = await fetch("/api/argument/draft", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          work_id: card.work.id,
+          claim: claim.trim() || CLAIM_TEMPLATE,
+          refs: chosen.map((item) => item.ref)
+        })
+      });
+      const body = await response.json();
+      if (!body.ok) throw new Error(body.error?.message ?? "生成失败");
+      const data = body.data;
+      if (data.status === "degraded" || !data.candidate?.draft) {
+        // 不把降级结果伪装成模型草稿，回落到模板并如实提示
+        setModelDraft(null);
+        setDraftChecks(null);
+        setError("模型不可用，已回落到模板拼装草稿（未生成模型草稿）");
+      } else {
+        setModelDraft(
+          `【模型草稿 · ${data.candidate.verification || "未验证"}】\n${data.candidate.draft}\n\n` +
+          `【依据】${(data.candidate.basis || []).join("、") || "—"}\n` +
+          `【限定】${data.candidate.boundary || "不推断作者生平、情感归类与作品优劣。"}`
+        );
+        setDraftChecks(data.checks ?? null);
+        setDraftVerification(data.candidate.verification || "未验证");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "生成失败");
+    } finally {
+      setDraftPending(false);
+    }
+  }
 
   function toggle(id: string) {
     setSelected((previous) => {
@@ -126,7 +175,7 @@ export default function Argument() {
   }
 
   function download() {
-    const blob = new Blob(["\ufeff" + draft], { type: "text/plain;charset=utf-8" });
+    const blob = new Blob(["\ufeff" + activeDraft], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
@@ -227,13 +276,24 @@ export default function Argument() {
             </div>
           </div>
           <div className="panel">
-            <div className="sub" style={{ marginBottom: 8 }}>草稿（模板拼装）</div>
-            <pre className="answer" style={{ fontSize: 12, maxHeight: 420, overflow: "auto" }}>{draft}</pre>
+            <div className="sub" style={{ marginBottom: 8 }}>
+              {modelDraft ? `草稿（模型生成 · ${draftVerification}）` : "草稿（模板拼装）"}
+              {draftChecks && (
+                <span className="muted mono" style={{ marginLeft: 8 }}>
+                  闸门 {Object.entries(draftChecks).map(([key, ok]) => `${key}:${ok ? "✓" : "✗"}`).join(" ")}
+                </span>
+              )}
+            </div>
+            <pre className="answer" style={{ fontSize: 12, maxHeight: 420, overflow: "auto" }}>{activeDraft}</pre>
             <div className="row" style={{ marginTop: 10 }}>
+              <button onClick={() => void generateDraft()} disabled={draftPending || chosen.length === 0}>
+                {draftPending ? "生成中…" : "生成论证草稿"}
+              </button>
+              {modelDraft && <button onClick={() => { setModelDraft(null); setDraftChecks(null); }}>回到模板</button>}
               <button
                 onClick={async () => {
                   try {
-                    await navigator.clipboard.writeText(draft);
+                    await navigator.clipboard.writeText(activeDraft);
                     setCopied(true);
                     window.setTimeout(() => setCopied(false), 1500);
                   } catch {

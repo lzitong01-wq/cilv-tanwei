@@ -113,6 +113,11 @@ def main() -> int:
     def run(args: list[str], timeout: int) -> subprocess.CompletedProcess:
         return subprocess.run(args, capture_output=True, text=True, timeout=timeout)
 
+    # 连续跑多个浏览器脚本会抢同一默认会话；先静默关掉残留 daemon
+    try:
+        run([cli, "close"], 30)
+    except Exception:
+        pass
     try:
         proc = run([cli, "open", "--browser=%s" % args.browser, base + "/"], 180)
     except Exception as exc:  # noqa: BLE001 - 任何启动失败都报出来

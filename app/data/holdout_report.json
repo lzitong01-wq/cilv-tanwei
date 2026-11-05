@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-04T20:01:22+00:00",
+  "generated_at": "2026-11-05T09:52:21+00:00",
   "seed": 42,
   "contamination_note": "公开 700 的自建 holdout 为事后复算：规则归纳阶段已使用全部 700 题，不能作为未污染泛化证据。官方保密 300 才是真正的跨作品验证。",
   "public_all": {
@@ -70,8 +70,8 @@
     "error_codes": {},
     "located_questions": 300,
     "work_count": 120,
-    "elapsed_ms": 67,
-    "per_question_ms": 0.22,
+    "elapsed_ms": 72,
+    "per_question_ms": 0.24,
     "note": "题面模式：没有标准答案就不评分（`null` 而不是 `false`——「没有答案」和「答错了」是两回事）。这里只报作答成功率与耗时。"
   },
   "private_by_period": {

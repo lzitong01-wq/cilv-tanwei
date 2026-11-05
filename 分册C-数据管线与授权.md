@@ -11,8 +11,10 @@
 |---|---|---|---|---|---|
 | Tier 0 | V5 题库 1000 题 | 700 公开 + 300 保密 | 官方 | 训练/回归/示例素材 | 需赛方许可 |
 | Tier 1 | 官方 API 作品与逐句声律 | 423 篇 | **官方标注（唯一基准）** | 基准解题、校订、官方统计 | 需赛方许可 |
-| Tier 2a | poetry-source 清词 | 26,742 首 | 同源标注复用 + 差集修正 | 检索、图谱、画像、兜底 | 视授权而定 |
-| Tier 2b | chinese-poetry 宋词/元曲 + poetry-source 宋词 | 约 3.7 万首 | 本地今音计算 | 同上 | 视授权而定 |
+| Tier 2a | poetry-source 清词 | 26,742 首 | 同源带调拼音 | 检索、图谱、画像、兜底 | 视授权而定 |
+| Tier 2b | poetry-source 宋词 | 16,449 首 | 同源带调拼音 | 同上 | 视授权而定 |
+| Tier 2c | poetry-source 明/元/唐/五代十国/金/隋/南北朝 | 10,678 首 | 同源带调拼音 | 同上 | 视授权而定 |
+| Tier 2d | chinese-poetry《全宋词》去重新增部分 | 10,832 首 | **本地今音计算**（无拼音） | 同上 | 视授权而定 |
 
 **铁律**：基准解题只允许 Tier 1；Tier 2 唯一进入解题的例外是三层兜底（快照 → live API → Tier 2 定位），且答案显式警示"非官方口径"；各层分别存储、分别展示、禁止混算（ADR-0002）。
 
@@ -66,6 +68,9 @@
 | `Word_Explain.json` | 源自 Wiktionary / 新华 | **不分发** | — |
 | `Ci_Word_Tune.json` / `Word_Tune.json` | 仓库 MIT | 随仓库许可分发 | 署名作者；注意"多"值语义 |
 | chinese-poetry 仓库 | 见其 LICENSE | 按其条款 | 署名 |
+| chinese-poetry《全宋词》22 个 JSON 分片 | 仓库 LICENSE | **原文不分发**，仅构建期输入 | 派生作品表与今音计数随交付；`fetch_chinese_poetry.py` 可复现下载；**元曲不接**（曲非词，避免曲牌污染词牌口径） |
+| poetry-source `source/词/` 全 9 朝代分片（清/宋/明/元/唐/五代十国/金/隋/南北朝） | 仓库 MIT，数据另议 | **原文不分发**，仅构建期输入（`.workbuddy/reference/tier2/`） | 派生索引 `tier2_locator.sqlite3` 随交付；署名 snowtraces/poetry-source |
+| `data/rhyme_index.json`（字 → 《词林正韵》韵部，5,037 字 / 20 部） | 由 `Ci_Word_Tune.json` 派生的**一列事实**，原始字表授权状态见上一行 | **派生事实可分发**；原始字表 `Ci_Word_Tune.json` 不分发 | 由 `scripts/build_rhyme_index.py` 生成，档内已写明来源与边界；只作句末字提示，不判押韵 |
 | fangcun | AGPL-3.0 + Section 7 水印条款 | **不可复制任何代码或数据** | 只读思路 |
 | chinese-poetry-analyzer | 无 LICENSE 文件 | **不可复制** | 无授权即保留所有权利 |
 

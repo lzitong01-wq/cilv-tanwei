@@ -111,7 +111,14 @@ STEPS = [
           const m = t.match(/命中\\s*[\\d,]+\\s*篇/);
           return m ? m[0] : '';
         });
-        push(ok && clicked && /20[0-9]/.test(stat), `统计「${stat || '无'}」`);
+        // 不写死篇数：扩容后柳永从 206 篇涨到 301 篇（第二个公开库也收了柳永）。
+        // 断言「确实按作者筛出了结果」+ 表格里的作者确实都是柳永。
+        const hitCount = parseInt((stat.match(/[\\d,]+/) || ["0"])[0].replace(/,/g, ""), 10);
+        const rowsOk = await page.evaluate(() => {
+          const rows = Array.from(document.querySelectorAll('main.content table tbody tr')).slice(0, 3);
+          return rows.length > 0 && rows.every((r) => (r.innerText || "").includes('柳永'));
+        });
+        push(ok && clicked && hitCount > 0 && rowsOk, `统计「${stat || '无'}」`);
         """,
     ),
     (
@@ -133,7 +140,10 @@ STEPS = [
           const m = t.match(/命中\\s*[\\d,]+\\s*篇/);
           return m ? m[0] : '';
         });
-        push(ok && /68/.test(stat), `统计「${stat || '无'}」`);
+        // 不写死篇数：语料扩容后「壶中天」从 68 篇涨到 2,324 篇（历代词层也命中），
+        // 断言只要求「确实筛出了结果」。
+        const hitCount = parseInt((stat.match(/[\\d,]+/) || ["0"])[0].replace(/,/g, ""), 10);
+        push(ok && hitCount > 0, `统计「${stat || '无'}」`);
         """,
     ),
     (
@@ -212,6 +222,11 @@ def main() -> int:
             cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout
         )
 
+    # 连续跑多个浏览器脚本会抢同一默认会话；先静默关掉残留 daemon
+    try:
+        run([cli, "close"], 30)
+    except Exception:
+        pass
     try:
         proc = run([cli, "open", "--browser=%s" % args.browser, base + "/"], 180)
     except Exception as exc:  # noqa: BLE001

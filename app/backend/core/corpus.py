@@ -28,11 +28,34 @@ TIER2_PREFIX = "t2_"
 TIER1_LABEL = "官方标注"
 TIER2_LABEL = "同源清词（非官方口径）"
 TIER2B_LABEL = "同源宋词（非官方口径）"
+TIER2C_LABEL = "同源历代词（非官方口径）"
+TIER2D_LABEL = "公开整理本·今音计算（非官方口径）"
 TIER_LABEL_BY_PREFIX = {
     "t2a_": TIER2_LABEL,
     "t2b_": TIER2B_LABEL,
+    "t2c_": TIER2C_LABEL,
+    "t2d_": TIER2D_LABEL,
     "t2_": TIER2_LABEL,
 }
+# 层级标识 → 界面标签 / id 前缀。**只留这一处**，别在调用点各写一套判断
+_TIER_BY_SOURCE = {
+    "Tier 2a": (TIER2_LABEL, "t2a_"),
+    "Tier 2b": (TIER2B_LABEL, "t2b_"),
+    "Tier 2c": (TIER2C_LABEL, "t2c_"),
+    "Tier 2d": (TIER2D_LABEL, "t2d_"),
+}
+_TIER_BY_PREFIX = {
+    "t2a_": "Tier 2a",
+    "t2b_": "Tier 2b",
+    "t2c_": "Tier 2c",
+    "t2d_": "Tier 2d",
+    "t2_": "Tier 2a",
+}
+
+
+def tier_label_of(source: str) -> str:
+    """按 `works.tier` 值返回界面标签。新增层级只改 `_TIER_BY_SOURCE` 一处。"""
+    return _TIER_BY_SOURCE.get(source or "", (TIER2_LABEL, "t2a_"))[0]
 
 _CJK = re.compile(r"[㐀-䶿一-鿿]")
 _LOCK = threading.Lock()
@@ -106,7 +129,7 @@ def tier2_counts(settings) -> dict:
         layers = [
             {
                 "tier": row["tier"],
-                "label": TIER2B_LABEL if row["tier"] == "Tier 2b" else TIER2_LABEL,
+                "label": tier_label_of(row["tier"]),
                 "works": row["n"],
             }
             for row in connection.execute(
@@ -146,9 +169,9 @@ def tier_of_id(work_id) -> str:
     """按 id 前缀判层级。"""
     if not isinstance(work_id, str):
         return "Tier 1"
-    for prefix, label in TIER_LABEL_BY_PREFIX.items():
+    for prefix, tier in _TIER_BY_PREFIX.items():
         if work_id.startswith(prefix):
-            return "Tier 2b" if prefix == "t2b_" else "Tier 2a"
+            return tier
     return "Tier 1"
 
 
@@ -162,7 +185,7 @@ def _row_to_item(row) -> dict:
         "period": row["dynasty"],
         "poet": row["poet"],
         "lines": len(lines),
-        "tier_label": TIER2B_LABEL if tier == "Tier 2b" else TIER2_LABEL,
+        "tier_label": tier_label_of(tier),
         "source": tier,
         "ze_ratio": row["ze_ratio"],
         # 与检索模式（search_tier2）保持同一套字段：
@@ -198,7 +221,7 @@ def list_tier2(settings, period: str = "", tune: str = "", poet: str = "", query
         if poet:
             where.append("poet = ?")
             params.append(poet)
-        if tier in ("2a", "2b"):
+        if tier in ("2a", "2b", "2c", "2d"):
             where.append("tier = ?")
             params.append("Tier 2" + tier[-1])
         if query:
@@ -230,7 +253,8 @@ def get_tier2(settings, work_id: str) -> dict:
     try:
         row = connection.execute(
             "SELECT id, title, poet, dynasty, tune, first_line, lines, pinyin_lines, "
-            "ping, ze, ze_ratio, line_count, rhyme_char, tier FROM works WHERE id = ?",
+            "ping, ze, ze_ratio, line_count, rhyme_char, tier, line_tones, sound_source "
+            "FROM works WHERE id = ?",
             (work_id,),
         ).fetchone()
     finally:
@@ -248,7 +272,7 @@ def get_tier2(settings, work_id: str) -> dict:
         "text": "\n".join(lines),
         "first_line": row["first_line"],
         "split_after_line": None,
-        "tier_label": TIER2B_LABEL if tier == "Tier 2b" else TIER2_LABEL,
+        "tier_label": tier_label_of(tier),
         "source": tier,
         "warning": tier2.WARNING,
         "lines": lines,
@@ -258,6 +282,9 @@ def get_tier2(settings, work_id: str) -> dict:
         "ze_ratio": row["ze_ratio"],
         "line_count": row["line_count"],
         "rhyme_char": row["rhyme_char"],
+        # 无拼音层（Tier 2d）把构建期算好的逐句计数带出来，运行时不用再猜读音
+        "line_tones": json.loads(row["line_tones"] or "[]") if "line_tones" in row.keys() else [],
+        "sound_source": row["sound_source"] if "sound_source" in row.keys() else "tier2_pinyin",
     }
 
 
@@ -337,7 +364,7 @@ def search_tier2(settings, query: str, period: str = "", tune: str = "", poet: s
         if poet:
             where.append("poet LIKE ?")
             params.append("%" + poet + "%")
-        if tier in ("2a", "2b"):
+        if tier in ("2a", "2b", "2c", "2d"):
             where.append("tier = ?")
             params.append("Tier 2" + tier[-1])
         filter_and = (" AND " + " AND ".join(where)) if where else ""
@@ -379,7 +406,7 @@ def search_tier2(settings, query: str, period: str = "", tune: str = "", poet: s
                     "poet": meta["poet"],
                     "matched": matched[:3],
                     "hits": len(matched),
-                    "tier_label": TIER2B_LABEL if meta["tier"] == "Tier 2b" else TIER2_LABEL,
+                    "tier_label": tier_label_of(meta["tier"]),
                     "source": meta["tier"],
                 }
             )
@@ -412,7 +439,7 @@ def _matches_from_fts_like(connection, query: str, period: str, tune: str, poet:
     if poet:
         where.append("poet LIKE ?")
         params.append("%" + poet + "%")
-    if tier in ("2a", "2b"):
+    if tier in ("2a", "2b", "2c", "2d"):
         where.append("tier = ?")
         params.append("Tier 2" + tier[-1])
     clause = " WHERE " + " AND ".join(where)
@@ -444,7 +471,7 @@ def tune_stats(settings, tune: str, tier: str = "all") -> dict:
         if official is not None:
             official["tier"] = "1"
             return official
-    if tier in ("2a", "2b", "all"):
+    if tier in ("2a", "2b", "2c", "2d", "all"):
         if not tier2_available(settings):
             if tier == "all":
                 raise ApiError("NOT_FOUND", "词牌不在可用语料内", {"tune": name})
@@ -506,7 +533,7 @@ def _tier2_tune_stats(settings, name: str, tier: str) -> dict | None:
         fragment, tune_params = _tune_filter(connection, name)
         where.append(fragment)
         params.extend(tune_params)
-        if tier in ("2a", "2b"):
+        if tier in ("2a", "2b", "2c", "2d"):
             where.append("tier = ?")
             params.append("Tier 2" + tier[-1])
         clause = " WHERE " + " AND ".join(where)
@@ -588,7 +615,7 @@ def authors(settings, keyword: str = "", limit: int = 50, tier: str = "") -> dic
             if key:
                 where.append("poet LIKE ?")
                 params.append("%" + key + "%")
-            if tier in ("2a", "2b"):
+            if tier in ("2a", "2b", "2c", "2d"):
                 where.append("tier = ?")
                 params.append("Tier 2" + tier[-1])
             clause = (" WHERE " + " AND ".join(where)) if where else ""
@@ -641,7 +668,11 @@ def authors(settings, keyword: str = "", limit: int = 50, tier: str = "") -> dic
 
 
 def tier2_line_stats(work: dict) -> list[dict]:
-    """Tier 2 逐句字数与平仄计数（**同源拼音口径，非官方**）。
+    """Tier 2 逐句字数与平仄计数（**非官方**）。
+
+    带调拼音层（Tier 2a/b/c）从 `pinyin_lines` 数调号；
+    无拼音的文本层（Tier 2d）优先用构建期存好的 `line_tones`（本地今音计算）。
+    两者口径不同，界面按 `sound_source` 分别标注，绝不混算。
 
     口径与官方 API 对齐：**只有有效字音标注的字参与统计**（官方文档：
     「仅有有效字音标注的句子参与统计，标点和空白不计」）。所以
@@ -653,12 +684,17 @@ def tier2_line_stats(work: dict) -> list[dict]:
     """
     lines = work.get("lines") or []
     pinyin_lines = work.get("pinyin_lines") or []
+    line_tones = work.get("line_tones") or []
     out = []
     for index, text in enumerate(lines):
         total_chars = _cjk_count(text)
-        tones = tier2.tones_of(pinyin_lines[index]) if index < len(pinyin_lines) else []
-        ping = sum(1 for tone in tones if tone in (1, 2))
-        ze = sum(1 for tone in tones if tone in (3, 4))
+        if index < len(line_tones) and line_tones[index]:
+            # 无拼音层（Tier 2d）：构建期用本地字典算好的 [平, 仄]
+            ping, ze = int(line_tones[index][0]), int(line_tones[index][1])
+        else:
+            tones = tier2.tones_of(pinyin_lines[index]) if index < len(pinyin_lines) else []
+            ping = sum(1 for tone in tones if tone in (1, 2))
+            ze = sum(1 for tone in tones if tone in (3, 4))
         counted = ping + ze
         out.append(
             {
@@ -707,7 +743,7 @@ def load_work(settings, work_id) -> dict:
                 "lines": lines,
             },
             "_source": "同源带调拼音（非官方口径）",
-            "_tier_label": TIER2B_LABEL if work["source"] == "Tier 2b" else TIER2_LABEL,
+            "_tier_label": tier_label_of(work["source"]),
         }
     from .store import Store  # 延迟导入避免循环依赖
 

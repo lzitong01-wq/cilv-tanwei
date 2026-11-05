@@ -1,13 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, type WorkSummary } from "./api";
 
-type Tier = "all" | "1" | "2a" | "2b";
+type Tier = "all" | "1" | "2a" | "2b" | "2c" | "2d";
 
-const TIERS: { key: Tier; label: string; count: string; hint: string }[] = [
-  { key: "all", label: "全部", count: "43,614 首", hint: "三层合并检索，官方标注优先" },
-  { key: "1", label: "官方标注", count: "423 首", hint: "带官方逐句声律标注，唯一基准口径" },
-  { key: "2a", label: "同源清词", count: "26,742 首", hint: "poetry-source 清词，逐句平仄按带调拼音统计，非官方口径" },
-  { key: "2b", label: "同源宋词", count: "16,449 首", hint: "poetry-source 宋词，逐句平仄按带调拼音统计，非官方口径" }
+// 计数**不写死**：语料扩容过一次（43,614 → 54,292），写死数字立刻过时。
+// 各层作品数统一从 /api/meta 取，新增层级只需在后端 meta 里多给一行。
+const TIERS: { key: Tier; label: string; hint: string }[] = [
+  { key: "all", label: "全部", hint: "五层合并检索，官方标注优先" },
+  { key: "1", label: "官方标注", hint: "带官方逐句声律标注，唯一基准口径" },
+  { key: "2a", label: "同源清词", hint: "poetry-source 清词，逐句平仄按带调拼音统计，非官方口径" },
+  { key: "2b", label: "同源宋词", hint: "poetry-source 宋词，逐句平仄按带调拼音统计，非官方口径" },
+  { key: "2c", label: "同源历代词", hint: "明/元/唐/五代/金/隋/南北朝，逐句平仄按带调拼音统计，非官方口径" },
+  { key: "2d", label: "公开整理本·今音", hint: "chinese-poetry《全宋词》去重新增部分，无拼音、声律由本地今音计算，非官方口径" }
 ];
 
 type Props = {
@@ -28,7 +32,20 @@ export default function WorkPicker({ value, onChange, label = "选择作品" }: 
   const [items, setItems] = useState<WorkSummary[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [tierCounts, setTierCounts] = useState<Record<string, number>>({});
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    api.meta().then((meta) => {
+      const counts: Record<string, number> = {};
+      for (const item of meta.tiers ?? []) {
+        const key = item.tier === "Tier 1" ? "1" : item.tier.replace("Tier ", "");
+        counts[key] = item.works;
+      }
+      counts.all = meta.corpus_total ?? (meta.works ?? 0) + (meta.tier2?.works ?? 0);
+      setTierCounts(counts);
+    }).catch(() => undefined);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -75,7 +92,7 @@ export default function WorkPicker({ value, onChange, label = "选择作品" }: 
           </button>
         ))}
         <span className="muted" style={{ fontSize: 11 }}>
-          {TIERS.find((item) => item.key === tier)?.count}
+          {tierCounts[tier] != null ? `${tierCounts[tier].toLocaleString()} 首` : ""}
         </span>
       </div>
 
@@ -84,7 +101,7 @@ export default function WorkPicker({ value, onChange, label = "选择作品" }: 
         value={keyword}
         onChange={(event) => setKeyword(event.target.value)}
         onFocus={() => setOpen(true)}
-        placeholder="搜题名、词人或词牌（43,614 首全库）…"
+        placeholder="搜题名、词人或词牌（全库）…"
         aria-label="搜索作品"
       />
 

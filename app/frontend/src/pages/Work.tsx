@@ -278,6 +278,15 @@ export default function Work() {
                     </div>
                     <div className="mono muted" style={{ marginLeft: 4 }}>
                       第 {line.line_no} 句 · {line.character_count} 字 · 平 {line.ping_count} · 仄 {line.ze_count}
+                      {line.line_end?.line_end_char && (
+                        <>
+                          {" · 句末字 "}
+                          <b>{line.line_end.line_end_char}</b>
+                          {line.line_end.rhyme_found
+                            ? ` · ${line.line_end.rhyme}`
+                            : " · 韵部未收录"}
+                        </>
+                      )}
                     </div>
                     {line.line_no === doc.split_after_line && (
                       <div className="split" aria-hidden="true">

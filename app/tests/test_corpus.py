@@ -55,7 +55,11 @@ class CorpusTest(unittest.TestCase):
             )
             self.assertGreater(body["corpus_total"], 43000)
             tiers = [item["tier"] for item in body["tiers"]]
-            self.assertEqual(tiers, ["Tier 1", "Tier 2a", "Tier 2b"])
+            # 官方层在前，其余按 tier 值排；新增朝代只加 Tier 2c，不写死层数
+            self.assertEqual(tiers[0], "Tier 1")
+            self.assertEqual(tiers, sorted(tiers, key=lambda name: (name != "Tier 1", name)))
+            self.assertTrue(official["official"])
+            self.assertFalse(any(item.get("official") for item in body["tiers"][1:]))
 
     def test_works_tier2_lists_and_totals(self):
         if not self.available:
@@ -80,10 +84,12 @@ class CorpusTest(unittest.TestCase):
         big = self.client.get("/api/works?tier=all&page_size=20").get_json()["data"]
         small = self.client.get("/api/works?tier=all&page_size=5").get_json()["data"]
         self.assertEqual(big["total"], small["total"])
-        official = self.client.get("/api/works?tier=1&page_size=1").get_json()["data"]["total"]
-        clear = self.client.get("/api/works?tier=2a&page_size=1").get_json()["data"]["total"]
-        song = self.client.get("/api/works?tier=2b&page_size=1").get_json()["data"]["total"]
-        self.assertEqual(big["total"], official + clear + song)
+        # 不能写死 43,614：语料扩容（新增 Tier 2c 历代词）后总数会变。
+        # 用 /api/meta 报的分层规模相加，再与 tier=all 的 total 对账。
+        tiers = self.client.get("/api/meta").get_json()["data"]["tiers"]
+        expected = sum(item["works"] for item in tiers)
+        self.assertEqual(big["total"], expected)
+        self.assertEqual(small["total"], expected)
 
     def test_works_accepts_page_size_120(self):
         """单篇解析页一次取 120 条——上限曾经是 100，直接 400，列表整个是空的。
