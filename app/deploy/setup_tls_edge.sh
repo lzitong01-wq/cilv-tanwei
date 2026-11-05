@@ -17,8 +17,31 @@ KEY="$CERT_DIR/server.key"
 CN="${TLS_CN:-10.27.80.204}"
 NGINX_CONF=/etc/nginx/conf.d/cilv-tls.conf
 LOG_TAG=cilv-tls
+PEER_IP="${PEER_IP:-10.27.80.205}"   # 同网段参照机，用于判断校网 ACL 的放行口径
 
 log() { echo "[$(date +%H:%M:%S)] [$LOG_TAG] $*"; }
+
+# ══ 诊断 0：先说清楚「为什么校园网访问不到」═════════════════════════
+# 现象：同网段机器 A（$PEER_IP）的 80/443 通、8080/22 全超时；
+#       本机所有端口从客户端侧全超时。
+# 两种可能，处理方式不同：
+#   (a) 校园网 ACL 只放行 80/443  → 本机开 443 即可解决（但若本机 IP 不在 ACL 白名单则仍需网管开通）
+#   (b) 本机 firewalld 拦了入站   → 本脚本放行 443 即可解决
+# 下面两项输出用于区分。
+log "════ 诊断开始 ════"
+if command -v firewall-cmd >/dev/null 2>&1; then
+  log "firewalld 运行中；当前放行端口：$(firewall-cmd --list-ports 2>/dev/null | tr '\n' ' ')"
+  log "活动网卡与区域："
+  firewall-cmd --get-active-zones 2>/dev/null | sed 's/^/    /'
+else
+  log "firewalld 未安装或未运行（入站不受其限制）"
+fi
+log "本机自测（绕过校园网）："
+log "  curl 127.0.0.1:${APP_PORT} -> $(curl -s --max-time 5 -o /dev/null -w '%{http_code}' "http://127.0.0.1:${APP_PORT}/api/health" 2>/dev/null || echo 000)"
+log "  curl ${PEER_IP}:80 -> $(curl -s --max-time 5 -o /dev/null -w '%{http_code}' "http://${PEER_IP}/" 2>/dev/null || echo 000)"
+log "  curl ${PEER_IP}:443 -> $(curl -s -k --max-time 5 -o /dev/null -w '%{http_code}' "https://${PEER_IP}/" 2>/dev/null || echo 000)"
+log "  （参照机 80/443 能通 = 校网 ACL 确实放行这两个端口）"
+log "════ 诊断结束 ════"
 
 # ── 1. 证书：自签（SAN 含本机 IP，浏览器会提示"不安全"，点"继续访问"即可）──
 mkdir -p "$CERT_DIR"
@@ -184,8 +207,14 @@ sleep 3
 CODE=$(curl -sk --max-time 12 -o /dev/null -w "%{http_code}" "https://127.0.0.1:${TLS_PORT}/api/health" 2>/dev/null || echo 000)
 log "本机自检 https://127.0.0.1:${TLS_PORT}/api/health -> HTTP ${CODE}"
 if [ "$CODE" = "200" ]; then
-  log "════ 443 入口就绪：https://${CN}/ ════"
+  log "════ 443 入口就绪 ════"
+  log "  校园网内请访问：https://${CN}/"
+  log "  证书为自签（SAN 含 ${CN}），浏览器提示「不安全」时点「继续访问」即可。"
+  log "  若客户端仍打不开：说明校网 ACL 按 IP 放行而本机 ${CN} 未在白名单，"
+  log "  需请网络管理为 ${CN} 开通 80/443 入站（这一步本脚本无法代替）。"
 else
-  log "⚠ 自检未通过，检查 nginx/cilv-tls-proxy 日志"
+  log "⚠ 自检未通过，检查 nginx / cilv-tls-proxy 日志："
+  log "    journalctl -u nginx -n 20 --no-pager"
+  log "    journalctl -u cilv-tls-proxy -n 20 --no-pager"
   exit 1
 fi
