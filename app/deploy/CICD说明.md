@@ -217,8 +217,60 @@ journalctl -u cilv-deploy-agent -f
 ## 5. 已知限制（如实记录）
 
 - **GitHub API 未认证配额 60/小时**：服务器轮询本身用不到多少，但若加多个仓库要留意。配 `GITHUB_TOKEN`（Release 读取权限即可）可提到 5000/小时。
-- **Release 资产大于约 4 MB 时下载会截断**：`deploy_agent.sh` 用 `curl -C -` 续传兜底，但若服务端不支持 Range 仍会失败。当前包 20.2 MB，压缩后下载时间较长（服务器出网实测约 40 KB/s，约 8 分钟）。**如果演示时间紧，建议首次投递用分块传输，之后增量发布。**
-- **服务器没有 Node.js**：前端必须在 Actions 或本机构建后随包带走（`app/deploy/README.md` §3 已有说明）。若要服务器端自建前端，需 `dnf install nodejs`，但 Anolis 源里的 Node 版本通常偏旧。
-- **`tier2_locator.sqlite3` 占 30.5 MB**（解压后 48.2 MB 中最大的一块）：它是构建期产物，已随包分发，不在 CI 里重新生成。若要减小包体，需改成分库下载或用 `sqlite3 .dbconfig` 压缩。
-- **本工作区当前不是 git 仓库**：上传前需 `git init`，并确认 `.gitignore` 已排除 `node_modules/`、`.venv/`、`.fontsrc/`、`__pycache__/`（`build_package.py` 已排除这些，但仓库本身要单独配 `.gitignore`）。
-- **`GITHUB_TOKEN` 未配置时 Actions 也会正常发 Release**（`GITHUB_TOKEN` 是 Actions 内置的），但**服务器端**的 `GITHUB_TOKEN` 是另一回事，需要单独配在 `/etc/cilv/deploy.env`。
+- **Release 资产大于约 4 MB 时下载会截断**：`deploy_agent.sh` 用 2 MB 分片 + Range 请求 + 断点续传兜底。当前包 88 MB，服务器出网实测约 35 KB/s，约需 20–40 分钟。**如果演示时间紧，建议首次投递用分块传输（`~/.ssh/split_transfer.sh`），之后走自动部署。**
+- **服务器到 `github.com` 域名可能连不上**：实测 `github.com` 超时（000）但 `api.github.com` 通（200）。资产实际托管在 `release-assets.githubusercontent.com`，而 `browser_download_url` 必须先连 `github.com` 才能跳转过去 → **部署代理改用 API 端点**（`https://api.github.com/repos/{o}/{r}/releases/assets/{id}` + `Accept: application/octet-stream`），实测返回 206 + 精确字节数。
+- **连续失败 3 次会停止自动部署**：`MAX_FAILURES` 保护，避免网络抖动时无限重试刷日志。恢复方法：
+  ```bash
+  ssh 龙蜥 'printf "DEPLOYED_TAG=<当前版本>\nFAIL_COUNT=0\n" > /opt/cilv/.deploy-state'
+  ```
+  **注意**：如果网络故障导致计数满了，代理会「装作没事」——它不部署了，但也不报错。看到服务器上的版本没更新，先查 `/opt/cilv/.deploy-state` 里的 `FAIL_COUNT`。
+- **服务器没有 Node.js**：前端必须在 CI 或本机构建后随包带走（`app/deploy/README.md` §3 已有说明）。若要服务器端自建前端，需 `dnf install nodejs`，但 Anolis 源里的 Node 版本通常偏旧。
+- **`tier2_locator.sqlite3` 占 165 MB**（解压后是交付包里最大的一块）：它是构建期产物，已随包分发，不在 CI 里重新生成。若要减小包体，需改成分库下载或用 `sqlite3 .dbconfig` 压缩。
+- **服务器端 `GITHUB_TOKEN` 是另一回事**：Actions 内置的 `GITHUB_TOKEN` 与它无关；服务器读公开仓库不需要凭据，配 token 只是为了提高 API 配额。
+
+---
+
+## 5.1 首次部署实跑暴露的 6 个真问题（都已修并提交）
+
+按发现顺序：
+
+| # | 现象 | 根因 | 修法 |
+|---|---|---|---|
+| 1 | 解压后 `app/` 变成 `backend/`，结构检查失败 → **部署静默失败**，软链不切换 | `tar --strip-components=1` 把交付包顶层剥掉了 | 不加该参数；同时校验 `app/` 与 `data/` 存在 |
+| 2 | `Failed to restart cilv.service: Interactive authentication required` | 代理以 `cilv-deploy` 运行，polkit 要求交互认证 | 改用 `sudo -n systemctl` + `/etc/sudoers.d/cilv-deploy` 白名单 |
+| 3 | `sudo: 需要密码`（改了脚本仍失败） | **sudo 按完整路径匹配命令**，`systemctl` 在本机是 `/bin/systemctl` 与 `/usr/bin/systemctl` 两个名字，只写一个不匹配 | 两条路径都写进 sudoers |
+| 4 | 下载 82 MB 后整包消失，下轮从零重下 | 大小校验失败时 `rm -rf "$workdir"` 删掉分片 | 校验失败时**保留分片**供断点续传 |
+| 5 | Release 上传成功但脚本报「下载校验失败」 | Git Bash 的 `/tmp` 路径映射让 python 读不到 curl 的输出文件，`browser_download_url` 解析为空 | 临时文件改放工作区 `.tmp/`；下载地址解析加两层兜底 |
+| 6 | 代理发现新 Release 但下载一直失败、刷进度条 | 服务器连不上 `github.com`（000 超时），探测失败后走了「单次下载」回退分支 | 改用 API 端点（`api.github.com`）+ `Accept: application/octet-stream` |
+
+另外：`install_cicd.sh` 原本用 `git clone` 拉交付物，但交付包是**构建产物**不是源码树，
+已改为从 GitHub Release 下载（与 `deploy_agent.sh` 路径一致），并补上 sudoers 配置。
+
+---
+
+## 5.2 为什么用本机脚本发版而不是 GitHub Actions
+
+本机 GitHub 凭据是 **OAuth App token**（scopes: `repo`、`delete_repo`、`admin:org` 等），
+**缺 `workflow` scope**。GitHub 会拒绝任何写入 `.github/workflows/` 的操作：
+
+```
+refusing to allow an OAuth App to create or update workflow
+`.github/workflows/build-release.yml` without `workflow` scope
+```
+
+git push 被拒、REST API 返回 404、推独立分支也被拒（**仓库级硬限制**），
+且 OAuth App 的 scope 在授权时确定、事后无法追加。
+
+因此发版改由本机 `scripts/release.sh` 调 Release API 完成，**链路效果相同**：
+
+```
+scripts/release.sh  →  GitHub Release（资产即交付包 tar.gz）
+                    →  服务器代理轮询发现 → 分片下载 → 切软链 → 重启 → 健康检查
+```
+
+`.github/workflows/build-release.yml` 保留在仓库外的本地备份
+（`~/.ssh/ci-backup/build-release.yml`），将来换成带 `workflow` scope 的
+Personal Access Token 后即可切回 Actions。
+
+**Release 资产名必须纯 ASCII**——中文名会被 GitHub 判 `400 Bad request`（返回的是 HTML 错误页，不是 JSON）。
+

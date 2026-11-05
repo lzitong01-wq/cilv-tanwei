@@ -91,7 +91,22 @@ fetch_asset_url() {
 
     local body
     body=$(curl -fsS --max-time 30 "${auth[@]}" "$url" 2>/dev/null) || return 0
-    _json_get "$body" "assets"
+
+    # 优先用 API 端点（api.github.com + Accept: application/octet-stream）。
+    # 不用 browser_download_url：它要先连 github.com 才能 302 到
+    # release-assets.githubusercontent.com，而 github.com 这个域名
+    # 在部分网络下连不上（实测 000 超时），api.github.com 却通。
+    # 实测 API 端点 Range 请求返回 206 + 精确字节数，完全可用。
+    printf '%s' "$body" | python3 -c "
+import json,sys
+try:
+    d=json.load(sys.stdin)
+except Exception:
+    sys.exit(0)
+for a in d.get('assets', []):
+    if a.get('name','').endswith('.tar.gz') and a.get('url'):
+        print(a['url']); break
+" 2>/dev/null
 }
 
 # ---------- 下载（分片 + 断点续传）----------
@@ -102,20 +117,21 @@ download_asset() {
     local url="$1" dest="$2"
     local workdir="${dest}.parts"
     local chunk_size=$((2 * 1024 * 1024))
+    # API 端点必须带这个 Accept 头才会返回二进制而不是 JSON 元信息
+    local accept=(-H "Accept: application/octet-stream")
 
     mkdir -p "$workdir"
 
-    # 拿总大小。
-    # 注意：GitHub Release 资产会 302 到 S3，HEAD 请求返回 content-length: 0，
-    # 所以用「Range: bytes=0-0」的 GET 探真实大小（响应头 Content-Range 里有总长）。
+    # 拿总大小：用「Range: bytes=0-0」的 GET 探真实大小
+    # （响应头 Content-Range 里有总长；HEAD 拿不到，会返回 0）。
     local total
-    total=$(curl -fsSL --max-time 30 -r 0-0 -D - -o /dev/null "$url" 2>/dev/null \
+    total=$(curl -fsSL --max-time 30 "${accept[@]}" -r 0-0 -D - -o /dev/null "$url" 2>/dev/null \
             | tr -d '\r' | grep -i '^content-range:' | tail -1 \
             | awk -F/ '{print $2}' | tr -d ' ')
 
     if [ -z "$total" ] || ! [ "$total" -gt 0 ] 2>/dev/null; then
         log "无法获取资产总大小（Content-Range 缺失），回退为单次下载"
-        curl -fL --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 1800 \
+        curl -fsSL "${accept[@]}" --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 1800 \
              -o "$dest" "$url" && return 0
         return 1
     fi
@@ -141,7 +157,7 @@ download_asset() {
         for attempt in 1 2 3 4 5; do
             # -r 指定范围取这一片；失败重试只针对这片
             # -sS 静默进度条（否则日志被刷屏），-f 出错返回非零
-            if curl -fsSL --connect-timeout 30 --max-time 300 \
+            if curl -fsSL "${accept[@]}" --connect-timeout 30 --max-time 300 \
                     -r "${offset}-$((offset + chunk_size - 1))" \
                     -o "$part" "$url"; then
                 break
