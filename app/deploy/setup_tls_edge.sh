@@ -45,6 +45,16 @@ log "════ 诊断结束 ════"
 
 # ── 1. 证书：自签（SAN 含本机 IP，浏览器会提示"不安全"，点"继续访问"即可）──
 mkdir -p "$CERT_DIR"
+if ! command -v openssl >/dev/null 2>&1; then
+  log "未找到 openssl 命令，尝试安装…"
+  if command -v dnf >/dev/null 2>&1; then
+    dnf install -y openssl >/tmp/cilv-openssl-install.log 2>&1 || true
+  elif command -v yum >/dev/null 2>&1; then
+    yum install -y openssl >/tmp/cilv-openssl-install.log 2>&1 || true
+  fi
+  command -v openssl >/dev/null 2>&1 || { log "✗ 无法安装 openssl，无法生成证书"; exit 1; }
+  log "  ✓ openssl 就绪"
+fi
 if [ ! -f "$CERT" ] || [ ! -f "$KEY" ]; then
   log "生成自签证书（CN=$CN）…"
   openssl req -x509 -nodes -newkey rsa:2048 -days 3650 \
