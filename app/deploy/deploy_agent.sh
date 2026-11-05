@@ -117,8 +117,11 @@ download_asset() {
     local url="$1" dest="$2"
     local workdir="${dest}.parts"
     local chunk_size=$((2 * 1024 * 1024))
-    # API 端点必须带这个 Accept 头才会返回二进制而不是 JSON 元信息
+    # API 端点必须带 Accept 头才会返回二进制而不是 JSON 元信息；
+    # **且必须带 Authorization 头**——实测不带就 403（即使仓库是公开的，
+    # assets API 端点仍要求认证）。两个头缺一不可。
     local accept=(-H "Accept: application/octet-stream")
+    [ -n "$GITHUB_TOKEN" ] && accept+=(-H "Authorization: Bearer $GITHUB_TOKEN")
 
     mkdir -p "$workdir"
 
