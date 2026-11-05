@@ -153,7 +153,7 @@ export default function EvalCenter() {
     URL.revokeObjectURL(url);
   }
 
-  function exportAnswers(format: "jsonl" | "csv") {
+  function exportAnswers(format: "jsonl" | "csv" | "xlsx") {
     if (!job) return;
     window.open(`/api/eval/${job.id}/export?format=${format}`, "_blank");
   }
@@ -208,7 +208,7 @@ export default function EvalCenter() {
         <div className="row">
           <input
             type="file"
-            accept=".jsonl,.ndjson,.csv,.json,application/json,text/csv"
+            accept=".jsonl,.ndjson,.csv,.json,.xlsx,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             onChange={(event) => setFile(event.target.files?.[0] ?? null)}
             aria-label="选择验证集文件"
           />
@@ -216,6 +216,7 @@ export default function EvalCenter() {
             {uploading ? "上传中…" : "上传并开始"}
           </button>
           <button onClick={downloadExample}>下载格式示例</button>
+          <span className="muted" style={{ marginLeft: 8 }}>也支持模板4 的 .xlsx（两列：问题 / 预期答案）</span>
         </div>
         <div className="muted" style={{ marginTop: 8, fontSize: 11 }}>
           每题至少要有「问题」字段；「题号」「类别」「标准答案」可选。列名兼容
@@ -335,7 +336,8 @@ export default function EvalCenter() {
           <div className="row" style={{ marginTop: 10 }}>
             <button onClick={() => exportAnswers("jsonl")}>导出回答（JSONL）</button>
             <button onClick={() => exportAnswers("csv")}>导出回答（CSV）</button>
-            <span className="muted">导出内容含题号、类别、回答与字段，供外部比对</span>
+            <button onClick={() => exportAnswers("xlsx")}>导出结果 Excel</button>
+            <span className="muted">Excel 按模板5 五列：问题 / 预期答案 / 智能体实际回复 / 耗时(秒) / 状态</span>
           </div>
 
           <h2>分类别</h2>

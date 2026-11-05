@@ -39,7 +39,7 @@ FIELD_ALIASES: dict[str, tuple[str, ...]] = {
     "qid": ("题号", "qid", "QID", "id", "ID", "题号ID"),
     "category": ("类别", "category", "题型", "type"),
     "question": ("问题", "question", "query", "prompt", "题目"),
-    "gold": ("标准答案", "answer", "gold", "参考答案", "标准输出"),
+    "gold": ("标准答案", "预期答案", "answer", "gold", "参考答案", "标准输出"),
     "boundary": ("智能体边界标签", "边界标签", "boundary"),
     "level": ("层级", "level", "tier"),
     "difficulty": ("难度", "difficulty"),
@@ -108,6 +108,35 @@ def _parse_jsonl(text: str) -> list[dict]:
         if isinstance(row, dict):
             rows.append(row)
     return rows
+
+
+def xlsx_to_csv(data: bytes) -> str:
+    """把模板4 的 xlsx（两列：问题 / 预期答案）转成 CSV 文本。
+
+    转文本后直接复用 `parse_dataset()` 的 CSV 分支与字段别名，
+    不另写一套解析逻辑——上传格式怎么变，规范化与评分口径都只有一处。
+    """
+    try:
+        from openpyxl import load_workbook
+    except ImportError as exc:  # 部署机没装依赖时明确报错，不静默降级
+        raise ApiError(
+            "KNOWLEDGE_UNAVAILABLE",
+            "缺少 openpyxl，无法读取 Excel 验证集",
+            {"hint": "pip install openpyxl==3.1.5（离线 wheel 在 app/deploy/wheels/）"},
+        ) from exc
+    try:
+        workbook = load_workbook(io.BytesIO(data), read_only=True, data_only=True)
+        sheet = workbook.active
+        buffer = io.StringIO()
+        writer = csv.writer(buffer)
+        for row in sheet.iter_rows(values_only=True):
+            writer.writerow(["" if value is None else value for value in row])
+        workbook.close()
+        return buffer.getvalue()
+    except ApiError:
+        raise
+    except Exception as exc:
+        raise ApiError("INVALID_INPUT", "Excel 验证集读取失败", {"detail": repr(exc)}) from exc
 
 
 def parse_dataset(text: str, filename: str = "") -> tuple[list[dict], dict]:
@@ -267,10 +296,13 @@ def evaluate_rows(store, rows: list[dict], limit: int | None = None, progress=No
             bucket["raw"] += int(raw_ok) if raw_ok is not None else 0
             bucket["normalized"] += int(normalized_ok) if normalized_ok is not None else 0
             bucket["proxy"] += int(proxy_ok) if proxy_ok is not None else 0
-            bucket["total_ms"] += (time.perf_counter() - item_started) * 1000
+            item_ms = (time.perf_counter() - item_started) * 1000
+            bucket["total_ms"] += item_ms
             items.append(
                 {
                     "qid": row.get("题号") or row.get("qid"),
+                    "question": row.get("问题") or row.get("question") or "",
+                    "elapsed_ms": round(item_ms, 1),
                     "category": category,
                     "status": "ok",
                     "raw": raw_ok,
@@ -289,6 +321,8 @@ def evaluate_rows(store, rows: list[dict], limit: int | None = None, progress=No
             items.append(
                 {
                     "qid": row.get("题号") or row.get("qid"),
+                    "question": row.get("问题") or row.get("question") or "",
+                    "elapsed_ms": round((time.perf_counter() - item_started) * 1000, 1),
                     "category": category,
                     "status": exc.code,
                     "raw": False if gold else None,
@@ -399,15 +433,72 @@ def _run_rows(job_id: str, store, rows: list[dict], limit: int | None, report: d
         JOBS[job_id].update({"state": "failed", "error": {"code": "INTERNAL", "message": repr(exc)}})
 
 
-def export_items(job_id: str, fmt: str = "jsonl") -> tuple[str, str, str]:
+def _export_xlsx(job_id: str, items: list[dict]) -> tuple:
+    """按模板5 导出五列：问题 | 预期答案 | 智能体实际回复 | 耗时(秒) | 状态。"""
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+    except ImportError as exc:
+        raise ApiError(
+            "KNOWLEDGE_UNAVAILABLE",
+            "缺少 openpyxl，无法导出 Excel",
+            {"hint": "pip install openpyxl==3.1.5（离线 wheel 在 app/deploy/wheels/）"},
+        ) from exc
+    book = Workbook()
+    sheet = book.active
+    sheet.title = "验证集结果"
+    headers = ["问题", "预期答案", "智能体实际回复", "耗时(秒)", "状态"]
+    sheet.append(headers)
+    for cell in sheet[1]:
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="8C2F27")
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+    for item in items:
+        status = item.get("status") or ""
+        if status == "ok":
+            label = "正常"
+        elif status in ("TIMEOUT", "timeout"):
+            label = "超时"
+        elif status:
+            label = "报错"
+        else:
+            label = "未评分"
+        answer = item.get("answer") or ""
+        sheet.append([
+            item.get("question") or "",
+            item.get("gold") or "",
+            answer if answer else "（空）",
+            round((item.get("elapsed_ms") or 0) / 1000, 2),
+            label,
+        ])
+    widths = [42, 50, 50, 12, 12]
+    for index, width in enumerate(widths, 1):
+        sheet.column_dimensions[chr(64 + index)].width = width
+    sheet.freeze_panes = "A2"
+    for row in sheet.iter_rows(min_row=2):
+        for cell in row:
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+    buffer = io.BytesIO()
+    book.save(buffer)
+    return (
+        buffer.getvalue(),
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "验证集结果_%s.xlsx" % job_id,
+    )
+
+
+def export_items(job_id: str, fmt: str = "jsonl") -> tuple:
     """导出逐题回答（供外部拿回答去对答案）。
 
-    返回 (内容, MIME, 文件名)。格式 `jsonl`（每题一行）或 `csv`（表头 + 行）。
+    返回 (内容, MIME, 文件名)。格式 `jsonl` / `csv` 返回 str，
+    `xlsx`（模板5 五列）返回 bytes。
     """
     job = JOBS.get(job_id)
     if job is None:
         raise ApiError("NOT_FOUND", "跑分任务不存在", {"job_id": job_id})
     items = job["items"]
+    if fmt == "xlsx":
+        return _export_xlsx(job_id, items)
     if fmt == "csv":
         buffer = io.StringIO()
         writer = csv.writer(buffer)

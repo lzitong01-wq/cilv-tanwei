@@ -979,18 +979,25 @@ def create_app(settings: Settings | None = None) -> Flask:
         """上传标准化验证集，逐题调用内部接口作答。
 
         两种提交方式：
-        - `multipart/form-data`，字段名 `file`（.jsonl / .csv / .json）；
+        - `multipart/form-data`，字段名 `file`（.jsonl / .csv / .json / **.xlsx**）；
         - 直接把文件内容作为请求体（`text/plain`、`application/json` 等）。
 
         **题面可以不带标准答案**——那种情况只产出回答、不算分，
         回答可用 `GET /api/eval/{job_id}/export` 取走，去与官方答案比对。
+        `.xlsx` 按模板4 读两列「问题 / 预期答案」，导出按模板5 五列。
         """
         filename = ""
         text = ""
         uploaded = request.files.get("file")
         if uploaded is not None:
             filename = uploaded.filename or ""
-            text = uploaded.read().decode("utf-8-sig", errors="replace")
+            raw = uploaded.read()
+            if filename.lower().endswith((".xlsx", ".xlsm")):
+                # 模板4 的 Excel 验证集：转 CSV 文本后复用同一套解析与评分链
+                text = evaluator.xlsx_to_csv(raw)
+                filename = filename.rsplit(".", 1)[0] + ".csv"
+            else:
+                text = raw.decode("utf-8-sig", errors="replace")
         else:
             filename = request.args.get("filename") or ""
             text = request.get_data(as_text=True) or ""
@@ -1020,12 +1027,13 @@ def create_app(settings: Settings | None = None) -> Flask:
 
     @app.get("/api/eval/<job_id>/export")
     def eval_export(job_id: str):
-        """导出逐题回答（JSONL 或 CSV），供外部与官方答案比对。"""
+        """导出逐题回答（JSONL / CSV / **XLSX**），供外部与官方答案比对。"""
         fmt = (request.args.get("format") or "jsonl").strip().lower()
-        if fmt not in ("jsonl", "csv"):
-            raise ApiError("INVALID_INPUT", "format 取 jsonl 或 csv", {"format": fmt})
+        if fmt not in ("jsonl", "csv", "xlsx"):
+            raise ApiError("INVALID_INPUT", "format 取 jsonl / csv / xlsx", {"format": fmt})
         content, mimetype, filename = evaluator.export_items(job_id, fmt)
-        response = Response(content.encode("utf-8"), mimetype=mimetype)
+        body = content if isinstance(content, bytes) else content.encode("utf-8")
+        response = Response(body, mimetype=mimetype)
         response.headers["Content-Disposition"] = "attachment; filename*=UTF-8''%s" % urllib.parse.quote(
             filename
         )

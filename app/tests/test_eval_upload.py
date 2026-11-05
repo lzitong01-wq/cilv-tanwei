@@ -190,3 +190,84 @@ class UploadEndpointTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class ExcelTemplateTest(unittest.TestCase):
+    """模板4 上传 / 模板5 导出：Excel 全链路。
+
+    模板4 两列「问题 / 预期答案」；模板5 五列
+    「问题 / 预期答案 / 智能体实际回复 / 耗时(秒) / 状态」。
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.client = create_app(load_settings()).test_client()
+
+    @staticmethod
+    def _template4_bytes(rows=None):
+        from openpyxl import Workbook
+
+        book = Workbook()
+        sheet = book.active
+        sheet.append(["问题", "预期答案"])
+        for question, gold in (rows or [(QUESTION, "某个答案"), ("请比较最长句的句序", "另一个答案")]):
+            sheet.append([question, gold])
+        buffer = io.BytesIO()
+        book.save(buffer)
+        return buffer.getvalue()
+
+    def _wait(self, job_id: str, timeout: float = 30) -> None:
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            body = self.client.get("/api/eval/" + job_id).get_json()["data"]
+            if body["state"] != "running":
+                return
+            time.sleep(0.05)
+        self.fail("验证集任务超时未完成")
+
+    def test_upload_template4_xlsx_then_export_template5(self):
+        response = self.client.post(
+            "/api/eval/upload",
+            data={"file": (io.BytesIO(self._template4_bytes()), "验证集.xlsx")},
+            content_type="multipart/form-data",
+        )
+        self.assertEqual(response.status_code, 202)
+        body = response.get_json()["data"]
+        self.assertEqual(body["questions"], 2)
+        job_id = body["job_id"]
+        self._wait(job_id)
+
+        exported = self.client.get("/api/eval/%s/export?format=xlsx" % job_id)
+        self.assertEqual(exported.status_code, 200)
+        self.assertEqual(
+            exported.mimetype,
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+        from openpyxl import load_workbook
+
+        book = load_workbook(io.BytesIO(exported.data), data_only=True)
+        sheet = book.active
+        rows = list(sheet.iter_rows(values_only=True))
+        self.assertEqual(
+            list(rows[0]),
+            ["问题", "预期答案", "智能体实际回复", "耗时(秒)", "状态"],
+        )
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(rows[1][0], QUESTION)
+        self.assertEqual(rows[1][1], "某个答案")
+        self.assertIsInstance(rows[1][3], (int, float))
+        self.assertIn(rows[1][4], ("正常", "报错", "超时", "未评分"))
+        book.close()
+
+    def test_export_rejects_unknown_format(self):
+        # 随便一个 job_id：格式校验应先于任务查找
+        response = self.client.get("/api/eval/nope/export?format=pdf")
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.get_json()["error"]["code"], "INVALID_INPUT")
+
+    def test_gold_alias_预期答案_is_recognised(self):
+        rows, report = evaluator.parse_dataset(
+            evaluator.xlsx_to_csv(self._template4_bytes()), "验证集.csv"
+        )
+        self.assertEqual(report["total"], 2)
+        self.assertTrue(all(row["gold"] for row in rows))
