@@ -49,6 +49,12 @@ def build_fact_card(store, work_id, settings=None) -> dict:
     `work_id` 可以是官方快照的整数 id，也可以是同源层的 `t2a_` / `t2b_` 字符串 id
     （同源层的逐句平仄由带调拼音统计，口径标「非官方」）。
     """
+    if settings is None and corpus.is_tier2_id(str(work_id)):
+        raise ApiError(
+            "INVALID_INPUT",
+            "非官方层作品需要数据层配置",
+            {"work_id": work_id, "hint": "调用 build_fact_card / generate 时须传 settings"},
+        )
     work = (
         corpus.load_work(settings, work_id)
         if settings is not None

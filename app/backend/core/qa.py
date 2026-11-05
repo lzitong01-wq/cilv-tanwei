@@ -33,7 +33,7 @@ def start(store, work_id, question: str, model: str, settings=None) -> dict:
         }
 
     thread = threading.Thread(
-        target=_run, args=(job_id, store, work_id, question, model), daemon=True
+        target=_run, args=(job_id, store, work_id, question, model, settings), daemon=True
     )
     thread.start()
     return {"qa_id": job_id, "state": "running"}

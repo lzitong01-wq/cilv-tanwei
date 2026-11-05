@@ -68,9 +68,20 @@ class Store:
         self.load()
         return self.works
 
-    def get(self, work_id: int) -> dict:
+    def get(self, work_id: int | str) -> dict:
         self.load()
-        work = self.by_id.get(int(work_id))
+        try:
+            key = int(work_id)
+        except (TypeError, ValueError):
+            raise ApiError(
+                "INVALID_INPUT",
+                "作品编号格式不对",
+                {
+                    "work_id": work_id,
+                    "hint": "官方层用整数 id；同源层 t2a_/t2b_/t2c_/t2d_ 前缀 id 需走带 settings 的数据层",
+                },
+            )
+        work = self.by_id.get(key)
         if work is None:
             raise ApiError("NOT_FOUND", "作品不存在或未发布", {"work_id": work_id})
         return work

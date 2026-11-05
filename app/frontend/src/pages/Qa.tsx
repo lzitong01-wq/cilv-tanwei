@@ -117,7 +117,8 @@ export default function Qa() {
   }
 
   async function ask(text?: string, model?: string) {
-    const asked = (text ?? question).trim();
+    const lastQuestion = turns.length ? turns[turns.length - 1].question.trim() : "";
+    const asked = (text ?? question).trim() || (model ? lastQuestion : "");
     const id = workId.trim();
     if (!asked) {
       setError("先写下你的问题");
@@ -291,6 +292,16 @@ export default function Qa() {
                   </div>
                 )}
 
+                {turn.response && (
+                  <div className="row" style={{ marginTop: 10 }}>
+                    {turn.response.model && <span className="pill">{turn.response.model}</span>}
+                    {turn.response.status && <span className="pill">{turn.response.status}</span>}
+                    {turn.response.latency_ms != null && (
+                      <span className="pill">{turn.response.latency_ms} ms</span>
+                    )}
+                  </div>
+                )}
+
                 {turn.response?.checks && (
                   <div className="row" style={{ marginTop: 10 }}>
                     {(Object.keys(CHECK_NAME) as (keyof Checks)[]).map((key) => {
@@ -308,10 +319,6 @@ export default function Qa() {
                         </span>
                       );
                     })}
-                    {turn.response.model && <span className="pill">{turn.response.model}</span>}
-                    {turn.response.latency_ms != null && (
-                      <span className="pill">{turn.response.latency_ms} ms</span>
-                    )}
                   </div>
                 )}
 
@@ -342,7 +349,11 @@ export default function Qa() {
             <button onClick={() => ask()} disabled={pending}>
               {pending ? "生成中…" : "发送"}
             </button>
-            <button onClick={() => ask(undefined, "step-3.7-flash")} disabled={pending} title="换第二个模型再答一次">
+            <button
+              onClick={() => ask(undefined, "step-3.7-flash")}
+              disabled={pending || turns.length === 0}
+              title="用第二个模型重答上一问"
+            >
               换 flash
             </button>
           </div>
