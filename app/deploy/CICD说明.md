@@ -230,7 +230,7 @@ journalctl -u cilv-deploy-agent -f
 
 ---
 
-## 5.1 首次部署实跑暴露的 6 个真问题（都已修并提交）
+## 5.1 首次部署实跑暴露的 8 个真问题（都已修并提交）
 
 按发现顺序：
 
@@ -242,9 +242,21 @@ journalctl -u cilv-deploy-agent -f
 | 4 | 下载 82 MB 后整包消失，下轮从零重下 | 大小校验失败时 `rm -rf "$workdir"` 删掉分片 | 校验失败时**保留分片**供断点续传 |
 | 5 | Release 上传成功但脚本报「下载校验失败」 | Git Bash 的 `/tmp` 路径映射让 python 读不到 curl 的输出文件，`browser_download_url` 解析为空 | 临时文件改放工作区 `.tmp/`；下载地址解析加两层兜底 |
 | 6 | 代理发现新 Release 但下载一直失败、刷进度条 | 服务器连不上 `github.com`（000 超时），探测失败后走了「单次下载」回退分支 | 改用 API 端点（`api.github.com`）+ `Accept: application/octet-stream` |
+| 7 | **代理静默跳过，日志无报错，版本不更新** | **GitHub API 配额耗尽**（未认证 60 次/小时，代理 5 分钟轮询一次） | `/etc/cilv/deploy.env` 配 `GITHUB_TOKEN`（配额 5000/小时）；env 文件权限改 `root:cilv-deploy 640`（代理要读 token） |
+| 8 | 解压与切软链静默失败（root 手动做都对） | **`cilv-deploy` 无权写 `releases/` 与 `/opt/cilv/`** | `chown cilv:cilv-deploy releases` + `chmod 775`、`chown root:cilv-deploy /opt/cilv`；另外给 `cilv-deploy` 建可写的 HOME |
 
 另外：`install_cicd.sh` 原本用 `git clone` 拉交付物，但交付包是**构建产物**不是源码树，
-已改为从 GitHub Release 下载（与 `deploy_agent.sh` 路径一致），并补上 sudoers 配置。
+已改为从 GitHub Release 下载（与 `deploy_agent.sh` 路径一致），并补上 sudoers 与权限配置。
+
+### 部署「看起来没发生」时按这个顺序查
+
+```bash
+ssh 龙蜥 'cat /opt/cilv/.deploy-state'                    # 1. FAIL_COUNT 非 0 = 已停手
+ssh 龙蜥 'journalctl -u cilv-deploy-agent -n 20 -o cat'   # 2. 有没有「软链已切到」
+ssh 龙蜥 'ls -ld /opt/cilv/releases /opt/cilv'            # 3. cilv-deploy 有没有写权限
+ssh 龙蜥 'grep GITHUB_TOKEN /etc/cilv/deploy.env'         # 4. token 配了没
+```
+
 
 ---
 

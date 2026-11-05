@@ -53,6 +53,17 @@ install -d -o cilv -g cilv "$RELEASES_DIR"
 install -d -o root -g root "$BIN_DIR"
 install -d -o root -g root /etc/cilv
 
+# 部署代理以 cilv-deploy 身份运行，它需要：
+#   - 能写 releases/（解压新版本）
+#   - 能写 /opt/cilv/（切换 current 软链）
+#   - 有可写的 HOME（pip 缓存，否则每次装依赖都告警）
+# 实测踩过：权限不对时解压静默失败、日志里看不到「软链已切到」这行。
+chown cilv:cilv-deploy "$RELEASES_DIR"
+chmod 775 "$RELEASES_DIR"
+chown root:cilv-deploy "$DEPLOY_ROOT"
+chmod 775 "$DEPLOY_ROOT"
+install -d -o cilv-deploy -g cilv-deploy -m 700 "/home/cilv-deploy"
+
 # ---------- 3. 拉取交付包 ----------
 # 从 GitHub Release 下载（不是 git clone）：
 #   - 交付包本身是构建产物（tar.gz），不是源码树；
@@ -100,9 +111,15 @@ POLL_INTERVAL=${POLL_INTERVAL:-300}
 DEPLOY_ROOT=$DEPLOY_ROOT
 SERVICE_NAME=$SERVICE_NAME
 PORT=$PORT
-# 可选：GITHUB_TOKEN=xxx   # 提高 API 配额（60 -> 5000/小时）
+# GITHUB_TOKEN 强烈建议配上：GitHub API 未认证配额只有 60 次/小时，
+# 部署代理每 5 分钟轮询一次 Release，几小时就会耗尽，
+# 耗尽后代理会「静默跳过」（不报错、也不部署），非常难查。
+# 配了 token 是 5000/小时。只需 public_repo 读取权限。
+#GITHUB_TOKEN=ghp_xxx
 EOF
-    chmod 600 "$ENV_FILE"
+    # 部署代理以 cilv-deploy 身份运行，必须能读到这个文件（要读 GITHUB_TOKEN）
+    chown root:cilv-deploy "$ENV_FILE" 2>/dev/null || true
+    chmod 640 "$ENV_FILE"
 fi
 
 # ---------- 6. systemd ----------
