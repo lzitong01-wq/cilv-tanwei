@@ -174,8 +174,17 @@ fi
 
 # ---------- 8. 防火墙 ----------
 log "开放端口 $PORT…"
-firewall-cmd --permanent --add-port="${PORT}/tcp" >/dev/null 2>&1 && firewall-cmd --reload >/dev/null 2>&1
-log "  已开放（firewall-cmd 静默失败则需手工处理）"
+# --permanent 保证重启后规则还在（否则防火墙 reload 后端口会关掉）
+firewall-cmd --permanent --add-port="${PORT}/tcp" >/dev/null 2>&1 \
+    && firewall-cmd --reload >/dev/null 2>&1 \
+    && log "  ✓ 已放行 ${PORT}/tcp（持久）" \
+    || log "  ⚠ 放行失败，需手工：firewall-cmd --permanent --add-port=${PORT}/tcp && firewall-cmd --reload"
+
+# 服务要监听所有网卡，校园网内任意机器都能通过内网 IP 访问
+log "确认监听地址（应为 0.0.0.0:${PORT}，这样内网 IP 与 Tailscale IP 都能访问）…"
+grep -q 'APP_HOST=0.0.0.0' "$RELEASES_DIR/$TAG/app/deploy/cilv.service" 2>/dev/null \
+    && log "  ✓ cilv.service 已设 APP_HOST=0.0.0.0" \
+    || log "  ⚠ 检查 cilv.service 里的 APP_HOST"
 
 # ---------- 9. 启动 ----------
 log "启动服务…"
