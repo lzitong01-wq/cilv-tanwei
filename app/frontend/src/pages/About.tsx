@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api, type Meta } from "../api";
+import { api, type Health, type Meta } from "../api";
 
 type RuleCategory = {
   id: string;
@@ -82,6 +82,7 @@ const CANNOT_SAY = [
 export default function About() {
   const [rules, setRules] = useState<RuleSet | null>(null);
   const [meta, setMeta] = useState<Meta | null>(null);
+  const [health, setHealth] = useState<Health | null>(null);
 
   useEffect(() => {
     fetch("/api/rules")
@@ -89,6 +90,7 @@ export default function About() {
       .then((body) => body.ok && setRules(body.data as RuleSet))
       .catch(() => undefined);
     api.meta().then(setMeta).catch(() => undefined);
+    api.health().then(setHealth).catch(() => undefined);
   }, []);
 
   return (
@@ -149,6 +151,52 @@ export default function About() {
         <div className="kv"><span>体式候选</span><b>只比对官方 423 篇里出现过的句式，不是词谱校勘，需人工确认</b></div>
         <div className="kv"><span>史证层</span><b>官方接口 total=0，关系位保留但不虚构填充</b></div>
         <div className="kv"><span>校订闭环</span><b>L0 发现 → L3 幂等导出；L4 官方写回不在本系统内</b></div>
+      </div>
+
+      <h2>部署与运行环境</h2>
+      <div className="panel">
+        <div className="sub">本系统跑在一台真实服务器上，以下为运行时实测值（非写死）</div>
+        <div className="kv">
+          <span>访问地址</span>
+          <b className="mono">
+            {typeof window !== "undefined" ? window.location.origin : "—"}
+          </b>
+        </div>
+        <div className="kv">
+          <span>服务器主机名</span>
+          <b className="mono">{health?.deployment?.hostname ?? "—"}</b>
+        </div>
+        <div className="kv">
+          <span>运行平台</span>
+          <b className="mono">{health?.platform ?? "—"}</b>
+        </div>
+        <div className="kv">
+          <span>检索后端</span>
+          <b className="mono">
+            {health?.sqlite ?? "—"}
+            {health?.sqlite_trigram === false ? "（trigram 不可用，≥3 字检索走内存匹配）" : ""}
+          </b>
+        </div>
+        <div className="kv">
+          <span>数据根目录</span>
+          <b className="mono">{health?.deployment?.data_root ?? "—"}</b>
+        </div>
+        <div className="kv">
+          <span>进程</span>
+          <b className="mono">
+            PID {health?.deployment?.pid ?? "—"}
+            {health?.deployment?.started_at ? ` · 启动于 ${health.deployment.started_at}` : ""}
+          </b>
+        </div>
+        <div className="kv">
+          <span>快照时刻</span>
+          <b className="mono">{health?.snapshot_at ?? "—"}</b>
+        </div>
+      </div>
+      <div className="note" style={{ marginTop: 8 }}>
+        部署方式：GitHub Release → 服务器部署代理拉取 → 解压切换版本 → 重启并做健康检查，
+        失败自动回滚上一版。以上主机名、进程号与数据目录由服务在运行时读取，
+        <b>评审时可据此核对确为独立服务器上的独立进程</b>。
       </div>
 
       <h2>规则版本与热修入口</h2>

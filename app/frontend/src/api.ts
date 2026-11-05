@@ -62,6 +62,19 @@ export type Health = {
   snapshot_path?: string;
   platform?: string;
   dist?: string;
+  /** SQLite 后端（如 stdlib 3.53.1 / pysqlite3 3.51.1） */
+  sqlite?: string;
+  /** FTS5 trigram 分词器是否可用（≥3 字检索依赖它） */
+  sqlite_trigram?: boolean;
+  /** 部署标识：真实运行环境的机器信息（后端从运行时取，非写死） */
+  deployment?: {
+    host?: string;
+    hostname?: string;
+    pid?: number;
+    cwd?: string;
+    data_root?: string;
+    started_at?: string | null;
+  };
 };
 
 export type Meta = {
