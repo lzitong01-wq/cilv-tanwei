@@ -26,6 +26,13 @@ DRY_RUN=0
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
+# 临时文件放在工作区下：Git Bash 的 /tmp 路径映射会让 python 读不到 curl 的输出文件
+TMP_DIR="$ROOT/.tmp"
+mkdir -p "$TMP_DIR"
+BUILD_LOG="$TMP_DIR/frontend_build.log"
+PACKAGE_LOG="$TMP_DIR/package.log"
+UPLOAD_JSON="$TMP_DIR/upload.json"
+
 log() { echo "[release] $*"; }
 die() { echo "[release] 错误: $*" >&2; exit 1; }
 
@@ -51,8 +58,8 @@ log "版本 $VERSION，标签 $TAG"
 # ---------- 3. 前端构建（保证 dist 与源码一致）----------
 log "构建前端…"
 if [ -d app/frontend/node_modules ]; then
-    (cd app/frontend && npm run build) >/tmp/cilv_frontend_build.log 2>&1 \
-        || { tail -20 /tmp/cilv_frontend_build.log; die "前端构建失败"; }
+    (cd app/frontend && npm run build) >"$BUILD_LOG" 2>&1 \
+        || { tail -20 "$BUILD_LOG"; die "前端构建失败"; }
     log "  前端构建完成"
 else
     log "  跳过前端构建（node_modules 不存在，用仓库内已有 dist）"
@@ -60,8 +67,8 @@ fi
 
 # ---------- 4. 打包 ----------
 log "打包…"
-python app/scripts/build_package.py >/tmp/cilv_package.log 2>&1 \
-    || { tail -20 /tmp/cilv_package.log; die "打包失败"; }
+python app/scripts/build_package.py >"$PACKAGE_LOG" 2>&1 \
+    || { tail -20 "$PACKAGE_LOG"; die "打包失败"; }
 TARBALL="$(ls -t 词律探微-交付包-*.tar.gz | head -1)"
 SIZE="$(du -h "$TARBALL" | cut -f1)"
 log "  产物 $TARBALL（$SIZE）"
@@ -102,14 +109,14 @@ UPLOAD_URL="https://uploads.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RE
 # 原始中文名记录在 Release 正文里，不丢信息。
 ASSET_NAME="cilv-tanwei-${VERSION}.tar.gz"
 log "上传资产（$SIZE，资产名 $ASSET_NAME，需要几分钟）…"
-UPLOAD_CODE=$(curl -s --max-time 3600 -o /tmp/cilv_upload.json -w "%{http_code}" \
+UPLOAD_CODE=$(curl -s --max-time 3600 -o "$UPLOAD_JSON" -w "%{http_code}" \
     -u "x-access-token:$TOKEN" -X POST \
     -H "Content-Type: application/gzip" \
     --data-binary "@$TARBALL" \
     "$UPLOAD_URL?name=$ASSET_NAME&label=delivery-package")
 
 if [ "$UPLOAD_CODE" != "201" ] && [ "$UPLOAD_CODE" != "200" ]; then
-    head -c 400 /tmp/cilv_upload.json 2>/dev/null
+    head -c 400 "$UPLOAD_JSON" 2>/dev/null
     die "上传资产失败（HTTP $UPLOAD_CODE）"
 fi
 log "  资产上传完成"
@@ -117,11 +124,32 @@ log "  资产上传完成"
 DOWNLOAD_URL=$(python -c "
 import json
 try:
-    d=json.load(open('/tmp/cilv_upload.json'))
+    d=json.load(open(r'$UPLOAD_JSON', encoding='utf-8'))
     print(d.get('browser_download_url',''))
 except Exception:
     print('')
 " 2>/dev/null)
+
+# 上传接口偶尔不返回 browser_download_url（Git Bash 的 /tmp 路径映射也会让 python 读不到）。
+# 兜底：用列表接口查该 Release 的资产，拿不到就自己拼标准下载地址。
+if [ -z "$DOWNLOAD_URL" ]; then
+    log "  上传响应里没拿到下载地址，改用列表接口查…"
+    DOWNLOAD_URL=$(curl -s --max-time 30 -u "x-access-token:$TOKEN" \
+        "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID/assets" 2>/dev/null \
+        | python -c "
+import json,sys
+try:
+    for a in json.load(sys.stdin):
+        if a.get('name') == '$ASSET_NAME':
+            print(a.get('browser_download_url','')); break
+except Exception:
+    print('')
+" 2>/dev/null)
+fi
+if [ -z "$DOWNLOAD_URL" ]; then
+    DOWNLOAD_URL="https://github.com/$REPO_OWNER/$REPO_NAME/releases/download/$TAG/$ASSET_NAME"
+    log "  用标准下载地址兜底"
+fi
 log "  下载地址: $DOWNLOAD_URL"
 
 # ---------- 7. 校验资产可下载 ----------

@@ -22,6 +22,7 @@ app/frontend/.fontsrc/
 *.tar.gz
 词律探微-交付包-*
 app/deploy/包内容清单.txt
+.tmp/
 
 # ---- 浏览器调试与本地验证产物 ----
 .playwright-cli/
