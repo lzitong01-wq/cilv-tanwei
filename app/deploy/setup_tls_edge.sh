@@ -70,7 +70,14 @@ else
 fi
 
 # ── 2. 前端：优先 nginx，没有就用 Python 标准库写 TLS 反代 ──
-if ! command -v nginx >/dev/null 2>&1; then
+NGINX_OK=1
+if [ "${SKIP_NGINX:-0}" = "1" ]; then
+  # 强制跳过 nginx：部分 Anolis OS 机器上 nginx 服务起不来（SELinux / 默认站点冲突），
+  # 此时直接用 Python 标准库反代，功能等价且不依赖系统包。
+  log "按要求跳过 nginx，直接用 Python 标准库反代"
+  NGINX_OK=0
+fi
+if [ "$NGINX_OK" = "1" ] && ! command -v nginx >/dev/null 2>&1; then
   log "未装 nginx，尝试 dnf 安装（失败则回落到 Python 反代）…"
   if command -v dnf >/dev/null 2>&1; then
     dnf install -y nginx >/tmp/cilv-nginx-install.log 2>&1 || true
@@ -81,7 +88,7 @@ if ! command -v nginx >/dev/null 2>&1; then
     || log "  nginx 装不上，用 Python 标准库反代（功能等价，不依赖外部包）"
 fi
 
-if command -v nginx >/dev/null 2>&1; then
+if command -v nginx >/dev/null 2>&1 && [ "$NGINX_OK" = "1" ]; then
   log "使用 nginx 作为 443 前端"
   cat > "$NGINX_CONF" <<EOF
 server {
@@ -108,10 +115,26 @@ server {
     }
 }
 EOF
-  nginx -t 2>&1 | sed 's/^/  /'
+  nginx -t 2>&1 | sed 's/^/  /' || true
   systemctl enable nginx >/dev/null 2>&1 || true
-  systemctl restart nginx || systemctl reload nginx
-  log "  ✓ nginx 已重启"
+  # nginx 起不来（SELinux 限制 / 默认站点冲突 / 端口占用）时不能直接退出——
+  # set -e 会把整段脚本干掉，后面的防火墙放行与自检都不执行。改为回落 Python 反代。
+  if systemctl restart nginx 2>/tmp/cilv-nginx-restart.log || systemctl reload nginx 2>>/tmp/cilv-nginx-restart.log; then
+    if systemctl is-active --quiet nginx; then
+      log "  ✓ nginx 已启动"
+    else
+      log "  ⚠ nginx 重启后未处于 active，回落到 Python 反代"
+      systemctl disable nginx >/dev/null 2>&1 || true
+      systemctl stop nginx >/dev/null 2>&1 || true
+      NGINX_OK=0
+    fi
+  else
+    log "  ⚠ nginx 启动失败，回落到 Python 反代"
+    log "  失败原因：$(tail -2 /tmp/cilv-nginx-restart.log 2>/dev/null | tr '\n' ' ' | cut -c1-160)"
+    systemctl disable nginx >/dev/null 2>&1 || true
+    systemctl stop nginx >/dev/null 2>&1 || true
+    NGINX_OK=0
+  fi
 else
   log "未装 nginx，改用 Python TLS 反代"
   # 反代实现放在同目录的 cilv_tls_proxy.py（与本脚本一起分发，避免两份代码不同步）
