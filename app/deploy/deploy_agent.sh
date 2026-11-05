@@ -190,13 +190,26 @@ extract_release() {
     local tarball="$1" tag="$2"
     local dir="$RELEASES_DIR/$tag"
 
-    rm -rf "$dir"
-    mkdir -p "$dir"
+    # 删旧目录：目录里可能有 root 属主的文件（手工部署或旧版脚本留下的），
+    # 普通 rm 删不掉 → 用 sudo 删（visudo 白名单里已放开 deploy-agent.sh 自身，
+    # 这里用 root 权限执行 rm 是必要的）。
+    sudo -n rm -rf "$dir" 2>/dev/null || rm -rf "$dir" || {
+        log "无法清理旧目录 $dir"
+        return 1
+    }
+    mkdir -p "$dir" || { log "无法创建 $dir"; return 1; }
+
     # 不加 --strip-components：交付包的顶层就是 app/、data/、docs/、tools/ 与规范文档，
     # 剥掉一层会把 app/ 变成 backend/，导致下面的结构检查失败（实测踩过）。
     tar -xzf "$tarball" -C "$dir" || return 1
     [ -d "$dir/app" ] || { log "包结构异常：未找到 $dir/app 目录"; return 1; }
     [ -d "$dir/data" ] || { log "包结构异常：未找到 $dir/data 目录"; return 1; }
+
+    # tar 解压出来的文件默认是属主自己的、权限 644/755（无写位）。
+    # 下一轮部署要 rm -rf 这个目录，**没有写位就删不掉** →
+    # 实测踩过：解压成功但下次部署报「文件已存在」而失败。
+    # 这里给属主加写位，保证下次能干净重来。
+    chmod -R u+w "$dir" 2>/dev/null || true
     return 0
 }
 

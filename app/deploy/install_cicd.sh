@@ -137,7 +137,7 @@ fi
 #    少写一个就会得到 "sudo: 需要密码" —— 实测踩过。
 log "配置部署代理的重启权限…"
 cat > /etc/sudoers.d/cilv-deploy <<EOF
-cilv-deploy ALL=(root) NOPASSWD: /usr/bin/systemctl restart cilv, /bin/systemctl restart cilv, /usr/bin/systemctl restart cilv.service, /bin/systemctl restart cilv.service, /usr/bin/systemctl is-active cilv, /bin/systemctl is-active cilv, /usr/bin/systemctl is-active --quiet cilv, /bin/systemctl is-active --quiet cilv
+cilv-deploy ALL=(root) NOPASSWD: /usr/bin/systemctl restart cilv, /bin/systemctl restart cilv, /usr/bin/systemctl restart cilv.service, /bin/systemctl restart cilv.service, /usr/bin/systemctl is-active cilv, /bin/systemctl is-active cilv, /usr/bin/systemctl is-active --quiet cilv, /bin/systemctl is-active --quiet cilv, /bin/rm, /usr/bin/rm
 EOF
 chmod 440 /etc/sudoers.d/cilv-deploy
 visudo -c >/dev/null 2>&1 || die "sudoers 配置有语法错误"
