@@ -60,6 +60,17 @@ else
 fi
 
 # ── 2. 前端：优先 nginx，没有就用 Python 标准库写 TLS 反代 ──
+if ! command -v nginx >/dev/null 2>&1; then
+  log "未装 nginx，尝试 dnf 安装（失败则回落到 Python 反代）…"
+  if command -v dnf >/dev/null 2>&1; then
+    dnf install -y nginx >/tmp/cilv-nginx-install.log 2>&1 || true
+  elif command -v yum >/dev/null 2>&1; then
+    yum install -y nginx >/tmp/cilv-nginx-install.log 2>&1 || true
+  fi
+  command -v nginx >/dev/null 2>&1 && log "  ✓ nginx 安装成功" \
+    || log "  nginx 装不上，用 Python 标准库反代（功能等价，不依赖外部包）"
+fi
+
 if command -v nginx >/dev/null 2>&1; then
   log "使用 nginx 作为 443 前端"
   cat > "$NGINX_CONF" <<EOF
@@ -93,88 +104,9 @@ EOF
   log "  ✓ nginx 已重启"
 else
   log "未装 nginx，改用 Python TLS 反代"
-  cat > /opt/cilv/bin/cilv-tls-proxy.py <<'PYEOF'
-"""极简 TLS→HTTP 反向代理：监听 443，转发到本机 8080。仅用标准库。"""
-import http.client
-import socket
-import ssl
-import sys
-import threading
-
-LISTEN = ("0.0.0.0", int(sys.argv[1]) if len(sys.argv) > 1 else 443)
-TARGET = ("127.0.0.1", int(sys.argv[2]) if len(sys.argv) > 2 else 8080)
-CERT = "/etc/cilv/tls/server.crt"
-KEY = "/etc/cilv/tls/server.key"
-
-
-def pump(src, dst):
-    try:
-        while True:
-            data = src.recv(65536)
-            if not data:
-                break
-            dst.sendall(data)
-    except Exception:
-        pass
-    finally:
-        for s in (src, dst):
-            try:
-                s.shutdown(socket.SHUT_RDWR)
-            except Exception:
-                pass
-
-
-def handle(conn):
-    try:
-        raw = conn.recv(65536)
-        if not raw:
-            return
-        # 只取第一行与 Host，其余头原样转发
-        head, _, rest = raw.partition(b"\r\n\r\n")
-        first = head.split(b"\r\n")[0]
-        up = http.client.HTTPConnection(*TARGET, timeout=120)
-        up.putrequest(first.decode("latin-1").split(" ")[0],
-                     " ".join(first.decode("latin-1").split(" ")[1:]),
-                     skip_host=True, skip_accept_encoding=True)
-        for line in head.split(b"\r\n")[1:]:
-            if line.lower().startswith((b"host:", b"connection:")):
-                continue
-            up.putheader(line.decode("latin-1"))
-        up.endheaders(rest if rest else None)
-        resp = up.getresponse()
-        data = resp.read()
-        out = b"HTTP/1.1 %d %s\r\n" % (resp.status, resp.reason.encode())
-        for k, v in resp.getheaders():
-            if k.lower() in ("transfer-encoding", "content-length", "connection"):
-                continue
-            out += ("%s: %s\r\n" % (k, v)).encode("latin-1")
-        out += b"Content-Length: %d\r\nConnection: close\r\n\r\n" % len(data)
-        conn.sendall(out + data)
-        up.close()
-    except Exception:
-        pass
-    finally:
-        try:
-            conn.close()
-        except Exception:
-            pass
-
-
-ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-ctx.load_cert_chain(CERT, KEY)
-srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-srv.bind(LISTEN)
-srv.listen(64)
-print("tls proxy listening on %s:%d -> %s:%d" % (LISTEN[0], LISTEN[1], TARGET[0], TARGET[1]), flush=True)
-while True:
-    c, _ = srv.accept()
-    try:
-        s = ctx.wrap_socket(c, server_side=True)
-    except Exception:
-        continue
-    threading.Thread(target=handle, args=(s,), daemon=True).start()
-PYEOF
+  # 反代实现放在同目录的 cilv_tls_proxy.py（与本脚本一起分发，避免两份代码不同步）
+  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+  install -m 0755 "$SCRIPT_DIR/cilv_tls_proxy.py" /opt/cilv/bin/cilv-tls-proxy.py
   cat > /etc/systemd/system/cilv-tls-proxy.service <<EOF
 [Unit]
 Description=Cilv TLS reverse proxy (443 -> ${APP_PORT})
@@ -210,8 +142,12 @@ if [ "$CODE" = "200" ]; then
   log "════ 443 入口就绪 ════"
   log "  校园网内请访问：https://${CN}/"
   log "  证书为自签（SAN 含 ${CN}），浏览器提示「不安全」时点「继续访问」即可。"
-  log "  若客户端仍打不开：说明校网 ACL 按 IP 放行而本机 ${CN} 未在白名单，"
+  log "  若客户端仍打不开：说明校网按 IP 放行而本机 ${CN} 未在白名单，"
   log "  需请网络管理为 ${CN} 开通 80/443 入站（这一步本脚本无法代替）。"
+  log ""
+  log "客户端验证命令（在校园网内网机器上执行）："
+  log "  curl -k https://${CN}/api/health"
+  log "  浏览器打开 https://${CN}/（自签证书提示不安全时点『继续访问』）"
 else
   log "⚠ 自检未通过，检查 nginx / cilv-tls-proxy 日志："
   log "    journalctl -u nginx -n 20 --no-pager"
