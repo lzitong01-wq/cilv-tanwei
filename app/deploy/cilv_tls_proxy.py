@@ -5,12 +5,23 @@
 只拿到半条记录 → 解密失败 → 连接被关闭。已用本地验证复现。
 """
 import http.client
+import os
 import socket
 import ssl
 import sys
 import threading
 
-LISTEN = ("0.0.0.0", int(sys.argv[1]) if len(sys.argv) > 1 else 443)
+# 监听地址优先级：环境变量 BIND_ADDR > 第 5 个位置参数 > 0.0.0.0
+#
+# 为什么不能无条件绑 0.0.0.0：本机若同时跑着 `tailscale serve`（公网 Funnel
+# 入口，监听 <tailscale-IP>:443），绑 0.0.0.0:443 会与之冲突并报 EADDRINUSE，
+# 反代直接起不来。此时应绑本机内网 IP（如 10.27.80.204），两者即可共存。
+BIND_ADDR = (
+    os.environ.get("BIND_ADDR")
+    or (sys.argv[5] if len(sys.argv) > 5 else "")
+    or "0.0.0.0"
+)
+LISTEN = (BIND_ADDR, int(sys.argv[1]) if len(sys.argv) > 1 else 443)
 TARGET = ("127.0.0.1", int(sys.argv[2]) if len(sys.argv) > 2 else 8080)
 CERT = sys.argv[3] if len(sys.argv) > 3 else "/etc/cilv/tls/server.crt"
 KEY = sys.argv[4] if len(sys.argv) > 4 else "/etc/cilv/tls/server.key"

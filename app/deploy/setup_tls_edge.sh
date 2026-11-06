@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 # 为校园网内网地址提供 HTTPS(443) 入口，反代到本机 8080。
 #
-# 为什么需要：校园网 ACL 只放行 80/443 两类标准端口（实测同网段另一台机器的
-# 8080/22/8000/9000 全部超时，而 80/443 正常）。本服务监听 8080，校园网访问不到，
-# 故需在 443 上另开一个 TLS 入口。
+# 为什么需要：本服务监听 8080，而校园网内访问常要求标准 HTTPS 端口（443），
+# 与同网段参照机保持一致的访问形态便于评审。故在 443 上另开一个 TLS 入口。
+#
+# ⚠ 绑定地址不能无条件用 0.0.0.0：本机若同时跑着 `tailscale serve`
+#   （公网 Funnel 入口，监听 <tailscale-IP>:443），绑 0.0.0.0:443 必然
+#   EADDRINUSE，反代起不来。脚本会自动检测并改绑本机内网 IP。
 #
 # 幂等：重复执行安全。已在监听则只更新证书与配置后 reload。
 set -euo pipefail
 
 APP_PORT="${APP_PORT:-8080}"
 TLS_PORT="${TLS_PORT:-443}"
-BIND_ADDR="${BIND_ADDR:-0.0.0.0}"
+# 留空 = 自动判定（443 已被别的进程占用时绑本机内网 IP，否则 0.0.0.0）
+BIND_ADDR="${BIND_ADDR:-}"
 CERT_DIR="${CERT_DIR:-/etc/cilv/tls}"
 CERT="$CERT_DIR/server.crt"
 KEY="$CERT_DIR/server.key"
@@ -20,6 +24,29 @@ LOG_TAG=cilv-tls
 PEER_IP="${PEER_IP:-10.27.80.205}"   # 同网段参照机，用于判断校网 ACL 的放行口径
 
 log() { echo "[$(date +%H:%M:%S)] [$LOG_TAG] $*"; }
+
+# ══ 绑定地址自动判定 ══════════════════════════════════════════════════
+# 若 443 已被别的进程占用（典型：`tailscale serve` 监听 <tailscale-IP>:443），
+# 绑 0.0.0.0:443 会 EADDRINUSE 直接起不来。此时改绑本机内网 IP 即可共存。
+detect_bind_addr() {
+  if [ -n "$BIND_ADDR" ]; then
+    echo "$BIND_ADDR"; return
+  fi
+  if ss -tln 2>/dev/null | grep -qE '(:443 |\]:443 )'; then
+    local ip
+    ip="$(ip -4 route get 1.1.1.1 2>/dev/null \
+          | awk '{for(i=1;i<=NF;i++) if($i=="src"){print $(i+1); exit}}')"
+    echo "${ip:-0.0.0.0}"
+  else
+    echo "0.0.0.0"
+  fi
+}
+BIND_ADDR="$(detect_bind_addr)"
+if [ "$BIND_ADDR" = "0.0.0.0" ]; then
+  log "绑定地址：0.0.0.0:${TLS_PORT}（443 空闲）"
+else
+  log "绑定地址：${BIND_ADDR}:${TLS_PORT}（443 已被占用，改绑内网 IP 以避开冲突）"
+fi
 
 # ══ 诊断 0：先说清楚「为什么校园网访问不到」═════════════════════════
 # 现象：同网段机器 A（$PEER_IP）的 80/443 通、8080/22 全超时；
@@ -92,8 +119,7 @@ if command -v nginx >/dev/null 2>&1 && [ "$NGINX_OK" = "1" ]; then
   log "使用 nginx 作为 443 前端"
   cat > "$NGINX_CONF" <<EOF
 server {
-    listen ${TLS_PORT} ssl;
-    listen [::]:${TLS_PORT} ssl;
+    listen ${BIND_ADDR}:${TLS_PORT} ssl;
     server_name _;
 
     ssl_certificate     ${CERT};
@@ -140,6 +166,20 @@ else
   # 反代实现放在同目录的 cilv_tls_proxy.py（与本脚本一起分发，避免两份代码不同步）
   SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
   install -m 0755 "$SCRIPT_DIR/cilv_tls_proxy.py" /opt/cilv/bin/cilv-tls-proxy.py
+  # 不能写死 /usr/bin/python3.11：Anolis 最小化安装里该路径常常不存在，
+  # 单元会一直 crash-loop（表现为「启动了但 curl 拒绝连接」）。
+  PY_BIN=""
+  for p in /opt/cilv/current/app/.venv/bin/python /usr/bin/python3.11 \
+           /usr/local/bin/python3.11 /usr/bin/python3; do
+    if [ -x "$p" ] && "$p" -c "import ssl,socket" >/dev/null 2>&1; then
+      PY_BIN="$p"; break
+    fi
+  done
+  if [ -z "$PY_BIN" ]; then
+    log "✗ 找不到可用 python（需 3.x 且带 ssl 模块），无法启动反代"
+    exit 1
+  fi
+  log "  python：$PY_BIN"
   cat > /etc/systemd/system/cilv-tls-proxy.service <<EOF
 [Unit]
 Description=Cilv TLS reverse proxy (443 -> ${APP_PORT})
@@ -147,7 +187,8 @@ After=network.target cilv.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3.11 /opt/cilv/bin/cilv-tls-proxy.py ${TLS_PORT} ${APP_PORT}
+Environment=BIND_ADDR=${BIND_ADDR}
+ExecStart=${PY_BIN} /opt/cilv/bin/cilv-tls-proxy.py ${TLS_PORT} ${APP_PORT}
 Restart=always
 RestartSec=3
 
