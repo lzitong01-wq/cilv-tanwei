@@ -133,6 +133,26 @@ class XlsxUploadTest(unittest.TestCase):
         _rows, report = self._parse(make_xlsx(rows))
         self.assertEqual(report["total"], 2)
 
+    def test_aliases_题面_and_答案(self):
+        _rows, report = self._parse(make_xlsx([["题面", "答案"], [QUESTION, GOLD]]))
+        self.assertEqual(report["total"], 1)
+        self.assertEqual(report["with_gold"], 1)
+
+    def test_alias_题干(self):
+        _rows, report = self._parse(make_xlsx([["题干", "答案"], [QUESTION, GOLD]]))
+        self.assertEqual(report["total"], 1)
+
+    def test_header_with_spaces_and_mixed_case(self):
+        _rows, report = self._parse(make_xlsx([[" Question ", " Answer "], [QUESTION, GOLD]]))
+        self.assertEqual(report["total"], 1)
+        self.assertEqual(report["with_gold"], 1)
+
+    def test_missing_question_reports_actual_headers(self):
+        with self.assertRaises(ApiError) as ctx:
+            self._parse(make_xlsx([["序号", "内容"], [1, QUESTION]]))
+        self.assertIn("headers", ctx.exception.detail)
+        self.assertIn("序号", str(ctx.exception.detail["headers"]))
+
     def test_empty_sheet_gives_actionable_error(self):
         book = Workbook()
         buffer = io.BytesIO()

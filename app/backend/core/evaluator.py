@@ -38,8 +38,10 @@ _LOCK = threading.Lock()
 FIELD_ALIASES: dict[str, tuple[str, ...]] = {
     "qid": ("题号", "qid", "QID", "id", "ID", "题号ID"),
     "category": ("类别", "category", "题型", "type"),
-    "question": ("问题", "question", "query", "prompt", "题目"),
-    "gold": ("标准答案", "预期答案", "answer", "gold", "参考答案", "标准输出"),
+    "question": ("问题", "question", "query", "prompt", "题目", "题面", "题干",
+                 "问题内容", "输入", "input", "文本", "text"),
+    "gold": ("标准答案", "预期答案", "answer", "gold", "参考答案", "标准输出",
+             "答案", "answer_text", "预期输出", "label"),
     "boundary": ("智能体边界标签", "边界标签", "boundary"),
     "level": ("层级", "level", "tier"),
     "difficulty": ("难度", "difficulty"),
@@ -83,10 +85,11 @@ def load_questions(quiz_dir: Path, limit: int | None) -> list[dict]:
 
 
 def _pick(row: dict, key: str) -> str:
-    """按别名取字段值；都没有时返回空串。"""
-    for alias in FIELD_ALIASES[key]:
-        if alias in row and row[alias] not in (None, ""):
-            return str(row[alias])
+    """按别名取字段值；列名允许首尾空格与大小写差异，都没有时返回空串。"""
+    aliases = {alias.casefold() for alias in FIELD_ALIASES[key]}
+    for name, value in row.items():
+        if str(name).strip().casefold() in aliases and value not in (None, ""):
+            return str(value)
     return ""
 
 
@@ -348,7 +351,16 @@ def parse_dataset(text: str, filename: str = "") -> tuple[list[dict], dict]:
     if missing_question:
         report["warnings"].append("%d 行缺少问题字段，已跳过" % missing_question)
     if not normalized:
-        raise ApiError("INVALID_INPUT", "验证集里没有可用题目（缺少问题字段）")
+        headers = sorted({str(name).strip() for row in rows[:5] for name in row if name})[:20]
+        raise ApiError(
+            "INVALID_INPUT",
+            "验证集里没有可用题目（缺少问题字段）",
+            {
+                "headers": headers,
+                "hint": "问题列可命名为：问题 / 题目 / 题面 / 题干 / question / query；"
+                        "答案列可命名为：标准答案 / 预期答案 / 答案 / answer",
+            },
+        )
 
     report["total"] = len(normalized)
     report["with_gold"] = sum(1 for row in normalized if row["gold"])
