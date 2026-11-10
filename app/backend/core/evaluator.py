@@ -110,12 +110,83 @@ def _parse_jsonl(text: str) -> list[dict]:
     return rows
 
 
-def xlsx_to_csv(data: bytes) -> str:
-    """把模板4 的 xlsx（两列：问题 / 预期答案）转成 CSV 文本。
+QUESTION_HEADERS = FIELD_ALIASES["question"]
+GOLD_HEADERS = FIELD_ALIASES["gold"]
+HEADER_SCAN_ROWS = 20
+MAX_SHEET_ROWS = 10000
 
-    转文本后直接复用 `parse_dataset()` 的 CSV 分支与字段别名，
-    不另写一套解析逻辑——上传格式怎么变，规范化与评分口径都只有一处。
+
+def _decode_table_text(data: bytes) -> str | None:
+    """CSV/TSV 文本被误存成 .xlsx 时，转回逗号分隔文本复用 CSV 解析链。
+
+    只在首行出现「问题 / 预期答案」等已知表头别名时才认定是表格文本，
+    避免把下载失败的 HTML 错误页当成验证集。
     """
+    for encoding in ("utf-8-sig", "gb18030"):
+        try:
+            text = data.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+        lines = [line for line in text.splitlines() if line.strip()]
+        if not lines:
+            return None
+        first = lines[0]
+        delimiter = "\t" if first.count("\t") > first.count(",") else ","
+        if delimiter not in first:
+            return None
+        if not any(header in first for header in QUESTION_HEADERS + GOLD_HEADERS):
+            return None
+        buffer = io.StringIO()
+        writer = csv.writer(buffer)
+        for row in csv.reader(io.StringIO(text), delimiter=delimiter):
+            writer.writerow(row)
+        return buffer.getvalue()
+    return None
+
+
+def _rows_to_csv(rows: list[tuple], start: int = 0) -> str:
+    buffer = io.StringIO()
+    writer = csv.writer(buffer)
+    for row in rows[start:]:
+        if all(value in (None, "") for value in row):
+            continue
+        writer.writerow(["" if value is None else value for value in row])
+    return buffer.getvalue()
+
+
+def _find_header_row(rows: list[tuple]) -> int | None:
+    for index, row in enumerate(rows[:HEADER_SCAN_ROWS]):
+        if any(header in str(value or "") for value in row for header in QUESTION_HEADERS):
+            return index
+    return None
+
+
+def xlsx_to_csv(data: bytes) -> str:
+    """把验证集表格转成 CSV 文本，复用 `parse_dataset()` 的 CSV 分支与字段别名。
+
+    兼容标准 .xlsx、多工作表、表头前有说明行、以及 CSV/TSV 文本误存成 .xlsx。
+    非工作簿文件给出可操作的原因，不再笼统报「读取失败」。
+    """
+    if not data:
+        raise ApiError("INVALID_INPUT", "验证集文件是空的")
+    if not data.startswith(b"PK\x03\x04"):
+        text = _decode_table_text(data)
+        if text is not None:
+            return text
+        if data.startswith(b"\xD0\xCF\x11\xE0"):
+            raise ApiError(
+                "INVALID_INPUT",
+                "这是旧版 .xls 文件，请另存为 .xlsx 或 .csv 后重新上传",
+                {"format": "OLE2/.xls", "hint": "Excel：文件 → 另存为 → Excel 工作簿 (*.xlsx)"},
+            )
+        raise ApiError(
+            "INVALID_INPUT",
+            "上传的文件不是 Excel 工作簿（可能下载到了网页或文件已损坏）",
+            {
+                "first_bytes": data[:16].hex(),
+                "hint": "确认文件能在 Excel/WPS 中正常打开，或改用 .csv / .jsonl",
+            },
+        )
     try:
         from openpyxl import load_workbook
     except ImportError as exc:  # 部署机没装依赖时明确报错，不静默降级
@@ -126,17 +197,26 @@ def xlsx_to_csv(data: bytes) -> str:
         ) from exc
     try:
         workbook = load_workbook(io.BytesIO(data), read_only=True, data_only=True)
-        sheet = workbook.active
-        buffer = io.StringIO()
-        writer = csv.writer(buffer)
-        for row in sheet.iter_rows(values_only=True):
-            writer.writerow(["" if value is None else value for value in row])
-        workbook.close()
-        return buffer.getvalue()
+        try:
+            first_sheet_rows: list[tuple] = []
+            for sheet in workbook.worksheets:
+                rows = [tuple(row) for row in sheet.iter_rows(values_only=True)][:MAX_SHEET_ROWS]
+                if not first_sheet_rows:
+                    first_sheet_rows = rows
+                header = _find_header_row(rows)
+                if header is not None:
+                    return _rows_to_csv(rows, header)
+            return _rows_to_csv(first_sheet_rows)
+        finally:
+            workbook.close()
     except ApiError:
         raise
     except Exception as exc:
-        raise ApiError("INVALID_INPUT", "Excel 验证集读取失败", {"detail": repr(exc)}) from exc
+        raise ApiError(
+            "INVALID_INPUT",
+            "Excel 验证集读取失败：%s" % repr(exc),
+            {"detail": repr(exc), "hint": "确认是标准 .xlsx；也可另存为 .csv 后上传"},
+        ) from exc
 
 
 def parse_dataset(text: str, filename: str = "") -> tuple[list[dict], dict]:

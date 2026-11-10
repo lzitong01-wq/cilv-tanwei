@@ -128,7 +128,15 @@ export default function EvalCenter() {
       form.append("file", file);
       const response = await fetch("/api/eval/upload", { method: "POST", body: form });
       const body = await response.json();
-      if (!body.ok) throw new Error(body.error?.message ?? "上传失败");
+      if (!body.ok) {
+        const raw = body.error?.detail;
+        const detail = typeof raw === "string"
+          ? raw
+          : raw && typeof raw === "object"
+            ? Object.values(raw as Record<string, unknown>).map(String).join("；")
+            : "";
+        throw new Error((body.error?.message ?? "上传失败") + (detail ? "（" + detail + "）" : ""));
+      }
       setParsed(body.data.parsed as Parsed);
       poll(body.data.job_id as string);
     } catch (err) {
