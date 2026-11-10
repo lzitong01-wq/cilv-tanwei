@@ -996,7 +996,13 @@ def create_app(settings: Settings | None = None) -> Flask:
         if uploaded is not None:
             filename = uploaded.filename or ""
             raw = uploaded.read()
-            if filename.lower().endswith((".xlsx", ".xlsm")):
+            # 按内容魔数识别，不只看扩展名：老 .xls、无扩展名的工作簿也能给出正确提示，
+            # 而不是被当成文本解码成一串乱码后再报「不是合法 JSONL」。
+            excel_like = filename.lower().endswith((".xlsx", ".xlsm", ".xls")) or raw[:4] in (
+                b"PK\x03\x04",
+                b"\xD0\xCF\x11\xE0",
+            )
+            if excel_like:
                 # 模板4 的 Excel 验证集：转 CSV 文本后复用同一套解析与评分链
                 text = evaluator.xlsx_to_csv(raw)
                 filename = filename.rsplit(".", 1)[0] + ".csv"

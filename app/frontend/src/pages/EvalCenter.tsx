@@ -138,6 +138,7 @@ export default function EvalCenter() {
         throw new Error((body.error?.message ?? "上传失败") + (detail ? "（" + detail + "）" : ""));
       }
       setParsed(body.data.parsed as Parsed);
+      setUploading(false);
       poll(body.data.job_id as string);
     } catch (err) {
       setError(err instanceof Error ? err.message : "上传失败");
@@ -178,6 +179,7 @@ export default function EvalCenter() {
         if (status.state !== "running") {
           if (timer.current) window.clearInterval(timer.current);
           setPending(false);
+          setUploading(false);
           loadItems(jobId, 1);
         }
       } catch (err) {
@@ -211,12 +213,12 @@ export default function EvalCenter() {
       <div className="panel">
         <div className="row" style={{ marginBottom: 8 }}>
           <b>上传验证集</b>
-          <span className="muted">支持 .jsonl / .csv / .json，字段名自动识别</span>
+          <span className="muted">支持 .jsonl / .csv / .json / .xlsx，字段名自动识别；读不了会说明原因</span>
         </div>
         <div className="row">
           <input
             type="file"
-            accept=".jsonl,.ndjson,.csv,.json,.xlsx,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            accept=".jsonl,.ndjson,.csv,.json,.xlsx,.xlsm,.xls,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             onChange={(event) => setFile(event.target.files?.[0] ?? null)}
             aria-label="选择验证集文件"
           />

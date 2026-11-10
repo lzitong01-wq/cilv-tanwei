@@ -127,6 +127,20 @@ class XlsxUploadTest(unittest.TestCase):
             evaluator.xlsx_to_csv(b"")
         self.assertIn("空的", ctx.exception.message)
 
+    def test_question_word_in_note_row_is_not_a_header(self):
+        rows = [["这份验证集用于检验「问题」字段"], ["问题", "预期答案"]]
+        rows += [["第 %d 题的问题在哪里" % i, GOLD] for i in range(1, 3)]
+        _rows, report = self._parse(make_xlsx(rows))
+        self.assertEqual(report["total"], 2)
+
+    def test_empty_sheet_gives_actionable_error(self):
+        book = Workbook()
+        buffer = io.BytesIO()
+        book.save(buffer)
+        with self.assertRaises(ApiError) as ctx:
+            evaluator.xlsx_to_csv(buffer.getvalue())
+        self.assertIn("没有可读", ctx.exception.message)
+
 
 class UploadEndToEndTest(unittest.TestCase):
     """评分要点：上传 → 逐题作答 → 导出模板5 Excel。"""
@@ -169,6 +183,28 @@ class UploadEndToEndTest(unittest.TestCase):
         self.assertEqual(len(rows), 21)
         self.assertIsInstance(rows[1][3], (int, float))
         book.close()
+
+    def test_xlsx_content_without_extension(self):
+        """按内容魔数识别，不靠文件名后缀。"""
+        payload = make_xlsx(make_question_rows(3))
+        response = self.client.post(
+            "/api/eval/upload",
+            data={"file": (io.BytesIO(payload), "无扩展名文件")},
+            content_type="multipart/form-data",
+        )
+        self.assertEqual(response.status_code, 202, response.get_json())
+        self.assertEqual(response.get_json()["data"]["parsed"]["total"], 3)
+
+    def test_xls_extension_gives_actionable_error(self):
+        """老 .xls 不再被当成文本乱码，而是给出可操作提示。"""
+        data = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1" + b"\x00" * 512
+        response = self.client.post(
+            "/api/eval/upload",
+            data={"file": (io.BytesIO(data), "200条测试集.xls")},
+            content_type="multipart/form-data",
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn(".xls", response.get_json()["error"]["message"])
 
 
 if __name__ == "__main__":

@@ -127,6 +127,10 @@ def _decode_table_text(data: bytes) -> str | None:
             text = data.decode(encoding)
         except UnicodeDecodeError:
             continue
+        sample = text[:4096]
+        printable = sum(1 for ch in sample if ch.isprintable() or ch in "\r\n\t")
+        if printable / max(1, len(sample)) < 0.9:
+            continue
         lines = [line for line in text.splitlines() if line.strip()]
         if not lines:
             return None
@@ -154,9 +158,21 @@ def _rows_to_csv(rows: list[tuple], start: int = 0) -> str:
     return buffer.getvalue()
 
 
+def _is_question_header(value) -> bool:
+    """表头单元格必须是别名本身或带括号备注，不能用子串匹配。
+
+    题目正文里常出现「问题」二字，子串匹配会把第一条数据当成表头而丢题。
+    """
+    cell = str(value or "").strip()
+    return any(
+        cell == header or cell.startswith(header + "(") or cell.startswith(header + "（")
+        for header in QUESTION_HEADERS
+    )
+
+
 def _find_header_row(rows: list[tuple]) -> int | None:
     for index, row in enumerate(rows[:HEADER_SCAN_ROWS]):
-        if any(header in str(value or "") for value in row for header in QUESTION_HEADERS):
+        if any(_is_question_header(value) for value in row):
             return index
     return None
 
@@ -199,16 +215,26 @@ def xlsx_to_csv(data: bytes) -> str:
         workbook = load_workbook(io.BytesIO(data), read_only=True, data_only=True)
         try:
             first_sheet_rows: list[tuple] = []
+            csv_text = ""
             for sheet in workbook.worksheets:
                 rows = [tuple(row) for row in sheet.iter_rows(values_only=True)][:MAX_SHEET_ROWS]
                 if not first_sheet_rows:
                     first_sheet_rows = rows
                 header = _find_header_row(rows)
                 if header is not None:
-                    return _rows_to_csv(rows, header)
-            return _rows_to_csv(first_sheet_rows)
+                    csv_text = _rows_to_csv(rows, header)
+                    break
+            if not csv_text:
+                csv_text = _rows_to_csv(first_sheet_rows)
         finally:
             workbook.close()
+        if not csv_text.strip():
+            raise ApiError(
+                "INVALID_INPUT",
+                "Excel 里没有可读的数据行",
+                {"hint": "确认题目写在单元格里，且含「问题」表头"},
+            )
+        return csv_text
     except ApiError:
         raise
     except Exception as exc:
